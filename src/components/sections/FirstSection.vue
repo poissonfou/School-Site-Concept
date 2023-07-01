@@ -20,34 +20,40 @@ export default {};
 </script>
 
 <style scoped>
-section {
+/* section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+} */
+
+section div {
+  width: 18rem;
+  margin: 0;
+  padding: 0;
 }
 
 img {
   position: relative;
   z-index: 10;
   margin-top: -28rem;
-  margin-left: 5rem;
-  width: 28rem;
-  height: 28rem;
+  margin-left: 2rem;
+  width: 15rem;
+  height: 15rem;
   object-fit: cover;
   box-shadow: -5px -5px rgb(91, 150, 44);
 }
 
 .background-div {
-  width: 28rem;
-  height: 28rem;
+  width: 15rem;
+  height: 15rem;
   margin-top: 2.5rem;
-  margin-left: 4rem;
+  margin-left: 1rem;
   background-color: rgb(56, 187, 56);
 }
 
 h1 {
-  font-size: 3rem;
   color: gray;
+  font-size: 2rem;
 }
 
 p {
@@ -55,8 +61,8 @@ p {
 }
 
 .text-box {
-  width: 40rem;
-  margin-right: 2.5rem;
+  width: 17.8rem;
   margin-top: 4rem;
+  margin-left: 0.5rem;
 }
 </style>

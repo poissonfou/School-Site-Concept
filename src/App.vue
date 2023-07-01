@@ -2,16 +2,20 @@
   <div>
     <TheHeader />
     <FirstSection />
+    <SecondSection />
   </div>
 </template>
 
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import FirstSection from "./components/sections/FirstSection.vue";
+import SecondSection from "./components/sections/SecondSection.vue";
+
 export default {
   components: {
     TheHeader,
     FirstSection,
+    SecondSection,
   },
 };
 </script>
@@ -28,5 +32,9 @@ body {
 
 a {
   text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
 }
 </style>
