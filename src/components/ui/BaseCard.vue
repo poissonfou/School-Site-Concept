@@ -12,10 +12,12 @@
 <style scoped>
 .base-card {
   margin-bottom: 1rem;
+  width: 0;
 }
 
 .img {
   height: 10rem;
+  width: 0;
 }
 
 .category {

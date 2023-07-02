@@ -3,19 +3,28 @@
     <TheHeader />
     <FirstSection />
     <SecondSection />
+    <ThirdSection />
+    <FourthSection />
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
+import TheFooter from "./components/layout/TheFooter.vue";
 import FirstSection from "./components/sections/FirstSection.vue";
 import SecondSection from "./components/sections/SecondSection.vue";
+import ThirdSection from "./components/sections/ThirdSection.vue";
+import FourthSection from "./components/sections/FourthSection.vue";
 
 export default {
   components: {
     TheHeader,
+    TheFooter,
     FirstSection,
     SecondSection,
+    ThirdSection,
+    FourthSection,
   },
 };
 </script>
