@@ -29,6 +29,7 @@ export default {};
 section div {
   width: 18rem;
   margin: 0;
+  margin-left: 2rem;
   padding: 0;
 }
 
@@ -63,6 +64,10 @@ p {
 .text-box {
   width: 17.8rem;
   margin-top: 4rem;
-  margin-left: 0.5rem;
+  margin-left: 2.5rem;
+}
+
+a {
+  color: rgb(56, 187, 56);
 }
 </style>

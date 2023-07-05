@@ -11,7 +11,7 @@ button {
   border: none;
   width: 10rem;
   height: 4rem;
-  margin-left: 4.5rem;
+  margin-left: 6.8rem;
 }
 
 button:hover {

@@ -3,6 +3,7 @@
     <TheHeader />
     <FirstSection />
     <SecondSection />
+    <SliderComponent />
     <ThirdSection />
     <FourthSection />
     <TheFooter />
@@ -16,6 +17,7 @@ import FirstSection from "./components/sections/FirstSection.vue";
 import SecondSection from "./components/sections/SecondSection.vue";
 import ThirdSection from "./components/sections/ThirdSection.vue";
 import FourthSection from "./components/sections/FourthSection.vue";
+import SliderComponent from "./components/sections/SliderComponent.vue";
 
 export default {
   components: {
@@ -25,6 +27,7 @@ export default {
     SecondSection,
     ThirdSection,
     FourthSection,
+    SliderComponent,
   },
 };
 </script>

@@ -10,14 +10,14 @@
     <base-card-price>
       <img src="../../assets/k-12.jpg" alt="" />
       <template v-slot:desc>
-        <h1 class="title">K-12</h1>
+        <h1 class="title k-12">K-12</h1>
         <h1 class="price">1.103<span>,91/month</span></h1>
       </template>
     </base-card-price>
     <base-card-price>
       <img src="../../assets/highschool.jpg" alt="" />
       <template v-slot:desc>
-        <h1 class="title">Highschool</h1>
+        <h1 class="title highschool">Highschool</h1>
         <h1 class="price">1.230<span>,91/month</span></h1>
       </template>
     </base-card-price>
@@ -43,14 +43,23 @@ img {
 
 .title {
   font-size: 2.5rem;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+}
+
+.k-12 {
+  margin-left: 7rem;
+}
+
+.highschool {
+  margin-left: 3.5rem;
 }
 
 .price {
   font-size: 2.3rem;
   color: rgb(214, 214, 40);
   margin-top: 0;
-  padding-left: 2rem;
+  padding-left: 5rem;
 }
 
 span {

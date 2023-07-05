@@ -14,9 +14,8 @@ footer {
 
 p {
   color: white;
-  margin: 0;
-  margin-left: 5rem;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  margin-left: 6.8rem;
+  margin-bottom: 0.3rem;
+  margin-top: 0.6rem;
 }
 </style>
