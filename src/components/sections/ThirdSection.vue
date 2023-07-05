@@ -35,8 +35,12 @@ export default {
 </script>
 
 <style scoped>
+div {
+  margin-top: 2rem;
+}
+
 img {
-  width: 100%;
+  width: 19.94rem;
   height: 8rem;
   object-fit: cover;
 }
@@ -44,22 +48,22 @@ img {
 .title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 .k-12 {
-  margin-left: 7rem;
+  margin-left: 5.5rem;
 }
 
 .highschool {
-  margin-left: 3.5rem;
+  margin-left: 2rem;
 }
 
 .price {
   font-size: 2.3rem;
   color: rgb(214, 214, 40);
   margin-top: 0;
-  padding-left: 5rem;
+  padding-left: 3rem;
 }
 
 span {

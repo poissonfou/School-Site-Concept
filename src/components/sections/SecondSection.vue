@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 section {
-  margin-left: 2.3rem;
+  margin-left: 0.8rem;
 }
 
 img {

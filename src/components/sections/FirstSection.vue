@@ -29,7 +29,7 @@ export default {};
 section div {
   width: 18rem;
   margin: 0;
-  margin-left: 2rem;
+  margin-left: 1rem;
   padding: 0;
 }
 
@@ -64,7 +64,7 @@ p {
 .text-box {
   width: 17.8rem;
   margin-top: 4rem;
-  margin-left: 2.5rem;
+  margin-left: 1.5rem;
 }
 
 a {

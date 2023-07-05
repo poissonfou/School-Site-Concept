@@ -28,6 +28,7 @@ export default {
   flex-direction: column;
   border-radius: 2rem;
   margin-bottom: 1rem;
+  width: 20rem;
 }
 
 .price-box {

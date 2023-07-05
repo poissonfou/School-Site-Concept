@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Contact and Follow Us</h1>
+    <h3>Contact and Follow Us</h3>
     <h2>(56)153486245</h2>
     <base-social>
       <a href="#"><i class="bi bi-envelope-at"></i></a>
@@ -34,28 +34,34 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+h3 {
   color: gray;
-  margin-left: 1.5rem;
+  margin-left: 2.5rem;
   margin-bottom: 0;
+  font-size: 1.5rem;
 }
 
 h2 {
   color: gray;
-  margin-left: 6rem;
+  margin-left: 4rem;
   margin-top: 0.5rem;
+}
+
+div {
+  width: 21rem;
+  margin: 0;
 }
 
 i {
   font-size: 5rem;
   margin-bottom: 0;
-  margin-left: 9rem;
+  margin-left: 7rem;
 }
 
 p {
   font-size: 1.8rem;
   margin-top: 0;
-  margin-left: 7.3rem;
+  margin-left: 5.5rem;
 }
 
 a {
@@ -63,18 +69,18 @@ a {
 }
 
 .email {
-  margin-left: 9.3rem;
+  margin-left: 7.4rem;
 }
 
 .facebook {
-  margin-left: 7.6rem;
+  margin-left: 5.8rem;
 }
 
 .twitter {
-  margin-left: 8.5rem;
+  margin-left: 6.6rem;
 }
 
 .tiktok {
-  margin-left: 8.5rem;
+  margin-left: 6.5rem;
 }
 </style>
