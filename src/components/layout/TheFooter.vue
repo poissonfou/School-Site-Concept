@@ -27,4 +27,12 @@ p {
     width: 15rem;
   }
 }
+
+@media (min-width: 992px) {
+  p {
+    margin-left: 25.5rem;
+    font-size: 1.6rem;
+    width: 15rem;
+  }
+}
 </style>

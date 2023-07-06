@@ -58,4 +58,15 @@ p {
     margin-top: 1rem;
   }
 }
+
+@media (min-width: 992px) {
+  .price-card {
+    width: 62rem;
+    height: 12rem;
+  }
+
+  p {
+    font-weight: bold;
+  }
+}
 </style>

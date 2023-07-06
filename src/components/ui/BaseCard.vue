@@ -35,4 +35,16 @@
     margin-left: 11rem;
   }
 }
+
+@media (min-width: 992px) {
+  .category {
+    margin-left: 5rem;
+    margin-top: 10rem;
+  }
+
+  .base-card {
+    padding-right: -8rem;
+    width: 7rem;
+  }
+}
 </style>

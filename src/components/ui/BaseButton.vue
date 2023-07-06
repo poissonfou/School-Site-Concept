@@ -26,4 +26,13 @@ button:hover {
     position: absolute;
   }
 }
+
+@media (min-width: 992px) {
+  button {
+    margin-left: 47rem;
+    width: 12rem;
+    height: 5rem;
+    position: absolute;
+  }
+}
 </style>

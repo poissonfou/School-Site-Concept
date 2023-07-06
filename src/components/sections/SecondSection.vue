@@ -66,4 +66,23 @@ a {
     object-fit: cover;
   }
 }
+
+@media (min-width: 992px) {
+  section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: -10rem;
+    margin-bottom: 7rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 2rem;
+  }
+
+  img {
+    width: 17rem;
+    height: 23rem;
+    object-fit: cover;
+  }
+}
 </style>

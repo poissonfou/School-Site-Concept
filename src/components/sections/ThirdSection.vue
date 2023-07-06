@@ -98,4 +98,35 @@ span {
     padding-left: 2rem;
   }
 }
+
+@media (min-width: 992px) {
+  div {
+    margin-top: 5rem;
+    margin-left: 0.5rem;
+  }
+
+  img {
+    width: 22rem;
+    height: 12rem;
+    object-fit: cover;
+    margin-left: 0rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .price {
+    font-size: 3rem;
+    padding-left: 5rem;
+  }
+
+  .k-12 {
+    margin-left: 7rem;
+  }
+
+  .highschool {
+    margin-left: 3rem;
+  }
+}
 </style>

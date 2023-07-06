@@ -153,4 +153,50 @@ a {
     font-size: 1.8rem;
   }
 }
+
+@media (min-width: 992px) {
+  h3 {
+    margin-left: 16rem;
+    font-size: 3rem;
+  }
+
+  h2 {
+    margin-left: 22.5rem;
+    font-size: 2.3rem;
+  }
+
+  i {
+    font-size: 5.2rem;
+  }
+
+  p {
+    margin-left: 5.7rem;
+  }
+
+  .social-links {
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+  }
+
+  .email {
+    margin-left: 4.7rem;
+  }
+
+  .facebook {
+    margin-left: 6.5rem;
+  }
+
+  .twitter {
+    margin-left: 6.7rem;
+  }
+
+  .tiktok {
+    margin-left: 6.5 rem;
+  }
+
+  base-social {
+    width: 12rem;
+  }
+}
 </style>

@@ -21,11 +21,7 @@ export default {};
 
 <style scoped>
 @import "../../styles/responsive768.css";
-/* section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-} */
+
 section div {
   width: 1rem;
   margin: 0;
@@ -115,6 +111,29 @@ a {
 
   a {
     color: rgb(56, 187, 56);
+  }
+}
+
+@media (min-width: 992px) {
+  section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5.5rem;
+  }
+
+  section div {
+    margin-left: -3rem;
+  }
+
+  h1 {
+    margin-left: 7rem;
+    width: 25rem;
+  }
+
+  p {
+    width: 28rem;
+    margin-left: 7rem;
   }
 }
 </style>

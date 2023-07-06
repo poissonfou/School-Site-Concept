@@ -233,4 +233,49 @@ h2 {
     width: 20rem;
   }
 }
+
+@media (min-width: 992px) {
+  #main-div {
+    width: 62.7rem;
+    height: 35rem;
+    margin-left: 0.6rem;
+  }
+
+  img {
+    width: 27.2rem;
+    height: 32.5rem;
+  }
+
+  .info {
+    height: 32rem;
+    width: 35rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+    margin-left: 2.5rem;
+  }
+
+  p {
+    font-size: 1.8rem;
+    width: 26rem;
+  }
+
+  #prev,
+  #next {
+    top: 55%;
+    font-size: 4rem;
+  }
+
+  #next {
+    right: 1.5rem;
+  }
+
+  #prev:hover,
+  #next:hover {
+    width: 5rem;
+    height: 4rem;
+  }
+}
 </style>
