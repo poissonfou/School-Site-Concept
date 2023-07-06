@@ -70,4 +70,32 @@ span {
   font-size: 1rem;
   color: gray;
 }
+
+@media (min-width: 768px) {
+  img {
+    width: 19.94rem;
+    height: 10.2rem;
+    object-fit: cover;
+    margin-left: 0rem;
+  }
+
+  .title {
+    font-size: 2.3rem;
+  }
+
+  .k-12 {
+    margin-left: 5.5rem;
+  }
+
+  .highschool {
+    margin-left: 1.3rem;
+  }
+
+  .price {
+    font-size: 2.5rem;
+    color: rgb(214, 214, 40);
+    margin-top: 0;
+    padding-left: 2rem;
+  }
+}
 </style>

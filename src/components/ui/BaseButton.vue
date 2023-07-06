@@ -17,4 +17,13 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+@media (min-width: 768px) {
+  button {
+    margin-top: 3.5rem;
+    margin-left: 38rem;
+    width: 10rem;
+    position: absolute;
+  }
+}
 </style>

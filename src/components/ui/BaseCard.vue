@@ -29,4 +29,10 @@
   margin-left: 5rem;
   margin-top: 1rem;
 }
+
+@media (min-width: 768px) {
+  .category {
+    margin-left: 11rem;
+  }
+}
 </style>

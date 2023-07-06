@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 section {
-  margin-left: 0.8rem;
+  margin-left: 0.7rem;
 }
 
 img {
@@ -53,5 +53,17 @@ a {
   padding-top: 1.5rem;
   padding-left: 0.5rem;
   color: white;
+}
+
+@media (min-width: 768px) {
+  section {
+    margin-left: 10rem;
+  }
+
+  img {
+    width: 30rem;
+    height: 15rem;
+    object-fit: cover;
+  }
 }
 </style>

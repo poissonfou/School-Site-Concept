@@ -40,4 +40,22 @@ p {
   font-size: 1.5rem;
   margin-top: 1rem;
 }
+
+@media (min-width: 768px) {
+  .price-card {
+    display: flex;
+    flex-direction: row;
+    box-shadow: -5px 5px 15px black;
+    width: 50rem;
+    border-radius: 0rem;
+    margin-left: 0.5rem;
+    height: 10.2rem;
+  }
+
+  p {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+}
 </style>

@@ -4,7 +4,7 @@
       <li>
         <div>
           <img src="../../assets/gabriel.jpg" alt="" />
-          <div>
+          <div class="info">
             <h2>Gabriel Sanchez</h2>
             <p>
               My kids had to change schools due to my job and I was worried
@@ -18,7 +18,7 @@
       <li>
         <div class="main-div">
           <img src="../../assets/vanya.jpg" alt="" />
-          <div>
+          <div class="info">
             <h2>Vanya Winscom</h2>
             <p>
               I have never seen a scholl like this one! My daughters always come
@@ -33,7 +33,7 @@
       <li>
         <div class="main-div">
           <img src="../../assets/sandra.jpeg" alt="" />
-          <div>
+          <div class="info">
             <h2>Sandra Washington</h2>
             <p>
               I can sleep soundly knowing my boy is getting the education he
@@ -85,7 +85,7 @@ export default {
 
       let nextSlide = function () {
         if (count < items) {
-          slideList.style.left = "-" + count * 0.9999 * sliderWidth + "px";
+          slideList.style.left = "-" + count * sliderWidth + "px";
           count++;
         } else if ((count = items)) {
           slideList.style.left = "0px";
@@ -117,7 +117,7 @@ export default {
 <style scoped>
 #main-div {
   position: relative;
-  width: 20rem;
+  width: 19.599rem;
   height: 27rem;
   margin-top: 2rem;
   overflow: hidden;
@@ -136,13 +136,14 @@ export default {
 }
 
 li {
-  position: relative;
   height: 100%;
   float: left;
 }
 
 img {
-  width: 20rem;
+  width: 19.75rem;
+  height: 14rem;
+  object-fit: cover;
 }
 
 p {
@@ -153,7 +154,7 @@ p {
 }
 
 h2 {
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   color: grey;
   padding-left: 0.5rem;
 }
@@ -186,5 +187,50 @@ h2 {
 
 #next {
   right: 0.625rem;
+}
+
+@media (min-width: 768px) {
+  li {
+    margin-top: 2.5rem;
+  }
+
+  li div {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: rgb(56, 187, 56);
+    border-width: 0.3rem;
+    height: 19.5rem;
+    width: 24.5rem;
+  }
+
+  img {
+    width: 25rem;
+    height: 20rem;
+  }
+
+  #main-div {
+    width: 50rem;
+    margin-left: 0.6rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    margin-left: 4rem;
+  }
+
+  p {
+    margin-top: 0rem;
+    font-size: 1.3rem;
+    margin-left: 2.5rem;
+    margin-right: 2rem;
+    width: 20rem;
+  }
 }
 </style>

@@ -20,14 +20,14 @@ export default {};
 </script>
 
 <style scoped>
+@import "../../styles/responsive768.css";
 /* section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 } */
-
 section div {
-  width: 18rem;
+  width: 1rem;
   margin: 0;
   margin-left: 1rem;
   padding: 0;
@@ -69,5 +69,52 @@ p {
 
 a {
   color: rgb(56, 187, 56);
+}
+
+@media (min-width: 768px) {
+  section div {
+    width: 1rem;
+    margin: 0;
+    margin-left: 3rem;
+    padding: 0;
+  }
+
+  img {
+    position: relative;
+    z-index: 10;
+    margin-top: -28rem;
+    margin-left: 7rem;
+    width: 30rem;
+    height: 25rem;
+    object-fit: cover;
+    box-shadow: -5px -5px rgb(91, 150, 44);
+  }
+
+  .background-div {
+    width: 30rem;
+    height: 25rem;
+    margin-top: 2.5rem;
+    margin-left: 6rem;
+    background-color: rgb(56, 187, 56);
+  }
+
+  h1 {
+    color: gray;
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  .text-box {
+    width: 35rem;
+    margin-top: 4rem;
+    margin-left: 9rem;
+  }
+
+  a {
+    color: rgb(56, 187, 56);
+  }
 }
 </style>
