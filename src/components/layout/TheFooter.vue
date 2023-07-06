@@ -35,4 +35,12 @@ p {
     width: 15rem;
   }
 }
+
+@media (min-width: 1200px) {
+  p {
+    margin-left: 32rem;
+    font-size: 1.7rem;
+    width: 16rem;
+  }
+}
 </style>

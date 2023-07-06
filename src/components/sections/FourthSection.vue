@@ -199,4 +199,54 @@ a {
     width: 12rem;
   }
 }
+
+@media (min-width: 1200px) {
+  div {
+    margin-top: 6rem;
+    margin-bottom: 5rem;
+  }
+
+  h3 {
+    margin-left: 20rem;
+    font-size: 4rem;
+    width: 40rem;
+  }
+
+  h2 {
+    margin-left: 29.5rem;
+    font-size: 2.5rem;
+  }
+
+  p {
+    margin-left: 5rem;
+    font-size: 2rem;
+  }
+
+  .social-links {
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
+    margin-left: 12rem;
+  }
+
+  .email {
+    margin-left: 4.2rem;
+  }
+
+  .facebook {
+    margin-left: 5.5rem;
+  }
+
+  .twitter {
+    margin-left: 6rem;
+  }
+
+  .tiktok {
+    margin-left: 3rem;
+    width: 10rem;
+  }
+
+  base-social {
+    width: 12rem;
+  }
+}
 </style>

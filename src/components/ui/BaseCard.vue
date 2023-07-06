@@ -47,4 +47,12 @@
     width: 7rem;
   }
 }
+
+@media (min-width: 1200px) {
+  .category {
+    margin-left: 4rem;
+    margin-top: 17rem;
+    width: 12rem;
+  }
+}
 </style>

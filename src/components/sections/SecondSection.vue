@@ -85,4 +85,22 @@ a {
     object-fit: cover;
   }
 }
+
+@media (min-width: 1200px) {
+  section {
+    margin-left: -13rem;
+  }
+
+  img {
+    width: 20rem;
+    height: 30rem;
+    object-fit: cover;
+  }
+
+  a {
+    font-size: 2rem;
+    padding-top: 1.3rem;
+    padding-left: 1.3rem;
+  }
+}
 </style>

@@ -69,4 +69,16 @@ p {
     font-weight: bold;
   }
 }
+
+@media (min-width: 1200px) {
+  .price-card {
+    width: 77rem;
+    height: 15rem;
+  }
+
+  p {
+    padding-top: 0.8rem;
+    font-size: 2rem;
+  }
+}
 </style>

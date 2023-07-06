@@ -101,7 +101,7 @@ span {
 
 @media (min-width: 992px) {
   div {
-    margin-top: 5rem;
+    margin-top: 7rem;
     margin-left: 0.5rem;
   }
 
@@ -119,6 +119,30 @@ span {
   .price {
     font-size: 3rem;
     padding-left: 5rem;
+  }
+
+  .k-12 {
+    margin-left: 7rem;
+  }
+
+  .highschool {
+    margin-left: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  img {
+    width: 28rem;
+    height: 15rem;
+  }
+
+  .title {
+    font-size: 4rem;
+  }
+
+  .price {
+    font-size: 4rem;
+    padding-left: 6rem;
   }
 
   .k-12 {

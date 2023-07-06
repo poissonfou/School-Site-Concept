@@ -136,4 +136,38 @@ a {
     margin-left: 7rem;
   }
 }
+
+@media (min-width: 1200px) {
+  section {
+    display: flex;
+    flex-direction: row;
+  }
+
+  section div {
+    margin-left: 0rem;
+  }
+
+  h1 {
+    width: 30rem;
+    font-size: 3rem;
+    margin-left: 0rem;
+    margin-top: 0rem;
+  }
+
+  p {
+    width: 29rem;
+    margin-left: 0rem;
+    font-size: 2.5rem;
+  }
+
+  img {
+    width: 35rem;
+    height: 30rem;
+  }
+
+  .background-div {
+    width: 35rem;
+    height: 30rem;
+  }
+}
 </style>

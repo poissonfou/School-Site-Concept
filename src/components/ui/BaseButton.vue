@@ -35,4 +35,14 @@ button:hover {
     position: absolute;
   }
 }
+
+@media (min-width: 1200px) {
+  button {
+    margin-left: 59rem;
+    margin-top: 4.3rem;
+    width: 15rem;
+    height: 6rem;
+    position: absolute;
+  }
+}
 </style>
