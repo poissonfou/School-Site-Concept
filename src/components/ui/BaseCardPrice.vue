@@ -45,7 +45,7 @@ p {
   .price-card {
     display: flex;
     flex-direction: row;
-    box-shadow: -5px 5px 15px black;
+    box-shadow: -5px 5px 10px black;
     width: 50rem;
     border-radius: 0rem;
     margin-left: 0.5rem;
@@ -79,6 +79,21 @@ p {
   p {
     padding-top: 0.8rem;
     font-size: 2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .price-card {
+    width: 75rem;
+    height: 12rem;
+    margin-top: 2rem;
+  }
+
+  p {
+    color: white;
+    font-size: 2rem;
+    margin-top: 0.2rem;
+    font-weight: normal;
   }
 }
 </style>

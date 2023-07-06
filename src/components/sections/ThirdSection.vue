@@ -153,4 +153,34 @@ span {
     margin-left: 3rem;
   }
 }
+
+@media (min-width: 1300px) {
+  div {
+    margin-top: 7rem;
+    margin-left: 3.5rem;
+  }
+
+  img {
+    width: 28rem;
+    height: 12rem;
+  }
+
+  .title {
+    font-size: 2.7rem;
+    margin-left: 5rem;
+  }
+
+  .price {
+    font-size: 2.7rem;
+    padding-left: 8rem;
+  }
+
+  .k-12 {
+    margin-left: 10rem;
+  }
+
+  .highschool {
+    margin-left: 6rem;
+  }
+}
 </style>

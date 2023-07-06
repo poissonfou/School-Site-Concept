@@ -45,4 +45,12 @@ button:hover {
     position: absolute;
   }
 }
+
+@media (min-width: 1300px) {
+  button {
+    margin-top: 4rem;
+    width: 13rem;
+    height: 4rem;
+  }
+}
 </style>

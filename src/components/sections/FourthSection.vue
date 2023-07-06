@@ -60,6 +60,11 @@ i {
   margin-left: 7rem;
 }
 
+i:hover {
+  color: gray;
+  transition: 0.3s all ease;
+}
+
 p {
   font-size: 1.8rem;
   margin-top: 0;
@@ -247,6 +252,43 @@ a {
 
   base-social {
     width: 12rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  h3 {
+    margin-left: 26rem;
+    font-size: 3rem;
+    width: 40rem;
+  }
+
+  h2 {
+    margin-left: 33rem;
+    font-size: 2rem;
+  }
+
+  i {
+    font-size: 4rem;
+  }
+
+  p {
+    margin-left: 5rem;
+    font-size: 1.5rem;
+  }
+
+  .social-links {
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
+    margin-left: 12rem;
+  }
+
+  .bi-tiktok {
+    margin-left: 7rem;
+  }
+
+  .tiktok {
+    margin-left: 6rem;
+    width: 10rem;
   }
 }
 </style>

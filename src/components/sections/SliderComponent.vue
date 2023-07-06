@@ -93,9 +93,9 @@ export default {
         }
       };
 
-      // setInterval(function () {
-      //   nextSlide();
-      // }, 7000);
+      setInterval(function () {
+        nextSlide();
+      }, 7000);
 
       next.addEventListener("click", function (e) {
         e.preventDefault();
@@ -305,6 +305,33 @@ h2 {
   p {
     font-size: 2.3rem;
     width: 35rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  #main-div {
+    width: 75rem;
+    height: 35rem;
+    margin-left: 4rem;
+  }
+
+  .info {
+    height: 32rem;
+    width: 42.5rem;
+  }
+
+  img {
+    width: 32rem;
+    height: 41.5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1.8rem;
+    width: 34rem;
   }
 }
 </style>

@@ -43,4 +43,12 @@ p {
     width: 16rem;
   }
 }
+
+@media (min-width: 1300px) {
+  p {
+    margin-left: 38rem;
+    font-size: 1rem;
+    width: 16rem;
+  }
+}
 </style>
