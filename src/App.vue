@@ -20,6 +20,9 @@ import FourthSection from "./components/sections/FourthSection.vue";
 import SliderComponent from "./components/sections/SliderComponent.vue";
 
 export default {
+  data() {
+    return {};
+  },
   components: {
     TheHeader,
     TheFooter,

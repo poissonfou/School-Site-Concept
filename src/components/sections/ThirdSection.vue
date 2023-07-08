@@ -1,25 +1,25 @@
 <template>
-  <div>
-    <base-card-price>
-      <img src="../../assets/kindergarden.jpg" alt="" />
-      <template v-slot:desc>
-        <h1 class="title">Kindergarden</h1>
-        <h1 class="price">1.013<span>,91/month</span></h1>
-      </template>
+  <div id="enroll">
+    <base-card-price
+      :urlPrice="urls[0]"
+      :cardTitle="title[0]"
+      :mainPrice="price[0]"
+      :cents="cents"
+    >
     </base-card-price>
-    <base-card-price>
-      <img src="../../assets/k-12.jpg" alt="" />
-      <template v-slot:desc>
-        <h1 class="title k-12">K-12</h1>
-        <h1 class="price">1.103<span>,91/month</span></h1>
-      </template>
+    <base-card-price
+      :urlPrice="urls[1]"
+      :cardTitle="title[1]"
+      :mainPrice="price[1]"
+      :cents="cents"
+    >
     </base-card-price>
-    <base-card-price>
-      <img src="../../assets/highschool.jpg" alt="" />
-      <template v-slot:desc>
-        <h1 class="title highschool">Highschool</h1>
-        <h1 class="price">1.230<span>,91/month</span></h1>
-      </template>
+    <base-card-price
+      :urlPrice="urls[2]"
+      :cardTitle="title[2]"
+      :mainPrice="price[2]"
+      :cents="cents"
+    >
     </base-card-price>
   </div>
 </template>
@@ -28,6 +28,15 @@
 import BaseCardPrice from "../ui/BaseCardPrice.vue";
 
 export default {
+  data() {
+    return {
+      urls: ["kindergarden.jpg", "k-12.jpg", "highschool.jpg"],
+      title: ["Kindergarden", "K-12", "Highschool"],
+      price: ["1.013", "1.103", "1.230"],
+      cents: ",91/month",
+      ref_id: "enroll",
+    };
+  },
   components: {
     BaseCardPrice,
   },
@@ -39,18 +48,6 @@ div {
   margin-top: 2rem;
 }
 
-img {
-  width: 19.94rem;
-  height: 8rem;
-  object-fit: cover;
-}
-
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
-}
-
 .k-12 {
   margin-left: 5.5rem;
 }
@@ -59,30 +56,7 @@ img {
   margin-left: 2rem;
 }
 
-.price {
-  font-size: 2.3rem;
-  color: rgb(214, 214, 40);
-  margin-top: 0;
-  padding-left: 3rem;
-}
-
-span {
-  font-size: 1rem;
-  color: gray;
-}
-
 @media (min-width: 768px) {
-  img {
-    width: 19.94rem;
-    height: 10.2rem;
-    object-fit: cover;
-    margin-left: 0rem;
-  }
-
-  .title {
-    font-size: 2.3rem;
-  }
-
   .k-12 {
     margin-left: 5.5rem;
   }
@@ -90,35 +64,12 @@ span {
   .highschool {
     margin-left: 1.3rem;
   }
-
-  .price {
-    font-size: 2.5rem;
-    color: rgb(214, 214, 40);
-    margin-top: 0;
-    padding-left: 2rem;
-  }
 }
 
 @media (min-width: 992px) {
   div {
     margin-top: 7rem;
     margin-left: 0.5rem;
-  }
-
-  img {
-    width: 22rem;
-    height: 12rem;
-    object-fit: cover;
-    margin-left: 0rem;
-  }
-
-  .title {
-    font-size: 3rem;
-  }
-
-  .price {
-    font-size: 3rem;
-    padding-left: 5rem;
   }
 
   .k-12 {
@@ -131,20 +82,6 @@ span {
 }
 
 @media (min-width: 1200px) {
-  img {
-    width: 28rem;
-    height: 15rem;
-  }
-
-  .title {
-    font-size: 4rem;
-  }
-
-  .price {
-    font-size: 4rem;
-    padding-left: 6rem;
-  }
-
   .k-12 {
     margin-left: 7rem;
   }
@@ -158,21 +95,6 @@ span {
   div {
     margin-top: 7rem;
     margin-left: 3.5rem;
-  }
-
-  img {
-    width: 28rem;
-    height: 12rem;
-  }
-
-  .title {
-    font-size: 2.7rem;
-    margin-left: 5rem;
-  }
-
-  .price {
-    font-size: 2.7rem;
-    padding-left: 8rem;
   }
 
   .k-12 {

@@ -1,23 +1,8 @@
 <template>
   <section>
-    <base-card>
-      <img src="../../assets/robotics.jpg" alt="" />
-      <template v-slot:desc>
-        <a href="#">Tecnology</a>
-      </template>
-    </base-card>
-    <base-card>
-      <img src="../../assets/languages.jpeg" alt="" />
-      <template v-slot:desc>
-        <a href="#">Bilinguacy</a>
-      </template>
-    </base-card>
-    <base-card>
-      <img src="../../assets/ethics.jpg" alt="" />
-      <template v-slot:desc>
-        <a href="#" class="ethics">Ethics</a>
-      </template>
-    </base-card>
+    <base-card :url="imgs[0]" :link="links[0]"></base-card>
+    <base-card :url="imgs[1]" :link="links[1]"> </base-card>
+    <base-card :url="imgs[2]" :link="links[2]"> </base-card>
   </section>
 </template>
 
@@ -25,6 +10,12 @@
 import BaseCard from "../ui/BaseCard.vue";
 
 export default {
+  data() {
+    return {
+      imgs: ["robotics.jpg", "languages.jpeg", "ethics.jpg"],
+      links: ["Tecnology", "Bilinguacy", "Ethics"],
+    };
+  },
   components: {
     BaseCard,
   },
@@ -45,14 +36,6 @@ img {
 
 .ethics {
   margin-left: 1.3rem;
-}
-
-a {
-  position: absolute;
-  font-size: 1.5rem;
-  padding-top: 1.5rem;
-  padding-left: 0.5rem;
-  color: white;
 }
 
 @media (min-width: 768px) {
@@ -95,12 +78,6 @@ a {
     width: 20rem;
     height: 30rem;
     object-fit: cover;
-  }
-
-  a {
-    font-size: 2rem;
-    padding-top: 1.3rem;
-    padding-left: 1.3rem;
   }
 }
 </style>

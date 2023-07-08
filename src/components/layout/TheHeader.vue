@@ -13,7 +13,36 @@
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    toggle() {
+      let width = window.innerWidth;
+      if (width > 768) {
+        let i = document.querySelector("i");
+        i.classList.add("hidden");
+
+        let li_prices = document.querySelector(".prices");
+        let li_enroll = document.querySelector(".enroll");
+        let li_contact = document.querySelector(".contact");
+
+        li_prices.classList.toggle("hidden");
+        li_enroll.classList.toggle("hidden");
+        li_contact.classList.toggle("hidden");
+      }
+    },
+    trackWidth() {
+      window.addEventListener("resize", () => {
+        this.toggle();
+      });
+    },
+    scroll(id) {
+      let el = id;
+      el.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  mounted() {
+    this.toggle();
+    this.trackWidth();
+  },
 };
 </script>
 
@@ -37,7 +66,6 @@ header {
 ul {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -47,9 +75,12 @@ ul {
 a {
   text-decoration: none;
   color: white;
+  font-size: 1.5rem;
+  padding-left: 2rem;
 }
 
 a:hover {
   cursor: pointer;
+  color: rgb(221, 240, 221);
 }
 </style>

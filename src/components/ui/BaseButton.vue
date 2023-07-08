@@ -1,8 +1,14 @@
 <template>
   <button>
-    <slot></slot>
+    <p>{{ innerText }}</p>
   </button>
 </template>
+
+<script>
+export default {
+  props: ["innerText"],
+};
+</script>
 
 <style scoped>
 button {
@@ -18,12 +24,24 @@ button:hover {
   cursor: pointer;
 }
 
+p {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
 @media (min-width: 768px) {
   button {
     margin-top: 3.5rem;
     margin-left: 38rem;
     width: 10rem;
     position: absolute;
+  }
+
+  p {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 1rem;
   }
 }
 
@@ -33,6 +51,10 @@ button:hover {
     width: 12rem;
     height: 5rem;
     position: absolute;
+  }
+
+  p {
+    font-weight: bold;
   }
 }
 
@@ -44,6 +66,11 @@ button:hover {
     height: 6rem;
     position: absolute;
   }
+
+  p {
+    padding-top: 0.8rem;
+    font-size: 2rem;
+  }
 }
 
 @media (min-width: 1300px) {
@@ -51,6 +78,13 @@ button:hover {
     margin-top: 4rem;
     width: 13rem;
     height: 4rem;
+  }
+
+  p {
+    color: white;
+    font-size: 1.7rem;
+    margin-top: 0.2rem;
+    font-weight: normal;
   }
 }
 </style>

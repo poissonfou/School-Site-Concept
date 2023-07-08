@@ -1,14 +1,13 @@
 <template>
   <div class="price-card">
-    <div>
-      <slot></slot>
-    </div>
+    <div><img :src="require(`../../assets/${urlPrice}`)" alt="" /></div>
     <div class="price-box">
-      <slot name="desc"> </slot>
+      <h1 class="title">{{ cardTitle }}</h1>
+      <h1 class="price">
+        {{ mainPrice }}<span>{{ cents }}</span>
+      </h1>
     </div>
-    <base-button>
-      <p>APPLY NOW</p>
-    </base-button>
+    <base-button :innerText="buttonText"> </base-button>
   </div>
 </template>
 
@@ -16,6 +15,12 @@
 import BaseButton from "../ui/BaseButton.vue";
 
 export default {
+  props: ["urlPrice", "cardTitle", "mainPrice", "cents"],
+  data() {
+    return {
+      buttonText: "APPLY NOW",
+    };
+  },
   components: {
     BaseButton,
   },
@@ -35,10 +40,28 @@ export default {
   margin-left: 2rem;
 }
 
-p {
-  color: white;
-  font-size: 1.5rem;
-  margin-top: 1rem;
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.price {
+  font-size: 2.3rem;
+  color: rgb(214, 214, 40);
+  margin-top: 0;
+  padding-left: 3rem;
+}
+
+img {
+  width: 19.94rem;
+  height: 8rem;
+  object-fit: cover;
+}
+
+span {
+  font-size: 1rem;
+  color: gray;
 }
 
 @media (min-width: 768px) {
@@ -52,10 +75,22 @@ p {
     height: 10.2rem;
   }
 
-  p {
-    color: white;
-    font-size: 1.5rem;
-    margin-top: 1rem;
+  img {
+    width: 19.94rem;
+    height: 10.2rem;
+    object-fit: cover;
+    margin-left: 0rem;
+  }
+
+  .title {
+    font-size: 2.3rem;
+  }
+
+  .price {
+    font-size: 2.5rem;
+    color: rgb(214, 214, 40);
+    margin-top: 0;
+    padding-left: 2rem;
   }
 }
 
@@ -65,8 +100,20 @@ p {
     height: 12rem;
   }
 
-  p {
-    font-weight: bold;
+  img {
+    width: 22rem;
+    height: 12rem;
+    object-fit: cover;
+    margin-left: 0rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .price {
+    font-size: 3rem;
+    padding-left: 5rem;
   }
 }
 
@@ -76,9 +123,18 @@ p {
     height: 15rem;
   }
 
-  p {
-    padding-top: 0.8rem;
-    font-size: 2rem;
+  img {
+    width: 28rem;
+    height: 15rem;
+  }
+
+  .title {
+    font-size: 4rem;
+  }
+
+  .price {
+    font-size: 4rem;
+    padding-left: 6rem;
   }
 }
 
@@ -89,11 +145,19 @@ p {
     margin-top: 2rem;
   }
 
-  p {
-    color: white;
-    font-size: 2rem;
-    margin-top: 0.2rem;
-    font-weight: normal;
+  img {
+    width: 28rem;
+    height: 12rem;
+  }
+
+  .title {
+    font-size: 2.7rem;
+    margin-left: 5rem;
+  }
+
+  .price {
+    font-size: 2.7rem;
+    padding-left: 8rem;
   }
 }
 </style>

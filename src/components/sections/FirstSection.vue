@@ -20,8 +20,6 @@ export default {};
 </script>
 
 <style scoped>
-@import "../../styles/responsive768.css";
-
 section div {
   width: 1rem;
   margin: 0;

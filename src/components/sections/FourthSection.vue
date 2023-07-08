@@ -3,26 +3,11 @@
     <h3>Contact and Follow Us</h3>
     <h2>(56)153486245</h2>
     <div class="social-links">
-      <base-social>
-        <a href="#"><i class="bi bi-envelope-at"></i></a>
-        <p class="email">Email</p>
-      </base-social>
-      <base-social>
-        <a href="#"><i class="bi bi-instagram"></i></a>
-        <p>Instagram</p>
-      </base-social>
-      <base-social>
-        <a href="#"><i class="bi bi-facebook"></i></a>
-        <p class="facebook">Facebook</p>
-      </base-social>
-      <base-social>
-        <a href="#"><i class="bi bi-twitter"></i></a>
-        <p class="twitter">Twitter</p>
-      </base-social>
-      <base-social>
-        <a href="#"><i class="bi bi-tiktok"></i></a>
-        <p class="tiktok">Tik Tok</p>
-      </base-social>
+      <base-social :icon="icons[0]" :name="caps[0]"></base-social>
+      <base-social :icon="icons[1]" :name="caps[1]"></base-social>
+      <base-social :icon="icons[2]" :name="caps[2]"></base-social>
+      <base-social :icon="icons[3]" :name="caps[3]"></base-social>
+      <base-social :icon="icons[4]" :name="caps[4]"></base-social>
     </div>
   </div>
 </template>
@@ -31,7 +16,21 @@
 import BaseSocial from "../ui/BaseSocial.vue";
 
 export default {
-  components: BaseSocial,
+  data() {
+    return {
+      icons: [
+        "envelope-at.svg",
+        "instagram.svg",
+        "facebook.svg",
+        "twitter.svg",
+        "tiktok.svg",
+      ],
+      caps: ["Email", "Instagram", "Facebook", "Twitter", "Tik Tok"],
+    };
+  },
+  components: {
+    BaseSocial,
+  },
 };
 </script>
 
@@ -54,45 +53,8 @@ div {
   margin: 0;
 }
 
-i {
-  font-size: 5rem;
-  margin-bottom: 0;
-  margin-left: 7rem;
-}
-
-i:hover {
-  color: gray;
-  transition: 0.3s all ease;
-}
-
-p {
-  font-size: 1.8rem;
-  margin-top: 0;
-  margin-left: 5.5rem;
-}
-
-a {
-  color: black;
-}
-
 .social-links {
   margin-bottom: 2rem;
-}
-
-.email {
-  margin-left: 7.4rem;
-}
-
-.facebook {
-  margin-left: 5.8rem;
-}
-
-.twitter {
-  margin-left: 6.6rem;
-}
-
-.tiktok {
-  margin-left: 6.5rem;
 }
 
 @media (min-width: 768px) {
