@@ -19,8 +19,6 @@ import SliderComponent from "../sections/SliderComponent.vue";
 
 export default {
   components: {
-    TheHeader,
-    TheFooter,
     FirstSection,
     SecondSection,
     ThirdSection,

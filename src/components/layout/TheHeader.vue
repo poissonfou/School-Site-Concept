@@ -3,9 +3,13 @@
     <nav>
       <i class="bi bi-list"></i>
       <ul>
-        <li class="hidden prices"><a href="#">Prices</a></li>
-        <li class="hidden enroll" id="enroll"><a href="#">Enroll</a></li>
-        <li class="hidden contact" id="contact"><a href="#">Contact Us</a></li>
+        <li class="hidden prices"><a @click="showPrices()">Prices</a></li>
+        <li class="hidden enroll" id="enroll">
+          <router-link to="enroll">Enroll</router-link>
+        </li>
+        <li class="hidden contact" id="contact">
+          <a @click="showContact()">Contact Us</a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -33,6 +37,12 @@ export default {
       window.addEventListener("resize", () => {
         this.toggle();
       });
+    },
+    showPrices() {
+      window.scrollTo(0, 2100);
+    },
+    showContact() {
+      window.scrollTo(0, 2600);
     },
   },
   mounted() {

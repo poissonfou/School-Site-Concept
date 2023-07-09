@@ -4,7 +4,7 @@
       <img :src="require(`../../assets/${url}`)" alt="" />
     </div>
     <div class="category">
-      <a href="#">{{ link }}</a>
+      <router-link to="innovations">{{ link }}</router-link>
     </div>
   </div>
 </template>

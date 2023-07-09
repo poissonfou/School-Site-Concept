@@ -9,8 +9,6 @@ import EnrollForm from "../sections/EnrollForm.vue";
 
 export default {
   components: {
-    TheHeader,
-    TheFooter,
     EnrollForm,
   },
 };

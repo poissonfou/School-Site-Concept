@@ -9,14 +9,21 @@
       <p>
         Make a part of an inovative and progressive school community that
         prepares your children to their full potential. Check out our
-        <a href="#">inovations</a> and <a href="#">enroll</a> now!
+        <a @click="showInovations()">inovations</a> and
+        <router-link to="enroll">enroll</router-link> now!
       </p>
     </div>
   </section>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    showInovations() {
+      window.scrollTo(0, 700);
+    },
+  },
+};
 </script>
 
 <style scoped>

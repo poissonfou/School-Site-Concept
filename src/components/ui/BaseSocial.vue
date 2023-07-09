@@ -1,8 +1,6 @@
 <template>
   <div>
-    <a href="#">
-      <img :src="require(`../../assets/${icon}`)" alt="" />
-    </a>
+    <img :src="require(`../../assets/${icon}`)" alt="" />
     <p>{{ name }}</p>
   </div>
 </template>

@@ -10,11 +10,10 @@ div {
   border-radius: 1rem;
   border-style: none;
   width: 40rem;
-  height: 26rem;
   margin-left: 5rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
   padding-left: 2rem;
-  padding-bottom: 4rem;
+  padding-right: 2rem;
 }
 </style>
