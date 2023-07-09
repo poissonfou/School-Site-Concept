@@ -1,15 +1,25 @@
 <template>
   <div>
+    <TheHeader />
     <router-view v-slot="slotProps">
       <transition name="route" mode="out-in">
         <component :is="slotProps.Component"></component>
       </transition>
     </router-view>
+    <TheFooter />
   </div>
 </template>
 
 <script>
-export default {};
+import TheHeader from "../src/components/layout/TheHeader.vue";
+import TheFooter from "../src/components/layout/TheFooter.vue";
+
+export default {
+  components: {
+    TheHeader,
+    TheFooter,
+  },
+};
 </script>
 
 <style>
