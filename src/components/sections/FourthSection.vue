@@ -50,7 +50,6 @@ h2 {
 
 div {
   width: 21rem;
-  margin: 0;
 }
 
 .social-links {
@@ -63,45 +62,10 @@ div {
     flex-direction: row;
   }
 
-  i {
-    font-size: 4rem;
-    margin-bottom: 0;
-    margin-left: 4rem;
-  }
-
-  .bi-instagram {
-    padding-left: 2.3rem;
-  }
-
-  .bi-facebook {
-    padding-left: 2.9rem;
-  }
-
-  .bi-twitter {
-    padding-left: 2.8rem;
-  }
-
   p {
     font-size: 1.5rem;
     margin-top: 0;
     margin-left: 5rem;
-  }
-
-  .email {
-    margin-left: 4rem;
-  }
-
-  .facebook {
-    margin-left: 5.8rem;
-  }
-
-  .twitter {
-    margin-left: 6.6rem;
-  }
-
-  .tiktok {
-    margin-left: 3.5rem;
-    width: 5rem;
   }
 
   base-social {
@@ -132,10 +96,6 @@ div {
     font-size: 2.3rem;
   }
 
-  i {
-    font-size: 5.2rem;
-  }
-
   p {
     margin-left: 5.7rem;
   }
@@ -144,22 +104,6 @@ div {
     margin-top: 4.5rem;
     margin-bottom: 2rem;
     margin-left: 2rem;
-  }
-
-  .email {
-    margin-left: 4.7rem;
-  }
-
-  .facebook {
-    margin-left: 6.5rem;
-  }
-
-  .twitter {
-    margin-left: 6.7rem;
-  }
-
-  .tiktok {
-    margin-left: 6.5 rem;
   }
 
   base-social {
@@ -195,23 +139,6 @@ div {
     margin-left: 12rem;
   }
 
-  .email {
-    margin-left: 4.2rem;
-  }
-
-  .facebook {
-    margin-left: 5.5rem;
-  }
-
-  .twitter {
-    margin-left: 6rem;
-  }
-
-  .tiktok {
-    margin-left: 3rem;
-    width: 10rem;
-  }
-
   base-social {
     width: 12rem;
   }
@@ -229,8 +156,9 @@ div {
     font-size: 2rem;
   }
 
-  i {
-    font-size: 4rem;
+  div {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   p {
@@ -239,18 +167,9 @@ div {
   }
 
   .social-links {
-    margin-top: 4.5rem;
-    margin-bottom: 2rem;
-    margin-left: 12rem;
-  }
-
-  .bi-tiktok {
-    margin-left: 7rem;
-  }
-
-  .tiktok {
-    margin-left: 6rem;
-    width: 10rem;
+    margin-top: -1rem;
+    margin-bottom: 0rem;
+    margin-left: 11rem;
   }
 }
 </style>

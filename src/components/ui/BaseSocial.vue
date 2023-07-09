@@ -17,6 +17,7 @@ export default {
 div {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0;
 }
 
 img {
@@ -78,8 +79,9 @@ a {
   }
 
   p {
-    margin-left: 5rem;
+    margin-left: 3rem;
     font-size: 1.5rem;
+    width: 10rem;
   }
 }
 </style>

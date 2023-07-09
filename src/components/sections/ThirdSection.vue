@@ -1,5 +1,5 @@
 <template>
-  <div id="enroll">
+  <div ref="enroll">
     <base-card-price
       :urlPrice="urls[0]"
       :cardTitle="title[0]"

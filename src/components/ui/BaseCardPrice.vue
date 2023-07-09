@@ -7,7 +7,7 @@
         {{ mainPrice }}<span>{{ cents }}</span>
       </h1>
     </div>
-    <base-button :innerText="buttonText"> </base-button>
+    <base-button @click="directToEnroll()"><p>APPLY NOW</p></base-button>
   </div>
 </template>
 
@@ -23,6 +23,11 @@ export default {
   },
   components: {
     BaseButton,
+  },
+  methods: {
+    directToEnroll() {
+      this.$router.push("/enroll");
+    },
   },
 };
 </script>
@@ -64,6 +69,12 @@ span {
   color: gray;
 }
 
+p {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
 @media (min-width: 768px) {
   .price-card {
     display: flex;
@@ -92,6 +103,12 @@ span {
     margin-top: 0;
     padding-left: 2rem;
   }
+
+  p {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
 }
 
 @media (min-width: 992px) {
@@ -115,6 +132,10 @@ span {
     font-size: 3rem;
     padding-left: 5rem;
   }
+
+  p {
+    font-weight: bold;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -135,6 +156,11 @@ span {
   .price {
     font-size: 4rem;
     padding-left: 6rem;
+  }
+
+  p {
+    padding-top: 0.8rem;
+    font-size: 2rem;
   }
 }
 
@@ -158,6 +184,13 @@ span {
   .price {
     font-size: 2.7rem;
     padding-left: 8rem;
+  }
+
+  p {
+    color: white;
+    font-size: 1.7rem;
+    margin-top: 0.2rem;
+    font-weight: normal;
   }
 }
 </style>

@@ -34,10 +34,6 @@ export default {
         this.toggle();
       });
     },
-    scroll(id) {
-      let el = id;
-      el.scrollIntoView({ behavior: "smooth" });
-    },
   },
   mounted() {
     this.toggle();

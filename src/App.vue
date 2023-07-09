@@ -1,38 +1,15 @@
 <template>
   <div>
-    <TheHeader />
-    <FirstSection />
-    <SecondSection />
-    <SliderComponent />
-    <ThirdSection />
-    <FourthSection />
-    <TheFooter />
+    <router-view v-slot="slotProps">
+      <transition name="route" mode="out-in">
+        <component :is="slotProps.Component"></component>
+      </transition>
+    </router-view>
   </div>
 </template>
 
 <script>
-import TheHeader from "./components/layout/TheHeader.vue";
-import TheFooter from "./components/layout/TheFooter.vue";
-import FirstSection from "./components/sections/FirstSection.vue";
-import SecondSection from "./components/sections/SecondSection.vue";
-import ThirdSection from "./components/sections/ThirdSection.vue";
-import FourthSection from "./components/sections/FourthSection.vue";
-import SliderComponent from "./components/sections/SliderComponent.vue";
-
-export default {
-  data() {
-    return {};
-  },
-  components: {
-    TheHeader,
-    TheFooter,
-    FirstSection,
-    SecondSection,
-    ThirdSection,
-    FourthSection,
-    SliderComponent,
-  },
-};
+export default {};
 </script>
 
 <style>
@@ -51,5 +28,29 @@ a {
 
 a:hover {
   cursor: pointer;
+}
+
+.route-enter-from {
+  opacity: 0;
+  transform: translate(-30px);
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translate(30px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

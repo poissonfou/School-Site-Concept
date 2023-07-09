@@ -1,0 +1,35 @@
+<template>
+  <transition>
+    <div>
+      <TheHeader />
+      <FirstSection />
+      <SecondSection />
+      <SliderComponent />
+      <ThirdSection />
+      <FourthSection />
+      <TheFooter />
+    </div>
+  </transition>
+</template>
+
+<script>
+import TheHeader from "../layout/TheHeader.vue";
+import TheFooter from "../layout/TheFooter.vue";
+import FirstSection from "../sections/FirstSection.vue";
+import SecondSection from "../sections/SecondSection.vue";
+import ThirdSection from "../sections/ThirdSection.vue";
+import FourthSection from "../sections/FourthSection.vue";
+import SliderComponent from "../sections/SliderComponent.vue";
+
+export default {
+  components: {
+    TheHeader,
+    TheFooter,
+    FirstSection,
+    SecondSection,
+    ThirdSection,
+    FourthSection,
+    SliderComponent,
+  },
+};
+</script>
