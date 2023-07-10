@@ -143,57 +143,85 @@ export default {
       if (section == "Technology") {
         li_one.style.boxShadow = "-13px 0px 10px -2px black";
         li_one.style.color = "black";
+        li_one.style.borderStyle = "none";
 
         li_two.style.boxShadow = "none";
         li_two.style.color = "rgb(245, 239, 239)";
+        li_two.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_two.style.borderRightStyle = "none";
 
         li_three.style.boxShadow = "none";
         li_three.style.color = "rgb(245, 239, 239)";
+        li_three.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_three.style.borderRightStyle = "none";
 
         li_four.style.boxShadow = "none";
         li_four.style.color = "rgb(245, 239, 239)";
+        li_four.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_four.style.borderRightStyle = "none";
       }
 
       if (section == "Bilinguacy") {
         li_two.style.boxShadow = "-13px 0px 10px -2px black";
         li_two.style.color = "black";
+        li_two.style.borderStyle = "none";
 
         li_one.style.boxShadow = "none";
         li_one.style.color = "rgb(245, 239, 239)";
+        li_one.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_one.style.borderRightStyle = "none";
 
         li_three.style.boxShadow = "none";
         li_three.style.color = "rgb(245, 239, 239)";
+        li_three.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_three.style.borderRightStyle = "none";
 
         li_four.style.boxShadow = "none";
         li_four.style.color = "rgb(245, 239, 239)";
+        li_four.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_four.style.borderRightStyle = "none";
       }
 
       if (section == "Ethics") {
         li_three.style.boxShadow = "-13px 0px 10px -2px black";
         li_three.style.color = "black";
+        li_three.style.borderStyle = "none";
 
         li_one.style.boxShadow = "none";
         li_one.style.color = "rgb(245, 239, 239)";
+        li_one.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_one.style.borderRightStyle = "none";
 
         li_two.style.boxShadow = "none";
         li_two.style.color = "rgb(245, 239, 239)";
+        li_two.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_two.style.borderRightStyle = "none";
 
         li_four.style.boxShadow = "none";
         li_four.style.color = "rgb(245, 239, 239)";
+        li_four.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_four.style.borderRightStyle = "none";
       }
 
       if (section == "Our Philosophy") {
         li_four.style.boxShadow = "-13px 0px 10px -2px black";
         li_four.style.color = "black";
+        li_four.style.borderStyle = "none";
 
         li_one.style.boxShadow = "none";
         li_one.style.color = "rgb(245, 239, 239)";
+        li_one.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_one.style.borderRightStyle = "none";
 
         li_two.style.boxShadow = "none";
         li_two.style.color = "rgb(245, 239, 239)";
+        li_two.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_two.style.borderRightStyle = "none";
 
         li_three.style.boxShadow = "none";
         li_three.style.color = "rgb(245, 239, 239)";
+        li_three.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_three.style.borderRightStyle = "none";
       }
     },
   },
@@ -211,11 +239,13 @@ export default {
 
 .sections li {
   box-shadow: 0px 0px 10px rgb(0, 0, 0);
-  height: 1.5rem;
+  height: 2rem;
   width: 10rem;
   padding-left: 0.5rem;
-  padding-top: 0.2rem;
+  padding-top: 0.5rem;
   margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  border-style: solid;
 }
 
 li:hover {

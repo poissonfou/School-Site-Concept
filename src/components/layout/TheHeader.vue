@@ -3,6 +3,7 @@
     <nav>
       <i class="bi bi-list"></i>
       <ul>
+        <li class="hidden home"><router-link to="home">Home</router-link></li>
         <li class="hidden prices"><a @click="showPrices()">Prices</a></li>
         <li class="hidden enroll" id="enroll">
           <router-link to="enroll">Enroll</router-link>
@@ -12,15 +13,27 @@
         </li>
       </ul>
     </nav>
+    <base-button class="button" @click="pushLogin()">
+      <p>Login</p>
+    </base-button>
   </header>
 </template>
 
 <script>
+import BaseButton from "../ui/BaseButton.vue";
+
 export default {
+  data() {
+    return {
+      width: window.innerWidth,
+    };
+  },
+  components: {
+    BaseButton,
+  },
   methods: {
     toggle() {
-      let width = window.innerWidth;
-      if (width > 768) {
+      if (this.width > 768) {
         let i = document.querySelector("i");
         i.classList.add("hidden");
 
@@ -44,10 +57,19 @@ export default {
     showContact() {
       window.scrollTo(0, 2600);
     },
+    pushLogin() {
+      this.$router.push("/login");
+    },
+    showHome() {
+      if (this.$route.path != "/home" && this.width > 768) {
+        document.querySelector(".home").classList.toggle("hidden");
+      }
+    },
   },
   mounted() {
     this.toggle();
     this.trackWidth();
+    this.showHome();
   },
 };
 </script>
@@ -88,5 +110,20 @@ a {
 a:hover {
   cursor: pointer;
   color: rgb(221, 240, 221);
+}
+
+p {
+  color: rgb(56, 187, 56);
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.button {
+  background-color: white;
+  border: 0.1rem solid rgb(56, 187, 56);
+  width: 7rem;
+  height: 3rem;
+  margin-top: -2.6rem;
+  margin-left: 75rem;
 }
 </style>

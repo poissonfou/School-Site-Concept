@@ -44,6 +44,10 @@ a:hover {
   cursor: pointer;
 }
 
+a:focus {
+  outline: none;
+}
+
 .route-enter-from {
   opacity: 0;
   transform: translate(-30px);
