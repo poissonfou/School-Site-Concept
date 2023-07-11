@@ -5,17 +5,18 @@
         <h1>Application Form</h1>
         <p class="p">Please enter the following information below.</p>
         <p>This data will only be used to enter in contact with you.</p>
-        <form @submit.prevent="sendRequest">
+        <form @submit.prevent="sendRequest()">
           <div class="input-box">
             <label for="parentName">Guardian's Name</label>
             <input
               type="text"
               name="parentName"
               id="parentName"
-              v-model="parentName.value"
-              :class="{ invalid: !parentName.val }"
+              v-model="parentName.val"
+              :class="{ invalid: !parentName.isValid }"
               @blur="clearValidity('parentName')"
             />
+            <p v-if="!parentName.isValid">Please enter the guardian's name</p>
           </div>
 
           <div class="input-box">
@@ -24,10 +25,14 @@
               type="text"
               name="studentName"
               id="studentName"
-              v-model="studentName.value"
-              :class="{ invalid: !studentName.val }"
+              v-model="studentName.val"
+              :class="{ invalid: !studentName.isValid || studentName.exists }"
               @blur="clearValidity('studentName')"
             />
+            <p v-if="!studentName.isValid">Please enter the student's name</p>
+            <p v-else-if="studentName.exists">
+              Child has already been registered
+            </p>
           </div>
 
           <div class="input-box">
@@ -36,10 +41,11 @@
               type="email"
               name="email"
               id="email"
-              v-model="email.value"
-              :class="{ invalid: !email.val }"
+              v-model="email.val"
+              :class="{ invalid: !email.isValid }"
               @blur="clearValidity('email')"
             />
+            <p v-if="!email.isValid">Please enter a valid email</p>
           </div>
 
           <div class="input-box">
@@ -48,10 +54,11 @@
               type="text"
               name="phone"
               id="phone"
-              v-model="phone.value"
-              :class="{ invalid: !phone.val }"
+              v-model="phone.val"
+              :class="{ invalid: !phone.isValid }"
               @blur="clearValidity('phone')"
             />
+            <p v-if="!phone.isValid">Please enter a phone number</p>
           </div>
 
           <base-button class="button"><p>SEND</p></base-button>
@@ -73,6 +80,8 @@
 
         <p class="signature"><span>Caroline Dickman</span> School principle</p>
 
+        <p>Your code: {{ code }}</p>
+
         <base-button class="button" @click="goHome()">
           <p>HOME</p>
         </base-button>
@@ -91,10 +100,11 @@ export default {
     return {
       infoSent: false,
       formIsValid: true,
-      parentName: { val: " ", isValid: true },
-      studentName: { val: " ", isValid: true },
-      email: { val: " ", isValid: true },
-      phone: { val: " ", isValid: true },
+      code: null,
+      parentName: { val: "", isValid: true },
+      studentName: { val: "", isValid: true, exists: false },
+      email: { val: "", isValid: true },
+      phone: { val: "", isValid: true },
     };
   },
   components: {
@@ -105,21 +115,29 @@ export default {
     sendRequest() {
       this.validateForm();
 
-      if (!this.formIsValid) {
+      if (this.formIsValid == false) {
+        document.querySelector(".form").style.height = "37rem";
         return;
+      } else {
+        this.code = Math.random() * 10;
+
+        const formData = {
+          loggedIn: false,
+          code: this.code,
+          parentName: this.parentName.val,
+          studentName: this.studentName.val,
+          email: this.email.val,
+          phone: this.phone.val,
+        };
+
+        this.$store.dispatch("storeRequests", formData);
+
+        let arrayRequests = this.$store.getters.returnRequests;
+        localStorage.setItem("arrayRequests", JSON.stringify(arrayRequests));
+
+        this.infoSent = true;
+        document.querySelector(".form").style.height = "27rem";
       }
-
-      const formData = {
-        parentName: this.parentName.val,
-        studentName: this.studentName.val,
-        email: this.email.val,
-        phone: this.phone.val,
-      };
-
-      this.$store.dispatch("storeRequests", formData);
-
-      this.infoSent = true;
-      document.querySelector(".form").style.height = "25rem";
     },
     validateForm() {
       this.formIsValid = true;
@@ -137,6 +155,17 @@ export default {
       }
       if (this.phone.val === "") {
         this.phone.isValid = false;
+        this.formIsValid = false;
+      }
+
+      let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
+
+      const found = arrayStorage.find(
+        (e) => e.studentName == this.studentName.val
+      );
+
+      if (found != undefined) {
+        this.studentName.exists = true;
         this.formIsValid = false;
       }
     },
@@ -172,6 +201,10 @@ span {
   margin-right: 0.5rem;
 }
 
+.form {
+  transition: all 0.3s ease;
+}
+
 .signature {
   font-size: 0.8rem;
 }
@@ -180,6 +213,11 @@ span {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+}
+
+.input-box p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
 }
 
 input {
@@ -215,6 +253,7 @@ img {
   margin-top: 0rem;
   height: 2.5rem;
   width: 6rem;
+  transition: all 0.2s ease;
 }
 
 .button p {
@@ -235,5 +274,10 @@ p {
 
 .invalid {
   border: 1px solid red;
+  box-shadow: 0px 0px 5px red;
+}
+
+.invalidForm {
+  height: 50rem;
 }
 </style>

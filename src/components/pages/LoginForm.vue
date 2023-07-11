@@ -1,38 +1,53 @@
 <template>
   <base-form class="form">
-    <h1>Login</h1>
-    <div class="check-login">
-      <p>First time login-in?</p>
-      <label for="loginCheck"> Yes</label>
-      <input
-        type="checkbox"
-        name="loginCheck"
-        id="loginCheck"
-        @change="checkFirstLogin()"
-      />
-    </div>
+    <form @submit.prevent="sendRequest()">
+      <h1>Login</h1>
+      <div class="check-login">
+        <p>First time login-in?</p>
+        <label for="loginCheck"> Yes</label>
+        <input
+          type="checkbox"
+          name="loginCheck"
+          id="loginCheck"
+          @change="checkFirstLogin()"
+        />
+      </div>
 
-    <div class="input-box" v-if="firstLogin">
-      <p>
-        Enter the activation code provided to you by the school administration.
-      </p>
-      <label for="code">Code</label>
-      <input type="text" name="code" />
-    </div>
+      <div class="input-box" v-if="firstLogin">
+        <p>
+          Enter the activation code provided to you by the school
+          administration.
+        </p>
+        <label for="code">Code</label>
+        <input type="text" name="code" v-model="code.val" />
+      </div>
 
-    <div class="input-box">
-      <label for="email">Email</label>
-      <input type="text" name="email" />
-    </div>
+      <div class="input-box">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          name="email"
+          v-model="email.val"
+          :class="{ invalid: !email.isValid }"
+          @blur="clearValidity('email')"
+        />
+      </div>
 
-    <div class="input-box">
-      <label for="password">Password</label>
-      <input type="text" name="password" />
-    </div>
+      <div class="input-box">
+        <label for="password">Password</label>
+        <input
+          type="text"
+          name="password"
+          v-model="password.val"
+          :class="{ invalid: !password.isValid }"
+          @blur="clearValidity('password')"
+        />
+      </div>
 
-    <base-button class="button">
-      <p>LOGIN</p>
-    </base-button>
+      <base-button class="button">
+        <p>LOGIN</p>
+      </base-button>
+    </form>
   </base-form>
 </template>
 
@@ -44,6 +59,10 @@ export default {
   data() {
     return {
       firstLogin: false,
+      formIsValid: true,
+      code: { val: "", isValid: true, exists: true },
+      email: { val: "", isValid: true, exists: true },
+      password: { val: "", isValid: true, exists: true },
     };
   },
   components: {
@@ -62,6 +81,49 @@ export default {
         let form = document.querySelector(".form");
         form.style.height = "19rem";
       }
+    },
+    validateForm() {
+      this.formIsValid = true;
+
+      if (this.email.val === "") {
+        this.email.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.password.val === "") {
+        this.password.isValid = false;
+        this.formIsValid = false;
+      }
+
+      // let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
+
+      // const found = arrayStorage.find(
+      //   (e) => e.studentName == this.studentName.val
+      // );
+
+      // if (found != undefined) {
+      //   this.studentName.exists = true;
+      //   this.formIsValid = false;
+      // }
+    },
+    sendRequest() {
+      this.validateForm();
+
+      if (this.formIsValid == false) {
+        return;
+      } else {
+        const formData = {
+          email: this.email.val,
+          password: this.password.val,
+        };
+
+        this.$store.dispatch("storeUser", formData);
+
+        let arrayUsers = this.$store.getters.returnUsers;
+        localStorage.setItem("arrayUsers", JSON.stringify(arrayUsers));
+      }
+    },
+    clearValidity(input) {
+      this[input].isValid = true;
     },
   },
 };
@@ -136,5 +198,10 @@ label {
   color: white;
   font-size: 1.2rem;
   margin-top: 0.5rem;
+}
+
+.invalid {
+  border: 1px solid red;
+  box-shadow: 0px 0px 5px red;
 }
 </style>
