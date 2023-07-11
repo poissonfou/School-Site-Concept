@@ -5,30 +5,56 @@
         <h1>Application Form</h1>
         <p class="p">Please enter the following information below.</p>
         <p>This data will only be used to enter in contact with you.</p>
-        <form>
+        <form @submit.prevent="sendRequest">
           <div class="input-box">
             <label for="parentName">Guardian's Name</label>
-            <input type="text" name="parentName" />
+            <input
+              type="text"
+              name="parentName"
+              id="parentName"
+              v-model="parentName.value"
+              :class="{ invalid: !parentName.val }"
+              @blur="clearValidity('parentName')"
+            />
           </div>
 
           <div class="input-box">
             <label for="studentName">Child's Name</label>
-            <input type="text" name="studentName" />
+            <input
+              type="text"
+              name="studentName"
+              id="studentName"
+              v-model="studentName.value"
+              :class="{ invalid: !studentName.val }"
+              @blur="clearValidity('studentName')"
+            />
           </div>
 
           <div class="input-box">
             <label for="email">Email</label>
-            <input type="email" name="email" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              v-model="email.value"
+              :class="{ invalid: !email.val }"
+              @blur="clearValidity('email')"
+            />
           </div>
 
           <div class="input-box">
             <label for="phone">Phone</label>
-            <input type="text" name="phone" />
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              v-model="phone.value"
+              :class="{ invalid: !phone.val }"
+              @blur="clearValidity('phone')"
+            />
           </div>
 
-          <base-button class="button" @click="sendInfo()"
-            ><p>SEND</p></base-button
-          >
+          <base-button class="button"><p>SEND</p></base-button>
         </form>
       </div>
       <div v-else>
@@ -64,6 +90,11 @@ export default {
   data() {
     return {
       infoSent: false,
+      formIsValid: true,
+      parentName: { val: " ", isValid: true },
+      studentName: { val: " ", isValid: true },
+      email: { val: " ", isValid: true },
+      phone: { val: " ", isValid: true },
     };
   },
   components: {
@@ -71,9 +102,43 @@ export default {
     BaseButton,
   },
   methods: {
-    sendInfo() {
+    sendRequest() {
+      this.validateForm();
+
+      if (!this.formIsValid) {
+        return;
+      }
+
+      const formData = {
+        parentName: this.parentName.val,
+        studentName: this.studentName.val,
+        email: this.email.val,
+        phone: this.phone.val,
+      };
+
+      this.$store.dispatch("storeRequests", formData);
+
       this.infoSent = true;
       document.querySelector(".form").style.height = "25rem";
+    },
+    validateForm() {
+      this.formIsValid = true;
+      if (this.parentName.val === "") {
+        this.parentName.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.studentName.val === "") {
+        this.studentName.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.email.val === "") {
+        this.email.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.phone.val === "") {
+        this.phone.isValid = false;
+        this.formIsValid = false;
+      }
     },
     goHome() {
       this.$router.push("/home");
@@ -83,6 +148,9 @@ export default {
       if (!this.infoSent) {
         document.querySelector(".form").style.height = "30rem";
       }
+    },
+    clearValidity(input) {
+      this[input].isValid = true;
     },
   },
   mounted() {
@@ -163,5 +231,9 @@ p {
   margin-bottom: 2rem;
   margin-top: 0.5rem;
   font-size: 1.2rem;
+}
+
+.invalid {
+  border: 1px solid red;
 }
 </style>
