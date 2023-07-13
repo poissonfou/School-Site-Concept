@@ -120,7 +120,7 @@ export default {
         (e) => e.password == this.password.val
       );
 
-      const foundCode = arrayStorage.find((e) => e.code == this.code.val);
+      let foundCode = arrayStorage.find((e) => e.code == this.code.val);
 
       const index = arrayStorage.findIndex(
         (e) => e.password == this.password.val
@@ -135,8 +135,12 @@ export default {
         const data = JSON.parse(localStorage.getItem("arrayRequests"));
         data[index].hasLoggedIn = true;
         localStorage.setItem("arrayRequests", JSON.stringify(data));
-      } else if (loginInfo === true) {
+      } else if (loginInfo === true && this.checked === true) {
         this.firstLogin = false;
+      }
+
+      if (loginInfo) {
+        foundCode = true;
       }
 
       if (

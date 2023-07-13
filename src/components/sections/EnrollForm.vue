@@ -121,7 +121,7 @@ export default {
         document.querySelector(".form").style.height = "37rem";
         return;
       } else {
-        this.code = Math.random() * 10;
+        this.code = Math.floor(Math.random() * 10);
 
         this.password = this.generatePassword();
 
@@ -164,7 +164,7 @@ export default {
       }
 
       if (localStorage.length == 0) {
-        localStorage.setItem("arrayRequests", JSON.parse([]));
+        localStorage.setItem("arrayRequests", JSON.stringify([{}]));
       }
 
       let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
@@ -206,7 +206,8 @@ export default {
   mounted() {
     this.setHeight();
 
-    console.log(localStorage);
+    let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
+    console.log(arrayStorage);
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav>
+    <nav v-if="!loggedIn">
       <i class="bi bi-list"></i>
       <ul>
         <li class="hidden home"><router-link to="home">Home</router-link></li>
@@ -13,8 +13,12 @@
         </li>
       </ul>
     </nav>
-    <base-button class="button" @click="pushLogin()">
+    <base-button v-if="!loggedIn" class="button" @click="pushLogin()">
       <p>Login</p>
+    </base-button>
+
+    <base-button v-else class="button" @click="pushLogout()">
+      <p>Logout</p>
     </base-button>
   </header>
 </template>
@@ -26,6 +30,7 @@ export default {
   data() {
     return {
       width: window.innerWidth,
+      loggedIn: this.$store.getters.userIsAuthenticated,
     };
   },
   components: {
@@ -60,6 +65,10 @@ export default {
     pushLogin() {
       this.$router.push("/login");
     },
+    pushLogout() {
+      this.$store.dispatch("logUser", false);
+      this.$router.push("home");
+    },
     showHome() {
       if (this.$route.path != "/home" && this.width > 768) {
         document.querySelector(".home").classList.toggle("hidden");
@@ -70,6 +79,7 @@ export default {
     this.toggle();
     this.trackWidth();
     this.showHome();
+    console.log(this.loggedIn);
   },
 };
 </script>

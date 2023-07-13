@@ -3,5 +3,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
+    console.log(arrayStorage);
+  },
+};
 </script>
