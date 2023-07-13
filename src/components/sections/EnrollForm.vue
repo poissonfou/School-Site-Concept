@@ -81,6 +81,7 @@
         <p class="signature"><span>Caroline Dickman</span> School principle</p>
 
         <p>Your code: {{ code }}</p>
+        <p>Your password: {{ password }}</p>
 
         <base-button class="button" @click="goHome()">
           <p>HOME</p>
@@ -101,6 +102,7 @@ export default {
       infoSent: false,
       formIsValid: true,
       code: null,
+      password: null,
       parentName: { val: "", isValid: true },
       studentName: { val: "", isValid: true, exists: false },
       email: { val: "", isValid: true },
@@ -121,13 +123,16 @@ export default {
       } else {
         this.code = Math.random() * 10;
 
+        this.password = this.generatePassword();
+
         const formData = {
-          loggedIn: false,
+          hasLoggedIn: false,
           code: this.code,
           parentName: this.parentName.val,
           studentName: this.studentName.val,
           email: this.email.val,
           phone: this.phone.val,
+          password: this.password,
         };
 
         this.$store.dispatch("storeRequests", formData);
@@ -158,6 +163,10 @@ export default {
         this.formIsValid = false;
       }
 
+      if (localStorage.length == 0) {
+        localStorage.setItem("arrayRequests", JSON.parse([]));
+      }
+
       let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
 
       const found = arrayStorage.find(
@@ -181,9 +190,23 @@ export default {
     clearValidity(input) {
       this[input].isValid = true;
     },
+    generatePassword() {
+      let chars =
+        "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let password;
+
+      for (let i = 0; i <= 12; i++) {
+        let randomNumber = Math.floor(Math.random() * chars.length);
+        password += chars.substring(randomNumber, randomNumber + 1);
+      }
+
+      return password;
+    },
   },
   mounted() {
     this.setHeight();
+
+    console.log(localStorage);
   },
 };
 </script>

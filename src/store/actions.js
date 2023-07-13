@@ -9,4 +9,7 @@ export default {
       ...payload,
     });
   },
+  logUser(context, payload) {
+    context.commit("logUser", payload);
+  },
 };
