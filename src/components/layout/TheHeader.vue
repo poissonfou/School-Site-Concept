@@ -1,43 +1,57 @@
 <template>
-  <header>
-    <div v-if="!loggedIn">
-      <nav>
-        <i class="bi bi-list"></i>
-        <ul>
-          <li class="hidden home"><router-link to="home">Home</router-link></li>
-          <li class="hidden prices"><a @click="showPrices()">Prices</a></li>
-          <li class="hidden enroll" id="enroll">
-            <router-link to="enroll">Enroll</router-link>
-          </li>
-          <li class="hidden contact" id="contact">
-            <a @click="showContact()">Contact Us</a>
-          </li>
-        </ul>
-      </nav>
-      <base-button class="button" @click="pushLogin()">
-        <p>Login</p>
-      </base-button>
-    </div>
-    <div v-else>
-      <nav>
-        <ul>
-          <li>
-            <router-link to="#"
-              ><img src="../../assets/ethics.jpg" alt=""
-            /></router-link>
-          </li>
-          <li><a>Classes</a></li>
-        </ul>
-      </nav>
-      <base-button class="button" @click="pushLogout()">
-        <p>Logout</p>
-      </base-button>
-    </div>
-  </header>
+  <div>
+    <header>
+      <div v-if="!loggedIn">
+        <nav>
+          <i class="bi bi-list"></i>
+          <ul>
+            <li class="hidden home">
+              <router-link to="home">Home</router-link>
+            </li>
+            <li class="hidden prices"><a @click="showPrices()">Prices</a></li>
+            <li class="hidden enroll" id="enroll">
+              <router-link to="enroll">Enroll</router-link>
+            </li>
+            <li class="hidden contact" id="contact">
+              <a @click="showContact()">Contact Us</a>
+            </li>
+          </ul>
+        </nav>
+        <base-button class="button" @click="pushLogin()">
+          <p>Login</p>
+        </base-button>
+      </div>
+      <div v-else>
+        <nav>
+          <ul>
+            <li @mouseenter="showCard()" @mouseleave="showCard()">
+              <router-link to="profile"
+                ><i class="bi bi-person"></i>
+              </router-link>
+            </li>
+            <li><router-link to="classes">Classes</router-link></li>
+          </ul>
+        </nav>
+        <base-button class="button" @click="pushLogout()">
+          <p>Logout</p>
+        </base-button>
+      </div>
+    </header>
+    <base-profile-card
+      class="hidden"
+      id="profile-card"
+      url="vanya.jpg"
+      name="Emerson"
+      grade="highschool"
+      email="ehuje@jbhjvhvhj.com"
+    >
+    </base-profile-card>
+  </div>
 </template>
 
 <script>
 import BaseButton from "../ui/BaseButton.vue";
+import BaseProfileCard from "../ui/BaseProfileCard.vue";
 
 export default {
   data() {
@@ -48,6 +62,7 @@ export default {
   },
   components: {
     BaseButton,
+    BaseProfileCard,
   },
   methods: {
     toggle() {
@@ -87,6 +102,9 @@ export default {
         document.querySelector(".home").classList.toggle("hidden");
       }
     },
+    showCard() {
+      document.querySelector("#profile-card").classList.toggle("hidden");
+    },
   },
   mounted() {
     if (this.loggedIn == false) {
@@ -94,7 +112,6 @@ export default {
       this.showHome();
     }
     this.trackWidth();
-    console.log(this.loggedIn);
   },
 };
 </script>
@@ -104,7 +121,7 @@ export default {
   display: none;
 }
 
-i {
+.bi-list {
   font-size: 3rem;
   position: absolute;
   padding-left: 0.5rem;
@@ -155,5 +172,12 @@ p {
 img {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.bi-person {
+  font-size: 2.5rem;
+  margin-left: -1rem;
+  margin-top: -0.5rem;
+  position: absolute;
 }
 </style>

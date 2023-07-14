@@ -8,4 +8,7 @@ export default {
   returnUsers(state) {
     return state.users;
   },
+  returnClasses(state) {
+    return state.classes;
+  },
 };

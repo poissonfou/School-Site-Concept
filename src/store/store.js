@@ -10,7 +10,7 @@ let store = createStore({
     return {
       users: [],
       requests: [],
-      subjects: classes,
+      classes,
     };
   },
   mutations,

@@ -66,6 +66,7 @@ export default {
       teacherContact: null,
     };
   },
+
   methods: {
     showContacts(val) {
       this.teacherContact = val;

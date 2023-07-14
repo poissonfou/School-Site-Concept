@@ -159,8 +159,10 @@ export default {
         return;
       } else {
         const formData = {
+          id: Math.random() * 3,
           email: this.email.val,
           password: this.password.val,
+          classes: [],
         };
 
         this.$store.dispatch("storeUser", formData);

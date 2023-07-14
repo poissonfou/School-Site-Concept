@@ -5,6 +5,7 @@ import EnrollPage from "../src/components/pages/EnrollPage.vue";
 import InovationsPage from "../src/components/pages/InovationsPage.vue";
 import LoginForm from "../src/components/pages/LoginForm.vue";
 import StudentBoard from "../src/components/pages/StudentBoard.vue";
+import ListClasses from "../src/components/pages/ListClasses.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -37,6 +38,11 @@ const router = createRouter({
       name: "board",
       path: "/board",
       component: StudentBoard,
+    },
+    {
+      name: "classes",
+      path: "/board/classes",
+      component: ListClasses,
     },
   ],
 });
