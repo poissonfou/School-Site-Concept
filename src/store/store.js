@@ -3,12 +3,14 @@ import mutations from "./mutations.js";
 import actions from "./actions.js";
 import getters from "./getters.js";
 
+import classes from "../dataClasses.js";
+
 let store = createStore({
   state() {
     return {
-      isLoggedIn: false,
       users: [],
       requests: [],
+      subjects: classes,
     };
   },
   mutations,

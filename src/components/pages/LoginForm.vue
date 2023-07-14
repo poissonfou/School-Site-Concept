@@ -168,7 +168,7 @@ export default {
         let arrayUsers = this.$store.getters.returnUsers;
         localStorage.setItem("arrayUsers", JSON.stringify(arrayUsers));
 
-        this.$store.dispatch("logUser", true);
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
 
         this.$router.push("board");
       }

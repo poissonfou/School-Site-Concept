@@ -5,7 +5,4 @@ export default {
   storeRequests(state, payload) {
     state.requests.push(payload);
   },
-  logUser(state, payload) {
-    state.isLoggedIn = payload;
-  },
 };

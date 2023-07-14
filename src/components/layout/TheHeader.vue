@@ -1,25 +1,38 @@
 <template>
   <header>
-    <nav v-if="!loggedIn">
-      <i class="bi bi-list"></i>
-      <ul>
-        <li class="hidden home"><router-link to="home">Home</router-link></li>
-        <li class="hidden prices"><a @click="showPrices()">Prices</a></li>
-        <li class="hidden enroll" id="enroll">
-          <router-link to="enroll">Enroll</router-link>
-        </li>
-        <li class="hidden contact" id="contact">
-          <a @click="showContact()">Contact Us</a>
-        </li>
-      </ul>
-    </nav>
-    <base-button v-if="!loggedIn" class="button" @click="pushLogin()">
-      <p>Login</p>
-    </base-button>
-
-    <base-button v-else class="button" @click="pushLogout()">
-      <p>Logout</p>
-    </base-button>
+    <div v-if="!loggedIn">
+      <nav>
+        <i class="bi bi-list"></i>
+        <ul>
+          <li class="hidden home"><router-link to="home">Home</router-link></li>
+          <li class="hidden prices"><a @click="showPrices()">Prices</a></li>
+          <li class="hidden enroll" id="enroll">
+            <router-link to="enroll">Enroll</router-link>
+          </li>
+          <li class="hidden contact" id="contact">
+            <a @click="showContact()">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+      <base-button class="button" @click="pushLogin()">
+        <p>Login</p>
+      </base-button>
+    </div>
+    <div v-else>
+      <nav>
+        <ul>
+          <li>
+            <router-link to="#"
+              ><img src="../../assets/ethics.jpg" alt=""
+            /></router-link>
+          </li>
+          <li><a>Classes</a></li>
+        </ul>
+      </nav>
+      <base-button class="button" @click="pushLogout()">
+        <p>Logout</p>
+      </base-button>
+    </div>
   </header>
 </template>
 
@@ -30,7 +43,7 @@ export default {
   data() {
     return {
       width: window.innerWidth,
-      loggedIn: this.$store.getters.userIsAuthenticated,
+      loggedIn: JSON.parse(localStorage.getItem("isLoggedIn")),
     };
   },
   components: {
@@ -66,7 +79,7 @@ export default {
       this.$router.push("/login");
     },
     pushLogout() {
-      this.$store.dispatch("logUser", false);
+      localStorage.setItem("isLoggedIn", JSON.stringify(false));
       this.$router.push("home");
     },
     showHome() {
@@ -76,9 +89,11 @@ export default {
     },
   },
   mounted() {
-    this.toggle();
+    if (this.loggedIn == false) {
+      this.toggle();
+      this.showHome();
+    }
     this.trackWidth();
-    this.showHome();
     console.log(this.loggedIn);
   },
 };
@@ -135,5 +150,10 @@ p {
   height: 3rem;
   margin-top: -2.6rem;
   margin-left: 75rem;
+}
+
+img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 </style>
