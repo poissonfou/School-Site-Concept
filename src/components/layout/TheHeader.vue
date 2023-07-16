@@ -25,8 +25,8 @@
         <nav>
           <ul>
             <li @mouseenter="showCard()" @mouseleave="showCard()">
-              <router-link to="profile"
-                ><i class="bi bi-person"></i>
+              <router-link to="profile">
+                <i class="bi bi-person"></i>
               </router-link>
             </li>
             <li><router-link to="classes">Classes</router-link></li>
