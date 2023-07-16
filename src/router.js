@@ -37,12 +37,12 @@ const router = createRouter({
     },
     {
       name: "board",
-      path: "/board",
+      path: "/board/:userId",
       component: StudentBoard,
     },
     {
       name: "classes",
-      path: "/classes",
+      path: "/classes/:userId",
       component: ListClasses,
     },
     {

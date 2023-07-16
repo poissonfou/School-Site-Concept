@@ -29,7 +29,11 @@
                 <i class="bi bi-person"></i>
               </router-link>
             </li>
-            <li><router-link to="classes">Classes</router-link></li>
+            <li>
+              <router-link :to="{ name: 'classes', params: id }"
+                >Classes</router-link
+              >
+            </li>
           </ul>
         </nav>
         <base-button class="button" @click="pushLogout()">
@@ -54,6 +58,7 @@ import BaseButton from "../ui/BaseButton.vue";
 import BaseProfileCard from "../ui/BaseProfileCard.vue";
 
 export default {
+  inject: ["id"],
   data() {
     return {
       width: window.innerWidth,

@@ -30,7 +30,7 @@
       </ul>
     </div>
     <div v-else class="main-div-list" id="myClassesSection">
-      <div v-if="noClasses == false">
+      <div v-if="!noClasses">
         <ul v-for="subject in myClasses" :key="subject.name">
           <li>
             <div class="name-teacher">
@@ -82,32 +82,53 @@ export default {
 
       this.showMyClasses = true;
       let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
-      let classes = userInfo[0].classes;
+      let userIndex = userInfo.findIndex(
+        (e) => e.id == this.$route.params.userId
+      );
+      let classes = userInfo[userIndex].classes;
 
       if (classes.length == 0) {
         this.noClasses = true;
-
         return;
       }
 
-      console.log(classes);
-
-      this.myClasses = [classes];
-
-      console.log(this.myClasses);
+      this.myClasses = classes;
     },
     addClass(className) {
       let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+
       let dataClasses = this.classes.find((e) => e.name == className);
 
-      userInfo[0].classes = dataClasses;
+      let userIndex = userInfo.findIndex(
+        (e) => e.id == this.$route.params.userId
+      );
+
+      userInfo[userIndex].classes.push(dataClasses);
 
       localStorage.setItem("arrayUsers", JSON.stringify(userInfo));
     },
-    removeClass() {
+    removeClass(className) {
       let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
 
-      userInfo[0].classes = [];
+      let userIndex = userInfo.findIndex(
+        (e) => e.id == this.$route.params.userId
+      );
+
+      let idx;
+
+      for (let i; i < this.classes; i++) {
+        if (this.classes[i].name == className) {
+          idx = i;
+          return idx;
+        }
+      }
+
+      let classIndex = userInfo.findIndex(
+        (e) => e.classes[idx].name == className
+      );
+      console.log(classIndex);
+
+      userInfo[userIndex].classes.splice(classIndex, 1);
 
       localStorage.setItem("arrayUsers", JSON.stringify(userInfo));
     },

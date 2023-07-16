@@ -172,7 +172,7 @@ export default {
 
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
 
-        this.$router.push("board");
+        this.$router.push(`/board/${formData.id}`);
       }
     },
     clearValidity(input) {
