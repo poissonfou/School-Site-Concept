@@ -1,15 +1,25 @@
 <template>
   <div class="main-profile-div">
     <img src="../../assets/ethics.jpg" alt="" />
-    <div class="info">
-      <h1>Emerson</h1>
-      <p>email</p>
-      <p>grade</p>
+    <div v-for="info in userInfo" :key="info.id">
+      <div class="info">
+        <h1>{{ info.studentName }}</h1>
+        <p>Email:</p>
+        <p>{{ info.email }}</p>
+        <p>grade</p>
+      </div>
+      <div class="info-two">
+        <div class="col">
+          <p>Guardian:</p>
+          <p>{{ info.parentName }}</p>
+        </div>
+        <div class="col">
+          <p>Phone:</p>
+          <p>{{ info.phone }}</p>
+        </div>
+      </div>
     </div>
-    <div class="info-two">
-      <p>parent</p>
-      <p>phone</p>
-    </div>
+
     <div class="buttons">
       <base-button class="button" id="password">
         Redefine Password
@@ -23,9 +33,22 @@
 import BaseButton from "../ui/BaseButton.vue";
 
 export default {
+  data() {
+    return {
+      userId: "Emerson",
+    };
+  },
   components: {
     BaseButton,
   },
+  computed: {
+    userInfo() {
+      let data = JSON.parse(localStorage.getItem("arrayRequests"));
+      let idx = data.findIndex((e) => e.studentName == this.userId);
+      return [data[idx]];
+    },
+  },
+  mounted() {},
 };
 </script>
 
@@ -67,6 +90,15 @@ p {
 
 .info p {
   margin-left: 5rem;
+}
+
+.info p:nth-child(2) {
+  margin-bottom: 0rem;
+  color: rgb(56, 187, 56);
+}
+.col p:nth-child(1) {
+  margin-bottom: 0rem;
+  color: rgb(56, 187, 56);
 }
 
 .info-two {

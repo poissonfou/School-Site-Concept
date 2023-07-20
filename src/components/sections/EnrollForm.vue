@@ -205,9 +205,6 @@ export default {
   },
   mounted() {
     this.setHeight();
-
-    let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
-    console.log(arrayStorage);
   },
 };
 </script>

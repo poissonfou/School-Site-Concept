@@ -25,12 +25,24 @@
         <nav>
           <ul>
             <li @mouseenter="showCard()" @mouseleave="showCard()">
-              <router-link to="profile">
+              <router-link
+                :to="{ name: 'profile', params: id }"
+                @click="homeChange(true)"
+              >
                 <i class="bi bi-person"></i>
               </router-link>
             </li>
+            <li v-if="notHome">
+              <router-link
+                :to="{ name: 'board', params: id }"
+                @click="homeChange(false)"
+                >Board</router-link
+              >
+            </li>
             <li>
-              <router-link :to="{ name: 'classes', params: id }"
+              <router-link
+                :to="{ name: 'classes', params: id }"
+                @click="homeChange(true)"
                 >Classes</router-link
               >
             </li>
@@ -41,15 +53,17 @@
         </base-button>
       </div>
     </header>
-    <base-profile-card
-      class="hidden"
-      id="profile-card"
-      url="vanya.jpg"
-      name="Emerson"
-      grade="highschool"
-      email="ehuje@jbhjvhvhj.com"
-    >
-    </base-profile-card>
+    <div v-for="info in userInfo" :key="info.id">
+      <base-profile-card
+        class="hidden"
+        id="profile-card"
+        url="vanya.jpg"
+        :name="info.studentName"
+        grade="highschool"
+        :email="info.email"
+      >
+      </base-profile-card>
+    </div>
   </div>
 </template>
 
@@ -63,6 +77,8 @@ export default {
     return {
       width: window.innerWidth,
       loggedIn: JSON.parse(localStorage.getItem("isLoggedIn")),
+      notHome: false,
+      userId: "Emerson",
     };
   },
   components: {
@@ -71,7 +87,7 @@ export default {
   },
   methods: {
     toggle() {
-      if (this.width > 768) {
+      if (this.width > 768 && !this.loggedIn) {
         let i = document.querySelector("i");
         i.classList.add("hidden");
 
@@ -110,12 +126,23 @@ export default {
     showCard() {
       document.querySelector("#profile-card").classList.toggle("hidden");
     },
+    homeChange(val) {
+      this.notHome = val;
+    },
+  },
+  computed: {
+    userInfo() {
+      let data = JSON.parse(localStorage.getItem("arrayRequests"));
+      let idx = data.findIndex((e) => e.studentName == this.userId);
+      return [data[idx]];
+    },
   },
   mounted() {
     if (this.loggedIn == false) {
       this.toggle();
       this.showHome();
     }
+
     this.trackWidth();
   },
 };

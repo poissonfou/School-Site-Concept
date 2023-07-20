@@ -1,5 +1,9 @@
 <template>
   <section>
+    <base-warning v-if="hasClass" class="warning">
+      <p>This class has already been registered!</p>
+    </base-warning>
+
     <div class="tabs">
       <div @click="getMyClasses(false)">
         <h1>Classes</h1>
@@ -59,6 +63,7 @@
 
 <script>
 import BaseButton from "../ui/BaseButton.vue";
+import BaseWarning from "../ui/BaseWarning.vue";
 
 export default {
   data() {
@@ -67,10 +72,13 @@ export default {
       showMyClasses: false,
       noClasses: false,
       myClasses: null,
+      userId: this.$route.params.userId,
+      hasClass: false,
     };
   },
   components: {
     BaseButton,
+    BaseWarning,
   },
 
   methods: {
@@ -82,9 +90,9 @@ export default {
 
       this.showMyClasses = true;
       let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
-      let userIndex = userInfo.findIndex(
-        (e) => e.id == this.$route.params.userId
-      );
+
+      let userIndex = userInfo.findIndex((e) => e.id == this.userId);
+
       let classes = userInfo[userIndex].classes;
 
       if (classes.length == 0) {
@@ -94,14 +102,47 @@ export default {
 
       this.myClasses = classes;
     },
+    verifyClass(className) {
+      let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+
+      let userIndex = userInfo.findIndex((e) => e.id == this.userId);
+
+      let idx;
+
+      if (userInfo[userIndex].classes.length != 0) {
+        try {
+          for (let i = 0; i <= this.classes.length; i++) {
+            if (userInfo[userIndex].classes[i].name == className) {
+              idx = i;
+              break;
+            }
+          }
+
+          if (idx != undefined) {
+            window.scrollTo(0, top);
+            this.hasClass = true;
+          }
+
+          setTimeout(() => {
+            this.hasClass = false;
+          }, 2000);
+        } catch (e) {
+          return (this.hasClass = false);
+        }
+      }
+    },
     addClass(className) {
+      this.verifyClass(className);
+
+      if (this.hasClass) {
+        return;
+      }
+
       let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
 
       let dataClasses = this.classes.find((e) => e.name == className);
 
-      let userIndex = userInfo.findIndex(
-        (e) => e.id == this.$route.params.userId
-      );
+      let userIndex = userInfo.findIndex((e) => e.id == this.userId);
 
       userInfo[userIndex].classes.push(dataClasses);
 
@@ -110,25 +151,18 @@ export default {
     removeClass(className) {
       let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
 
-      let userIndex = userInfo.findIndex(
-        (e) => e.id == this.$route.params.userId
-      );
+      let userIndex = userInfo.findIndex((e) => e.id == this.userId);
 
       let idx;
 
-      for (let i; i < this.classes; i++) {
-        if (this.classes[i].name == className) {
+      for (let i = 0; i <= this.classes.length; i++) {
+        if (userInfo[userIndex].classes[i].name == className) {
           idx = i;
-          return idx;
+          break;
         }
       }
 
-      let classIndex = userInfo.findIndex(
-        (e) => e.classes[idx].name == className
-      );
-      console.log(classIndex);
-
-      userInfo[userIndex].classes.splice(classIndex, 1);
+      userInfo[userIndex].classes.splice(idx, 1);
 
       localStorage.setItem("arrayUsers", JSON.stringify(userInfo));
     },
@@ -231,5 +265,9 @@ li p {
 .no-classes {
   margin-left: 5rem;
   font-size: 2rem;
+}
+
+.warning p {
+  font-size: 1.5rem;
 }
 </style>

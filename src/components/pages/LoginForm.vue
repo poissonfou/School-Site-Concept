@@ -180,8 +180,7 @@ export default {
     },
   },
   mounted() {
-    let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
-    console.log(arrayStorage);
+    console.log(JSON.parse(localStorage.getItem("arrayRequests")));
   },
 };
 </script>
