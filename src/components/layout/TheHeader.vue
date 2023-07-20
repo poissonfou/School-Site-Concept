@@ -132,9 +132,11 @@ export default {
   },
   computed: {
     userInfo() {
-      let data = JSON.parse(localStorage.getItem("arrayRequests"));
-      let idx = data.findIndex((e) => e.studentName == this.userId);
-      return [data[idx]];
+      if (this.loggedIn) {
+        let data = JSON.parse(localStorage.getItem("arrayRequests"));
+        let idx = data.findIndex((e) => e.studentName == this.userId);
+        return [data[idx]];
+      } else return null;
     },
   },
   mounted() {
