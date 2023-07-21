@@ -4,6 +4,8 @@ import actions from "./actions.js";
 import getters from "./getters.js";
 
 import classes from "../dataClasses.js";
+import teachers from "../dataTeacher.js";
+import schoolContacts from "../dataSchool.js";
 
 let store = createStore({
   state() {
@@ -11,6 +13,8 @@ let store = createStore({
       users: [],
       requests: [],
       classes,
+      teachers,
+      schoolContacts,
     };
   },
   mutations,

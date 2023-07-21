@@ -6,7 +6,7 @@
         <p>Click for more information</p>
       </div>
       <div class="grade-score">
-        <h1>100</h1>
+        <h1>{{ averageGrades }}</h1>
       </div>
     </div>
 
@@ -32,28 +32,28 @@
     </div>
 
     <div>
-      <div v-if="teacherContact == 'Teachers'">
-        <ul>
-          <li>lihvoudsvih 26516595</li>
-          <li>lihvoudsvih 26516595</li>
-          <li>lihvoudsvih 26516595</li>
-        </ul>
+      <div v-for="teacher in teacherInfo" :key="teacher.name">
+        <div v-if="teacherContact == 'Teachers'">
+          <ul>
+            <li>
+              {{ teacher.name }} ({{ teacher.subject }}) |
+              <p>{{ teacher.phone }}</p>
+              |
+              <p>{{ teacher.officeHours }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div v-if="teacherContact == 'School'">
-        <ul>
-          <li>
-            lihvoudsvih
-            <p>Open 9a.m - 5p.m</p>
-          </li>
-          <li>
-            lihvoudsvih
-            <p>Open 9a.m - 5p.m</p>
-          </li>
-          <li>
-            lihvoudsvih
-            <p>Open 9a.m - 5p.m</p>
-          </li>
-        </ul>
+      <div v-for="contact in schoolInfo" :key="contact.name">
+        <div v-if="teacherContact == 'School'">
+          <ul>
+            <li>
+              {{ contact.name }}
+              <p>{{ contact.phone }}</p>
+              <p>{{ contact.officeHours }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -77,8 +77,48 @@ export default {
     showContacts(val) {
       this.teacherContact = val;
     },
+    setColor() {
+      if (this.averageGrades < 50) {
+        document.querySelector(".grade-score").style.borderColor = "red";
+      } else if (this.averageGrades >= 50 && this.averageGrades < 80) {
+        document.querySelector(".grade-score").style.borderColor = "yellow";
+      } else if (this.averageGrades >= 80) {
+        document.querySelector(".grade-score").style.borderColor = "green";
+      }
+    },
   },
-  mounted() {},
+  computed: {
+    teacherInfo() {
+      return this.$store.getters.returnTeachers;
+    },
+    schoolInfo() {
+      return this.$store.getters.returnSchoolData;
+    },
+    averageGrades() {
+      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userIndex = data.findIndex((e) => e.id == this.userId);
+      let userDataClasses = data[userIndex].classes;
+      // console.log(userDataClasses[0].grade);
+      let grades = [];
+      let sum = 0;
+      let avrg;
+
+      if (userDataClasses.length != 0) {
+        for (let i = 0; i < userDataClasses.length; i++) {
+          grades.push(userDataClasses[i].grade);
+          sum += grades[i];
+        }
+
+        avrg = sum / grades.length;
+        return Math.floor(avrg);
+      }
+
+      return 0;
+    },
+  },
+  mounted() {
+    this.setColor();
+  },
 };
 </script>
 

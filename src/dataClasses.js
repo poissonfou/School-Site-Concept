@@ -8,7 +8,7 @@ let classes = [
     color: "#32a854",
     hasATest: true,
     hasAwarning: false,
-    grade: 0,
+    grade: 20,
     for: ["primary-school", "middle-school", "highschool"],
   },
   {
@@ -20,7 +20,7 @@ let classes = [
     color: "#329ea8",
     hasATest: false,
     hasAwarning: false,
-    grade: 0,
+    grade: 30,
     for: ["primary-school", "middle-school", "highschool"],
   },
   {
@@ -32,7 +32,7 @@ let classes = [
     color: "#77a832",
     hasATest: false,
     hasAwarning: false,
-    grade: 0,
+    grade: 40,
     for: ["highschool"],
   },
   {
@@ -44,7 +44,7 @@ let classes = [
     color: "#de0d0d",
     hasATest: false,
     hasAwarning: true,
-    grade: 0,
+    grade: 50,
     for: ["primary-school", "middle-school", "highschool"],
   },
   {
