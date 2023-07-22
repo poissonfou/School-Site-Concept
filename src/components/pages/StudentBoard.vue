@@ -11,12 +11,17 @@
         </div>
       </div>
       <div v-if="showGrades">
-        <ul v-for="grades in returnGrades" :key="grades.name">
-          <li>
-            {{ grades.name }}
-            <p>Grade: {{ grades.grade }}</p>
-          </li>
-        </ul>
+        <div v-if="noGrades">
+          <h1 class="no-grade-warning">You're not enrolled in any classes</h1>
+        </div>
+        <div v-else>
+          <ul v-for="grades in returnGrades" :key="grades.name">
+            <li>
+              {{ grades.name }}
+              <p>Grade: {{ grades.grade }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -41,17 +46,17 @@
 
     <h1 class="contact-title">Contacts</h1>
     <div class="contact">
-      <div @click="showContacts('Teachers')">
+      <div @click="showTeacherContacts()">
         <h1>Teachers</h1>
       </div>
-      <div @click="showContacts('School')">
+      <div @click="showSchoolContacts()">
         <h1>School</h1>
       </div>
     </div>
 
     <div>
       <div v-for="teacher in teacherInfo" :key="teacher.name">
-        <div v-if="teacherContact == 'Teachers'">
+        <div v-if="teacherContact">
           <ul>
             <li>
               {{ teacher.name }} ({{ teacher.subject }}) |
@@ -63,7 +68,7 @@
         </div>
       </div>
       <div v-for="contact in schoolInfo" :key="contact.name">
-        <div v-if="teacherContact == 'School'">
+        <div v-if="schoolContact">
           <ul>
             <li>
               {{ contact.name }}
@@ -86,16 +91,31 @@ export default {
   },
   data() {
     return {
-      teacherContact: null,
+      teacherContact: false,
+      schoolContact: false,
       userId: this.$route.params.userId,
       noTests: false,
       showGrades: false,
+      noGrades: false,
     };
   },
 
   methods: {
-    showContacts(val) {
-      this.teacherContact = val;
+    showTeacherContacts() {
+      if (this.teacherContact == true) {
+        this.teacherContact = false;
+        return;
+      }
+      this.schoolContact = false;
+      this.teacherContact = true;
+    },
+    showSchoolContacts() {
+      if (this.schoolContact == true) {
+        this.schoolContact = false;
+        return;
+      }
+      this.teacherContact = false;
+      this.schoolContact = true;
     },
     setColor() {
       if (this.averageGrades < 50) {
@@ -108,6 +128,9 @@ export default {
     },
     changeTest() {
       this.noTests = true;
+    },
+    changeGrade() {
+      this.noGrades = true;
     },
     showStudentGrades() {
       if (this.showGrades == false) {
@@ -169,6 +192,11 @@ export default {
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
       let userIndex = data.findIndex((e) => e.id == this.userId);
       let userDataClasses = data[userIndex].classes;
+
+      if (userDataClasses.length == 0) {
+        this.changeGrade();
+        return null;
+      }
 
       return userDataClasses;
     },
@@ -330,5 +358,9 @@ ul li p {
 #no-reminder-msg {
   margin-left: 34rem;
   font-size: 2rem;
+}
+
+.no-grade-warning {
+  margin-left: 25rem;
 }
 </style>

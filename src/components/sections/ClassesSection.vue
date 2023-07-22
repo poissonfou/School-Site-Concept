@@ -47,7 +47,7 @@
               <p><span>Room:</span> {{ subject.room }}</p>
             </div>
             <p>{{ subject.day }}</p>
-            <p><span>Grades: </span>{{ subject.for }}</p>
+            <p><span>Grades: </span> {{ subject.for }}</p>
             <base-button class="button" @click="removeClass(subject.name)">
               Remove
             </base-button>
@@ -149,6 +149,7 @@ export default {
       localStorage.setItem("arrayUsers", JSON.stringify(userInfo));
     },
     removeClass(className) {
+      console.log(className);
       let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
 
       let userIndex = userInfo.findIndex((e) => e.id == this.userId);
@@ -166,8 +167,31 @@ export default {
 
       localStorage.setItem("arrayUsers", JSON.stringify(userInfo));
     },
+    getDays() {
+      let grades = "";
+      let days = "";
+      let data = this.classes;
+
+      for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[i].for.length; j++) {
+          days += data[i].for[j] + "|";
+        }
+        for (let y = 0; y < data[i].day.length; y++) {
+          grades += data[i].day[y] + "|";
+        }
+
+        data[i].for = days.replaceAll("|", ", ");
+        data[i].day = grades.replaceAll("|", ", ");
+
+        days = "";
+        grades = " ";
+      }
+    },
   },
-  mounted() {},
+  computed: {},
+  mounted() {
+    this.getDays();
+  },
 };
 </script>
 
