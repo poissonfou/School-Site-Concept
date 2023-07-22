@@ -15,6 +15,7 @@ let store = createStore({
       classes,
       teachers,
       schoolContacts,
+      isLoggedIn: false,
     };
   },
   mutations,

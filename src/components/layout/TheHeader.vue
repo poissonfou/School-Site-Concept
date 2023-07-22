@@ -3,7 +3,7 @@
     <header>
       <div v-if="!loggedIn">
         <nav>
-          <i class="bi bi-list"></i>
+          <i class="bi bi-list" @click="showDropDown()"></i>
           <ul>
             <li class="hidden home">
               <router-link to="home">Home</router-link>
@@ -64,6 +64,20 @@
       >
       </base-profile-card>
     </div>
+    <div v-if="showDrop">
+      <ul id="drop-down">
+        <li>
+          <router-link to="home">Home</router-link>
+        </li>
+        <li><a @click="showPrices()">Prices</a></li>
+        <li>
+          <router-link to="enroll">Enroll</router-link>
+        </li>
+        <li>
+          <a @click="showContact()">Contact Us</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -79,6 +93,7 @@ export default {
       loggedIn: JSON.parse(localStorage.getItem("isLoggedIn")),
       notHome: false,
       userId: "Emerson",
+      showDrop: false,
     };
   },
   components: {
@@ -125,6 +140,14 @@ export default {
     },
     showCard() {
       document.querySelector("#profile-card").classList.toggle("hidden");
+    },
+    showDropDown() {
+      if (this.showDrop == false) {
+        console.log("jhbi");
+        this.showDrop = true;
+        return;
+      }
+      this.showDrop = false;
     },
     homeChange(val) {
       this.notHome = val;
@@ -213,5 +236,22 @@ img {
   margin-left: -1rem;
   margin-top: -0.5rem;
   position: absolute;
+}
+
+#drop-down {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(56, 187, 56);
+  width: 10rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  position: absolute;
+  z-index: 100;
+}
+
+#drop-down li {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 1rem;
 }
 </style>

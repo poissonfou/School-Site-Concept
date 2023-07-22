@@ -1,23 +1,41 @@
 <template>
   <div>
-    <div class="grades">
-      <div>
-        <h1>Your mean grade</h1>
-        <p>Click for more information</p>
+    <div @click="showStudentGrades()">
+      <div class="grades">
+        <div>
+          <h1>Your mean grade</h1>
+          <p>Click for more information</p>
+        </div>
+        <div class="grade-score">
+          <h1 class="grade">{{ averageGrades }}</h1>
+        </div>
       </div>
-      <div class="grade-score">
-        <h1>{{ averageGrades }}</h1>
+      <div v-if="showGrades">
+        <ul v-for="grades in returnGrades" :key="grades.name">
+          <li>
+            {{ grades.name }}
+            <p>Grade: {{ grades.grade }}</p>
+          </li>
+        </ul>
       </div>
     </div>
 
     <div>
       <h1 class="reminder-title">Reminders</h1>
-      <div class="reminders">
-        <div class="reminder-info">
-          <h1>Math Exam</h1>
-          <p>on 12/12/2023</p>
+      <div v-if="noTests" id="no-reminder-msg">
+        <p>No Reminders</p>
+      </div>
+      <div v-else>
+        <div v-for="test in returnTasks" :key="test.name" class="reminders">
+          <div class="reminder-info">
+            <h1>{{ test.name }} Exam</h1>
+            <p>on 12/12/2023</p>
+          </div>
+          <div
+            class="color-block"
+            :style="'background-color:' + test.color"
+          ></div>
         </div>
-        <div class="color-block"></div>
       </div>
     </div>
 
@@ -70,6 +88,8 @@ export default {
     return {
       teacherContact: null,
       userId: this.$route.params.userId,
+      noTests: false,
+      showGrades: false,
     };
   },
 
@@ -86,6 +106,16 @@ export default {
         document.querySelector(".grade-score").style.borderColor = "green";
       }
     },
+    changeTest() {
+      this.noTests = true;
+    },
+    showStudentGrades() {
+      if (this.showGrades == false) {
+        this.showGrades = true;
+        return;
+      }
+      this.showGrades = false;
+    },
   },
   computed: {
     teacherInfo() {
@@ -98,7 +128,7 @@ export default {
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
       let userIndex = data.findIndex((e) => e.id == this.userId);
       let userDataClasses = data[userIndex].classes;
-      // console.log(userDataClasses[0].grade);
+
       let grades = [];
       let sum = 0;
       let avrg;
@@ -110,10 +140,37 @@ export default {
         }
 
         avrg = sum / grades.length;
+
         return Math.floor(avrg);
       }
 
       return 0;
+    },
+    returnTasks() {
+      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userIndex = data.findIndex((e) => e.id == this.userId);
+      let userDataClasses = data[userIndex].classes;
+      let classesTest = [];
+
+      if (userDataClasses.length != 0) {
+        for (let i = 0; i < userDataClasses.length; i++) {
+          console.log(i);
+          if (userDataClasses[i].hasATest == true) {
+            classesTest.push(userDataClasses[i]);
+          }
+        }
+        return classesTest;
+      }
+
+      this.changeTest();
+      return null;
+    },
+    returnGrades() {
+      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userIndex = data.findIndex((e) => e.id == this.userId);
+      let userDataClasses = data[userIndex].classes;
+
+      return userDataClasses;
     },
   },
   mounted() {
@@ -206,7 +263,7 @@ export default {
 }
 
 .reminder-info p {
-  margin-left: 1rem;
+  margin-left: 3rem;
   position: absolute;
   width: 30rem;
   margin-top: 3.4rem;
@@ -268,5 +325,10 @@ ul li {
 ul li p {
   margin-top: 0.2rem;
   font-size: 1.2rem;
+}
+
+#no-reminder-msg {
+  margin-left: 34rem;
+  font-size: 2rem;
 }
 </style>
