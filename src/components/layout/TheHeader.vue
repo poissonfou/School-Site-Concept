@@ -86,13 +86,12 @@ import BaseButton from "../ui/BaseButton.vue";
 import BaseProfileCard from "../ui/BaseProfileCard.vue";
 
 export default {
-  inject: ["id"],
   data() {
     return {
       width: window.innerWidth,
       loggedIn: JSON.parse(localStorage.getItem("isLoggedIn")),
       notHome: false,
-      userId: "Emerson",
+      userId: this.$route.params.userId,
       showDrop: false,
     };
   },
@@ -131,6 +130,15 @@ export default {
     },
     pushLogout() {
       localStorage.setItem("isLoggedIn", JSON.stringify(false));
+
+      const data = JSON.parse(localStorage.getItem("arrayUsers"));
+
+      const index = data.findIndex((e) => e.id == this.userId);
+
+      data[index].isLoggedIn = false;
+
+      localStorage.setItem("arrayUsers", JSON.stringify(data));
+
       this.$router.push("home");
     },
     showHome() {
@@ -143,7 +151,6 @@ export default {
     },
     showDropDown() {
       if (this.showDrop == false) {
-        console.log("jhbi");
         this.showDrop = true;
         return;
       }
@@ -156,8 +163,9 @@ export default {
   computed: {
     userInfo() {
       if (this.loggedIn) {
-        let data = JSON.parse(localStorage.getItem("arrayRequests"));
-        let idx = data.findIndex((e) => e.studentName == this.userId);
+        let data = JSON.parse(localStorage.getItem("arrayUsers"));
+        let idx = data.findIndex((e) => e.id == this.userId);
+
         return [data[idx]];
       } else return null;
     },

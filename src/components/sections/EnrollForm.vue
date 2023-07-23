@@ -126,6 +126,7 @@ export default {
         this.password = this.generatePassword();
 
         const formData = {
+          id: Math.random() * 3,
           hasLoggedIn: false,
           code: this.code,
           parentName: this.parentName.val,
@@ -133,12 +134,14 @@ export default {
           email: this.email.val,
           phone: this.phone.val,
           password: this.password,
+          classes: [],
+          isLoggedIn: false,
         };
 
-        this.$store.dispatch("storeRequests", formData);
+        let data = JSON.parse(localStorage.getItem("arrayUsers"));
+        data.push(formData);
 
-        let arrayRequests = this.$store.getters.returnRequests;
-        localStorage.setItem("arrayRequests", JSON.stringify(arrayRequests));
+        localStorage.setItem("arrayUsers", JSON.stringify(data));
 
         this.infoSent = true;
         document.querySelector(".form").style.height = "27rem";
@@ -164,10 +167,10 @@ export default {
       }
 
       if (localStorage.length == 0) {
-        localStorage.setItem("arrayRequests", JSON.stringify([{}]));
+        localStorage.setItem("arrayUsers", JSON.stringify([]));
       }
 
-      let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
+      let arrayStorage = JSON.parse(localStorage.getItem("arrayUsers"));
 
       const found = arrayStorage.find(
         (e) => e.studentName == this.studentName.val

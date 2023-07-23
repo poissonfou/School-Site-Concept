@@ -8,17 +8,12 @@ import StudentBoard from "../src/components/pages/StudentBoard.vue";
 import ListClasses from "../src/components/pages/ListClasses.vue";
 import ProfilePage from "../src/components/pages/ProfilePage";
 
+import route from "./redirect";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: "/",
-      redirect: "home",
-    },
-    {
-      path: "/",
-      redirect: "home",
-    },
+    route,
     {
       name: "home",
       path: "/home",

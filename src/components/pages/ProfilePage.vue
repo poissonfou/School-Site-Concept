@@ -104,7 +104,7 @@
         <base-button
           class="button"
           id="password"
-          @click="display(true, 'password')"
+          @click="displayPassword(true, 'password')"
         >
           Redefine Password
         </base-button>
@@ -127,8 +127,7 @@ import BaseWarning from "../ui/BaseWarning.vue";
 export default {
   data() {
     return {
-      userId: "Emerson",
-      id: this.$route.params.userId,
+      userId: this.$route.params.userId,
       showPassword: false,
       showUpdate: false,
       validPassword: true,
@@ -146,8 +145,8 @@ export default {
   },
   computed: {
     userInfo() {
-      let data = JSON.parse(localStorage.getItem("arrayRequests"));
-      let idx = data.findIndex((e) => e.studentName == this.userId);
+      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let idx = data.findIndex((e) => e.id == this.userId);
       return [data[idx]];
     },
   },
@@ -172,11 +171,11 @@ export default {
       }
 
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
-      let idx = data.findIndex((e) => e.id == this.id);
+      let idx = data.findIndex((e) => e.id == this.userId);
 
-      let newPassword = (data[idx].password = this.newPassword);
+      data[idx].password = this.newPassword;
 
-      localStorage.getItem("arrayUsers", JSON.stringify(newPassword));
+      localStorage.getItem("arrayUsers", JSON.stringify(data));
 
       this.passwordChanged = true;
 
@@ -207,8 +206,8 @@ export default {
         return;
       }
 
-      let data = JSON.parse(localStorage.getItem("arrayRequests"));
-      let idx = data.findIndex((e) => e.studentName == this.userId);
+      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let idx = data.findIndex((e) => e.id == this.userId);
 
       let user = data[idx];
 
@@ -218,16 +217,21 @@ export default {
       let phone = document.querySelector("#phone").value;
 
       const updatedUser = {
+        id: user.id,
         hasLoggedIn: user.hasLoggedIn,
         code: user.code,
         parentName: guardianName,
         studentName: name,
         email: email,
         phone: phone,
+        isLoggedIn: true,
         password: user.password,
+        classes: user.classes,
       };
 
-      localStorage.setItem("arrayRequests", JSON.stringify(updatedUser));
+      data[idx] = updatedUser;
+
+      localStorage.setItem("arrayUsers", JSON.stringify(data));
 
       this.infoChanged = true;
 
@@ -240,7 +244,7 @@ export default {
     },
   },
   mounted() {
-    console.log(JSON.parse(localStorage.getItem("arrayRequests")));
+    console.log(JSON.parse(localStorage.getItem("arrayUsers")));
   },
 };
 </script>

@@ -112,7 +112,7 @@ export default {
         this.formIsValid = false;
         return;
       }
-      let arrayStorage = JSON.parse(localStorage.getItem("arrayRequests"));
+      let arrayStorage = JSON.parse(localStorage.getItem("arrayUsers"));
 
       const foundEmail = arrayStorage.find((e) => e.email == this.email.val);
 
@@ -132,9 +132,9 @@ export default {
         this.formIsValid = false;
         return;
       } else if (loginInfo === false && foundCode) {
-        const data = JSON.parse(localStorage.getItem("arrayRequests"));
+        const data = JSON.parse(localStorage.getItem("arrayUsers"));
         data[index].hasLoggedIn = true;
-        localStorage.setItem("arrayRequests", JSON.stringify(data));
+        localStorage.setItem("arrayUsers", JSON.stringify(data));
       } else if (loginInfo === true && this.checked === true) {
         this.firstLogin = false;
       }
@@ -158,29 +158,39 @@ export default {
       if (this.formIsValid == false) {
         return;
       } else {
-        const formData = {
-          id: Math.random() * 3,
-          email: this.email.val,
-          password: this.password.val,
-          classes: [],
-        };
+        const data = JSON.parse(localStorage.getItem("arrayUsers"));
 
-        this.$store.dispatch("storeUser", formData);
+        const index = data.findIndex((e) => e.password == this.password.val);
 
-        let arrayUsers = this.$store.getters.returnUsers;
-        localStorage.setItem("arrayUsers", JSON.stringify(arrayUsers));
+        data[index].isLoggedIn = true;
+
+        localStorage.setItem("arrayUsers", JSON.stringify(data));
 
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
 
-        this.$router.push(`/board/${formData.id}`);
+        this.$router.push(`/board/${data[index].id}`);
       }
     },
     clearValidity(input) {
       this[input].isValid = true;
     },
   },
+  computed: {
+    returnId() {
+      let log = JSON.parse(localStorage.getItem("isLoggedIn"));
+      if (log == true) {
+        const data = JSON.parse(localStorage.getItem("arrayUsers"));
+
+        const index = data.findIndex((e) => e.isLoggedIn == true);
+
+        return data[index].id;
+      } else {
+        return 0;
+      }
+    },
+  },
   mounted() {
-    console.log(JSON.parse(localStorage.getItem("arrayRequests")));
+    console.log(JSON.parse(localStorage.getItem("arrayUsers")));
   },
 };
 </script>

@@ -84,11 +84,6 @@
 
 <script>
 export default {
-  provide() {
-    return {
-      id: this.userId,
-    };
-  },
   data() {
     return {
       teacherContact: false,
