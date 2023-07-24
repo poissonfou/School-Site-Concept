@@ -172,7 +172,6 @@ export default {
 
       if (userDataClasses.length != 0) {
         for (let i = 0; i < userDataClasses.length; i++) {
-          console.log(i);
           if (userDataClasses[i].hasATest == true) {
             classesTest.push(userDataClasses[i]);
           }

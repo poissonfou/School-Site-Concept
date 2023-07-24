@@ -31,13 +31,21 @@
           administration.
         </p>
         <label for="code">Code</label>
-        <input type="text" name="code" class="input" v-model="code.val" />
+        <input
+          type="text"
+          name="code"
+          class="input"
+          :class="{ invalid: !code.isValid }"
+          @blur="clearValidity('code')"
+          v-model="code.val"
+        />
+        <p v-if="!code.isValid">Code not found, please try again</p>
       </div>
 
       <div class="input-box">
         <label for="email">Email</label>
         <input
-          type="text"
+          type="email"
           name="email"
           v-model="email.val"
           class="input"
@@ -90,6 +98,10 @@ export default {
   methods: {
     checkFirstLogin() {
       let input = document.querySelector("#loginCheck");
+      if (this.firstLogin == true) {
+        this.firstLogin = null;
+      }
+
       if (input.checked == true) {
         this.checked = true;
         let form = document.querySelector(".form");
@@ -116,16 +128,22 @@ export default {
 
       const foundEmail = arrayStorage.find((e) => e.email == this.email.val);
 
-      const foundPassword = arrayStorage.find(
-        (e) => e.password == this.password.val
-      );
-
       let foundCode = arrayStorage.find((e) => e.code == this.code.val);
 
       const index = arrayStorage.findIndex(
         (e) => e.password == this.password.val
       );
-      const loginInfo = arrayStorage[index].hasLoggedIn;
+
+      let loginInfo;
+
+      try {
+        loginInfo = arrayStorage[index].hasLoggedIn;
+      } catch (e) {
+        console.log(e);
+        this.formIsValid = false;
+        this.password.isValid = false;
+        return;
+      }
 
       if (loginInfo === false && this.checked === false) {
         this.firstLogin = true;
@@ -143,13 +161,17 @@ export default {
         foundCode = true;
       }
 
-      if (
-        foundEmail == undefined ||
-        foundPassword == undefined ||
-        foundCode == undefined
-      ) {
-        this.notRegistered = true;
+      if (foundEmail == undefined) {
         this.formIsValid = false;
+        this.email.isValid = false;
+        this.notRegistered = true;
+        return;
+      } else if (foundCode == undefined) {
+        this.notRegistered = true;
+        this.code.isValid = false;
+        this.formIsValid = false;
+        console.log("jbjhv");
+        return;
       }
     },
     sendRequest() {

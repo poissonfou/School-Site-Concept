@@ -196,11 +196,11 @@ export default {
     generatePassword() {
       let chars =
         "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      let password;
+      let password = "";
 
       for (let i = 0; i <= 12; i++) {
         let randomNumber = Math.floor(Math.random() * chars.length);
-        password += chars.substring(randomNumber, randomNumber + 1);
+        password += chars.substring(randomNumber, randomNumber + 2);
       }
 
       return password;

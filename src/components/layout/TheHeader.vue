@@ -26,7 +26,7 @@
           <ul>
             <li @mouseenter="showCard()" @mouseleave="showCard()">
               <router-link
-                :to="{ name: 'profile', params: id }"
+                :to="{ name: 'profile', params: this.userId }"
                 @click="homeChange(true)"
               >
                 <i class="bi bi-person"></i>
@@ -34,15 +34,15 @@
             </li>
             <li v-if="notHome">
               <router-link
-                :to="{ name: 'board', params: id }"
-                @click="homeChange(false)"
+                :to="{ name: 'board', params: this.userId }"
+                @click="homeChange()"
                 >Board</router-link
               >
             </li>
             <li>
               <router-link
-                :to="{ name: 'classes', params: id }"
-                @click="homeChange(true)"
+                :to="{ name: 'classes', params: this.userId }"
+                @click="homeChange()"
                 >Classes</router-link
               >
             </li>
@@ -120,9 +120,21 @@ export default {
       });
     },
     showPrices() {
+      if (this.$route.path != "/home") {
+        this.$router.push("home");
+        setTimeout(() => {
+          window.scrollTo(0, 2100);
+        }, 350);
+      }
       window.scrollTo(0, 2100);
     },
     showContact() {
+      if (this.$route.path != "/home") {
+        this.$router.push("home");
+        setTimeout(() => {
+          window.scrollTo(0, 2600);
+        }, 350);
+      }
       window.scrollTo(0, 2600);
     },
     pushLogin() {
@@ -139,7 +151,7 @@ export default {
 
       localStorage.setItem("arrayUsers", JSON.stringify(data));
 
-      this.$router.push("home");
+      this.$router.push("/home");
     },
     showHome() {
       if (this.$route.path != "/home" && this.width > 768) {
@@ -156,8 +168,15 @@ export default {
       }
       this.showDrop = false;
     },
-    homeChange(val) {
-      this.notHome = val;
+    homeChange() {
+      let path = this.$route.path;
+
+      if (path.includes("/classes/") || path.includes("/profile/")) {
+        this.notHome = true;
+        this.keyValue = true;
+        return;
+      }
+      this.notHome = false;
     },
   },
   computed: {
@@ -170,12 +189,23 @@ export default {
       } else return null;
     },
   },
+  watch: {
+    $route() {
+      this.homeChange();
+      this.trackWidth();
+
+      if (this.loggedIn == false) {
+        this.toggle();
+        this.showHome();
+      }
+    },
+  },
   mounted() {
     if (this.loggedIn == false) {
       this.toggle();
       this.showHome();
     }
-
+    this.homeChange();
     this.trackWidth();
   },
 };

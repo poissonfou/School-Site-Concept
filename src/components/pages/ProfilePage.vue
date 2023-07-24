@@ -16,11 +16,22 @@
         <div class="pchange-box">
           <div>
             <p>New password:</p>
-            <input type="text" v-model="newPassword" />
+            <input
+              type="text"
+              :class="{ invalid: !newPassword.isValid }"
+              v-model="newPassword.val"
+              @blur="clearValidity('newPassword')"
+            />
           </div>
           <div>
             <p>Please repeat the password:</p>
-            <input type="text" class="second-input" v-model="newPassword2" />
+            <input
+              type="text"
+              class="second-input"
+              :class="{ invalid: !newPassword2.isValid }"
+              v-model="newPassword2.val"
+              @blur="clearValidity('newPassword2')"
+            />
           </div>
         </div>
         <div class="btns-password">
@@ -46,11 +57,22 @@
               type="text"
               name="name"
               id="name"
+              :class="{ invalid: !name.isValid }"
+              @blur="clearValidity('name')"
               :value="info.studentName"
             />
+            <p v-if="!this.name.isValid">Please enter a value</p>
 
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" :value="info.email" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              :class="{ invalid: !email.isValid }"
+              @blur="clearValidity('email')"
+              :value="info.email"
+            />
+            <p v-if="!this.email.isValid">Please enter a value</p>
           </div>
           <div>
             <div class="col">
@@ -59,12 +81,23 @@
                 type="text"
                 name="guardianName"
                 id="guardianName"
+                :class="{ invalid: !guardianName.isValid }"
+                @blur="clearValidity('guardianName')"
                 :value="info.parentName"
               />
+              <p v-if="!this.guardianName.isValid">Please enter a value</p>
             </div>
             <div class="col">
               <label for="phone">Phone:</label>
-              <input type="text" name="phone" id="phone" :value="info.phone" />
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                :class="{ invalid: !phone.isValid }"
+                @blur="clearValidity('phone')"
+                :value="info.phone"
+              />
+              <p v-if="!this.phone.isValid">Please enter a value</p>
             </div>
           </div>
           <div class="btns-password">
@@ -135,8 +168,12 @@ export default {
       noPassword: false,
       passwordChanged: false,
       infoChanged: false,
-      newPassword: "",
-      newPassword2: "",
+      newPassword: { val: "", isValid: true },
+      newPassword2: { val: "", isValid: true },
+      name: { isValid: true },
+      phone: { isValid: true },
+      email: { isValid: true },
+      guardianName: { isValid: true },
     };
   },
   components: {
@@ -153,13 +190,19 @@ export default {
   methods: {
     displayPassword(val, section) {
       if (section == "password") {
+        this.newPassword.val = "";
+        this.newPassword2.val = "";
         this.showPassword = val;
       } else this.showUpdate = val;
     },
     validatePassword() {
-      if (this.newPassword !== this.newPassword2) {
+      if (this.newPassword.val !== this.newPassword2.val) {
+        this.newPassword.isValid = false;
+        this.newPassword2.isValid = false;
         this.validPassword = false;
-      } else if (this.newPassword == "" || this.newPassword2 == "") {
+      } else if (this.newPassword.val == "" || this.newPassword2.val == "") {
+        this.newPassword.isValid = false;
+        this.newPassword2.isValid = false;
         this.noPassword = true;
       } else this.validPassword = true;
     },
@@ -184,20 +227,45 @@ export default {
         window.scrollTo(0, top);
       }, 2000);
 
-      this.newPassword = "";
-      this.newPassword2 = "";
+      this.newPassword.val = "";
+      this.newPassword2.val = "";
 
       this.showPassword = false;
     },
     validateUpdate() {
-      let name = document.querySelector("#name").value;
-      let email = document.querySelector("#email").value;
-      let guardianName = document.querySelector("#guardianName").value;
-      let phone = document.querySelector("#phone").value;
+      let name = document.querySelector("#name");
+      let email = document.querySelector("#email");
+      let guardianName = document.querySelector("#guardianName");
+      let phone = document.querySelector("#phone");
 
-      if (name == "" || email == "" || guardianName == "" || phone == "") {
+      console.log("1");
+      if (name.value == "") {
+        this.name.isValid = false;
+        name.value = "";
         this.validUpdate = false;
+        console.log("2");
+        return;
+      } else if (email.value == "") {
+        this.email.isValid = false;
+        email.value = "";
+        this.validUpdate = false;
+        console.log("3");
+        return;
+      } else if (guardianName.value == "") {
+        this.guardianName.isValid = false;
+        guardianName.value = "";
+        this.validUpdate = false;
+        console.log("4");
+        return;
+      } else if (phone.value == "") {
+        this.phone.isValid = false;
+        phone.value = "";
+        this.validUpdate = false;
+        console.log("5");
+        return;
       }
+      console.log("6");
+      this.validUpdate = true;
     },
     setInfo() {
       this.validateUpdate();
@@ -206,6 +274,7 @@ export default {
         return;
       }
 
+      console.log("p");
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
 
@@ -242,9 +311,9 @@ export default {
 
       this.showUpdate = false;
     },
-  },
-  mounted() {
-    console.log(JSON.parse(localStorage.getItem("arrayUsers")));
+    clearValidity(input) {
+      this[input].isValid = true;
+    },
   },
 };
 </script>
@@ -444,5 +513,10 @@ form p:nth-child(2) {
 .col input {
   width: 15rem;
   margin-left: 1rem;
+}
+
+.invalid {
+  border: 1px solid red;
+  box-shadow: 0px 0px 5px red;
 }
 </style>
