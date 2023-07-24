@@ -59,7 +59,7 @@
         id="profile-card"
         url="vanya.jpg"
         :name="info.studentName"
-        grade="highschool"
+        :grade="info.grade"
         :email="info.email"
       >
       </base-profile-card>
@@ -106,13 +106,17 @@ export default {
         let i = document.querySelector("i");
         i.classList.add("hidden");
 
-        let li_prices = document.querySelector(".prices");
-        let li_enroll = document.querySelector(".enroll");
-        let li_contact = document.querySelector(".contact");
+        try {
+          let li_prices = document.querySelector(".prices");
+          let li_enroll = document.querySelector(".enroll");
+          let li_contact = document.querySelector(".contact");
 
-        li_prices.classList.toggle("hidden");
-        li_enroll.classList.toggle("hidden");
-        li_contact.classList.toggle("hidden");
+          li_prices.classList.toggle("hidden");
+          li_enroll.classList.toggle("hidden");
+          li_contact.classList.toggle("hidden");
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
     trackWidth() {
@@ -160,7 +164,11 @@ export default {
       }
     },
     showCard() {
-      document.querySelector("#profile-card").classList.toggle("hidden");
+      try {
+        document.querySelector("#profile-card").classList.toggle("hidden");
+      } catch (e) {
+        console.log(e);
+      }
     },
     showDropDown() {
       if (this.showDrop == false) {

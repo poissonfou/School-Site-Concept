@@ -47,7 +47,7 @@
     </div>
 
     <div v-else-if="showUpdate">
-      <div v-for="info in userInfo" :key="info.id">
+      <div>
         <h1 class="ichange">Update your information</h1>
         <p v-if="!validUpdate">Please enter a value</p>
         <form @submit.prevent="setInfo()">
@@ -57,9 +57,9 @@
               type="text"
               name="name"
               id="name"
+              v-model="name.val"
               :class="{ invalid: !name.isValid }"
               @blur="clearValidity('name')"
-              :value="info.studentName"
             />
             <p v-if="!this.name.isValid">Please enter a value</p>
 
@@ -68,9 +68,9 @@
               type="email"
               name="email"
               id="email"
+              v-model="email.val"
               :class="{ invalid: !email.isValid }"
               @blur="clearValidity('email')"
-              :value="info.email"
             />
             <p v-if="!this.email.isValid">Please enter a value</p>
           </div>
@@ -81,9 +81,9 @@
                 type="text"
                 name="guardianName"
                 id="guardianName"
+                v-model="guardianName.val"
                 :class="{ invalid: !guardianName.isValid }"
                 @blur="clearValidity('guardianName')"
-                :value="info.parentName"
               />
               <p v-if="!this.guardianName.isValid">Please enter a value</p>
             </div>
@@ -93,9 +93,9 @@
                 type="text"
                 name="phone"
                 id="phone"
+                v-model="phone.val"
                 :class="{ invalid: !phone.isValid }"
                 @blur="clearValidity('phone')"
-                :value="info.phone"
               />
               <p v-if="!this.phone.isValid">Please enter a value</p>
             </div>
@@ -120,7 +120,8 @@
           <h1>{{ info.studentName }}</h1>
           <p>Email:</p>
           <p>{{ info.email }}</p>
-          <p>grade</p>
+          <p>Grade:</p>
+          <p>{{ info.grade }}</p>
         </div>
         <div class="info-two">
           <div class="col">
@@ -170,10 +171,10 @@ export default {
       infoChanged: false,
       newPassword: { val: "", isValid: true },
       newPassword2: { val: "", isValid: true },
-      name: { isValid: true },
-      phone: { isValid: true },
-      email: { isValid: true },
-      guardianName: { isValid: true },
+      name: { val: "", isValid: true },
+      phone: { val: "", isValid: true },
+      email: { val: "", isValid: true },
+      guardianName: { val: "", isValid: true },
     };
   },
   components: {
@@ -184,10 +185,20 @@ export default {
     userInfo() {
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
+
       return [data[idx]];
     },
   },
   methods: {
+    setInputValues() {
+      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let idx = data.findIndex((e) => e.id == this.userId);
+
+      this.name.val = data[idx].studentName;
+      this.phone.val = data[idx].phone;
+      this.email.val = data[idx].email;
+      this.guardianName.val = data[idx].parentName;
+    },
     displayPassword(val, section) {
       if (section == "password") {
         this.newPassword.val = "";
@@ -216,9 +227,9 @@ export default {
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
 
-      data[idx].password = this.newPassword;
+      data[idx].password = this.newPassword.val;
 
-      localStorage.getItem("arrayUsers", JSON.stringify(data));
+      localStorage.setItem("arrayUsers", JSON.stringify(data));
 
       this.passwordChanged = true;
 
@@ -238,33 +249,27 @@ export default {
       let guardianName = document.querySelector("#guardianName");
       let phone = document.querySelector("#phone");
 
-      console.log("1");
       if (name.value == "") {
         this.name.isValid = false;
         name.value = "";
         this.validUpdate = false;
-        console.log("2");
         return;
       } else if (email.value == "") {
         this.email.isValid = false;
         email.value = "";
         this.validUpdate = false;
-        console.log("3");
         return;
       } else if (guardianName.value == "") {
         this.guardianName.isValid = false;
         guardianName.value = "";
         this.validUpdate = false;
-        console.log("4");
         return;
       } else if (phone.value == "") {
         this.phone.isValid = false;
         phone.value = "";
         this.validUpdate = false;
-        console.log("5");
         return;
       }
-      console.log("6");
       this.validUpdate = true;
     },
     setInfo() {
@@ -274,7 +279,6 @@ export default {
         return;
       }
 
-      console.log("p");
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
 
@@ -295,6 +299,7 @@ export default {
         phone: phone,
         isLoggedIn: true,
         password: user.password,
+        grade: user.grade,
         classes: user.classes,
       };
 
@@ -314,6 +319,10 @@ export default {
     clearValidity(input) {
       this[input].isValid = true;
     },
+  },
+  mounted() {
+    this.setInputValues();
+    console.log(JSON.parse(localStorage.getItem("arrayUsers")));
   },
 };
 </script>

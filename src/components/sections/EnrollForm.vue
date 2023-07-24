@@ -61,6 +61,13 @@
             <p v-if="!phone.isValid">Please enter a phone number</p>
           </div>
 
+          <label for="grades"> Select a grade</label>
+          <select name="grades" id="grades">
+            <option value="Primary-School">Primary-School</option>
+            <option value="Middle-School">Middleschool</option>
+            <option value="Highschool">Highschool</option>
+          </select>
+
           <base-button class="button"><p>SEND</p></base-button>
         </form>
       </div>
@@ -126,6 +133,8 @@ export default {
 
         this.password = this.generatePassword();
 
+        let grade = document.querySelector("#grades").value;
+
         const formData = {
           id: Math.random() * 3,
           hasLoggedIn: false,
@@ -135,6 +144,7 @@ export default {
           email: this.email.val,
           phone: this.phone.val,
           password: this.password,
+          grade,
           classes: [],
           isLoggedIn: false,
         };
@@ -188,7 +198,7 @@ export default {
     },
     setHeight() {
       if (!this.infoSent) {
-        document.querySelector(".form").style.height = "30rem";
+        document.querySelector(".form").style.height = "35rem";
       }
     },
     clearValidity(input) {
@@ -201,7 +211,7 @@ export default {
 
       for (let i = 0; i <= 12; i++) {
         let randomNumber = Math.floor(Math.random() * chars.length);
-        password += chars.substring(randomNumber, randomNumber + 2);
+        password += chars.substring(randomNumber, randomNumber + 2).trim();
       }
 
       return password;
@@ -274,8 +284,8 @@ img {
 }
 
 .button {
-  margin-left: 30rem;
-  margin-top: 0rem;
+  margin-left: 15rem;
+  margin-top: 5rem;
   height: 2.5rem;
   width: 6rem;
   transition: all 0.2s ease;
@@ -304,5 +314,18 @@ p {
 
 .invalidForm {
   height: 50rem;
+}
+
+#grades {
+  margin-left: 1rem;
+  height: 2rem;
+  width: 8rem;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+  border: solid 0.1rem rgb(56, 187, 56);
+}
+
+#grades:focus {
+  outline: none;
 }
 </style>

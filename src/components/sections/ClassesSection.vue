@@ -14,7 +14,7 @@
     </div>
 
     <div class="main-div-list" v-if="showMyClasses == false">
-      <ul v-for="subject in classes" :key="subject.name">
+      <ul v-for="subject in filterClasses" :key="subject.name">
         <li>
           <div class="name-teacher">
             <h2>{{ subject.name }}</h2>
@@ -188,7 +188,26 @@ export default {
       }
     },
   },
-  computed: {},
+  computed: {
+    filterClasses() {
+      let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userIndex = userInfo.findIndex((e) => e.id == this.userId);
+
+      let userGrade = userInfo[userIndex].grade;
+      let filteredClasses = [];
+      let strg;
+
+      for (let i = 0; i < this.classes.length; i++) {
+        strg = this.classes[i].for.toString();
+
+        if (strg.includes(userGrade.toLowerCase())) {
+          filteredClasses.push(this.classes[i]);
+        }
+      }
+
+      return filteredClasses;
+    },
+  },
   mounted() {
     this.getDays();
   },

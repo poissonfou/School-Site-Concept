@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div @click="showStudentGrades()">
-      <div class="grades">
+    <div>
+      <div class="grades" @click="showStudentGrades()">
         <div>
           <h1>Your mean grade</h1>
           <p>Click for more information</p>

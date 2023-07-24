@@ -36,7 +36,7 @@ export default {
 
         let idx = data.findIndex((e) => e.isLoggedIn == true);
 
-        this.data = data[idx];
+        this.data = [data[idx]];
       }
     },
   },

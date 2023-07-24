@@ -11,6 +11,7 @@ let store = createStore({
       classes,
       teachers,
       schoolContacts,
+      reload: false,
     };
   },
   getters,
