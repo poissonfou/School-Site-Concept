@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader />
+    <TheHeader :key="key" :infos="data" />
     <router-view v-slot="slotProps">
       <transition name="route" mode="out-in">
         <component :is="slotProps.Component"></component>
@@ -15,9 +15,30 @@ import TheHeader from "../src/components/layout/TheHeader.vue";
 import TheFooter from "../src/components/layout/TheFooter.vue";
 
 export default {
+  data() {
+    return {
+      key: 0,
+      data: [],
+    };
+  },
   components: {
     TheHeader,
     TheFooter,
+  },
+  watch: {
+    $route() {
+      this.key += 1;
+
+      let login = JSON.parse(localStorage.getItem("isLoggedIn"));
+
+      if (login == true) {
+        let data = JSON.parse(localStorage.getItem("arrayUsers"));
+
+        let idx = data.findIndex((e) => e.isLoggedIn == true);
+
+        this.data = data[idx];
+      }
+    },
   },
 };
 </script>

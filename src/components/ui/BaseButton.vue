@@ -4,10 +4,6 @@
   </button>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style scoped>
 button {
   background-color: rgb(91, 150, 44);

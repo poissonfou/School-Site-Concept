@@ -53,9 +53,6 @@
 
 <script>
 export default {
-  data() {
-    return {};
-  },
   methods: {
     Slider() {
       let count = 1;

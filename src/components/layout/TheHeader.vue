@@ -27,7 +27,7 @@
             <li @mouseenter="showCard()" @mouseleave="showCard()">
               <router-link
                 :to="{ name: 'profile', params: this.userId }"
-                @click="homeChange(true)"
+                @click="homeChange()"
               >
                 <i class="bi bi-person"></i>
               </router-link>
@@ -53,7 +53,7 @@
         </base-button>
       </div>
     </header>
-    <div v-for="info in userInfo" :key="info.id">
+    <div v-for="info in infos" :key="info.id">
       <base-profile-card
         class="hidden"
         id="profile-card"
@@ -86,13 +86,14 @@ import BaseButton from "../ui/BaseButton.vue";
 import BaseProfileCard from "../ui/BaseProfileCard.vue";
 
 export default {
+  props: ["infos"],
   data() {
     return {
       width: window.innerWidth,
       loggedIn: JSON.parse(localStorage.getItem("isLoggedIn")),
       notHome: false,
-      userId: this.$route.params.userId,
       showDrop: false,
+      userId: this.$route.params.userId,
     };
   },
   components: {
@@ -177,16 +178,6 @@ export default {
         return;
       }
       this.notHome = false;
-    },
-  },
-  computed: {
-    userInfo() {
-      if (this.loggedIn) {
-        let data = JSON.parse(localStorage.getItem("arrayUsers"));
-        let idx = data.findIndex((e) => e.id == this.userId);
-
-        return [data[idx]];
-      } else return null;
     },
   },
   watch: {

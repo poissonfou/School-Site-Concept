@@ -86,6 +86,7 @@ export default {
       formIsValid: true,
       notRegistered: false,
       checked: false,
+      id: "",
       code: { val: "", isValid: true },
       email: { val: "", isValid: true },
       password: { val: "", isValid: true },
@@ -170,7 +171,6 @@ export default {
         this.notRegistered = true;
         this.code.isValid = false;
         this.formIsValid = false;
-        console.log("jbjhv");
         return;
       }
     },
@@ -189,6 +189,8 @@ export default {
         localStorage.setItem("arrayUsers", JSON.stringify(data));
 
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
+
+        this.id = data[index].id;
 
         this.$router.push(`/board/${data[index].id}`);
       }

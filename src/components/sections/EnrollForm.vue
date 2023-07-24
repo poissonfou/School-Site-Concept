@@ -103,6 +103,7 @@ export default {
       formIsValid: true,
       code: null,
       password: null,
+      id: 0,
       parentName: { val: "", isValid: true },
       studentName: { val: "", isValid: true, exists: false },
       email: { val: "", isValid: true },
