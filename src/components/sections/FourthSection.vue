@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-div">
     <h3>Contact and Follow Us</h3>
     <h2>(56)153486245</h2>
     <div class="social-links">
@@ -36,50 +36,55 @@ export default {
 
 <style scoped>
 h3 {
-  color: gray;
-  margin-left: 2.5rem;
+  color: rgb(0, 7, 92);
+  margin-left: 9.5rem;
+  font-size: 1.7rem;
   margin-bottom: 0;
-  font-size: 1.5rem;
 }
 
 h2 {
-  color: gray;
-  margin-left: 4rem;
-  margin-top: 0.5rem;
-}
-
-div {
-  width: 21rem;
+  color: black;
+  margin-left: 12rem;
+  font-size: 1.5rem;
 }
 
 .social-links {
   margin-bottom: 2rem;
+  margin-left: 8rem;
+}
+
+@media (min-width: 576px) {
+  h3 {
+    margin-left: 11rem;
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    margin-left: 18rem;
+    font-size: 1.7rem;
+  }
+
+  .social-links {
+    margin-left: 13.6rem;
+  }
 }
 
 @media (min-width: 768px) {
   .social-links {
     display: flex;
     flex-direction: row;
-  }
-
-  p {
-    font-size: 1.5rem;
-    margin-top: 0;
-    margin-left: 5rem;
-  }
-
-  base-social {
-    width: 10rem;
+    margin-left: 4rem;
+    margin-top: 3rem;
   }
 
   h3 {
-    margin-left: 13rem;
-    font-size: 2.5rem;
+    margin-left: 17rem;
+    font-size: 3rem;
     width: 30rem;
   }
 
   h2 {
-    margin-left: 18rem;
+    margin-left: 25rem;
     margin-top: 0.5rem;
     font-size: 1.8rem;
   }
@@ -87,64 +92,23 @@ div {
 
 @media (min-width: 992px) {
   h3 {
-    margin-left: 16rem;
+    margin-left: 22rem;
     font-size: 3rem;
   }
 
   h2 {
-    margin-left: 22.5rem;
-    font-size: 2.3rem;
-  }
-
-  p {
-    margin-left: 5.7rem;
+    margin-left: 29rem;
+    font-size: 2.2rem;
   }
 
   .social-links {
     margin-top: 4.5rem;
     margin-bottom: 2rem;
-    margin-left: 2rem;
-  }
-
-  base-social {
-    width: 12rem;
+    margin-left: 5.5rem;
   }
 }
 
 @media (min-width: 1200px) {
-  div {
-    margin-top: 6rem;
-    margin-bottom: 5rem;
-  }
-
-  h3 {
-    margin-left: 20rem;
-    font-size: 4rem;
-    width: 40rem;
-  }
-
-  h2 {
-    margin-left: 29.5rem;
-    font-size: 2.5rem;
-  }
-
-  p {
-    margin-left: 5rem;
-    font-size: 2rem;
-  }
-
-  .social-links {
-    margin-top: 4.5rem;
-    margin-bottom: 2rem;
-    margin-left: 12rem;
-  }
-
-  base-social {
-    width: 12rem;
-  }
-}
-
-@media (min-width: 1300px) {
   h3 {
     margin-left: 26rem;
     font-size: 3rem;
@@ -156,20 +120,13 @@ div {
     font-size: 2rem;
   }
 
-  div {
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
-  }
-
-  p {
-    margin-left: 5rem;
-    font-size: 1.5rem;
+  .main-div {
+    margin-top: 5rem;
   }
 
   .social-links {
-    margin-top: -1rem;
-    margin-bottom: 0rem;
-    margin-left: 11rem;
+    margin-top: 5rem;
+    margin-left: 9rem;
   }
 }
 </style>

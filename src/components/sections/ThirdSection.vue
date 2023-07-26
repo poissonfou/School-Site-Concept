@@ -46,63 +46,26 @@ export default {
 <style scoped>
 div {
   margin-top: 2rem;
+  margin-left: 2.6rem;
 }
 
-.k-12 {
-  margin-left: 5.5rem;
-}
-
-.highschool {
-  margin-left: 2rem;
-}
-
-@media (min-width: 768px) {
-  .k-12 {
-    margin-left: 5.5rem;
-  }
-
-  .highschool {
-    margin-left: 1.3rem;
+@media (min-width: 576px) {
+  div {
+    margin-left: 3.7rem;
   }
 }
 
 @media (min-width: 992px) {
   div {
     margin-top: 7rem;
-    margin-left: 0.5rem;
-  }
-
-  .k-12 {
-    margin-left: 7rem;
-  }
-
-  .highschool {
-    margin-left: 3rem;
+    margin-left: 4.4rem;
   }
 }
 
 @media (min-width: 1200px) {
-  .k-12 {
-    margin-left: 7rem;
-  }
-
-  .highschool {
-    margin-left: 3rem;
-  }
-}
-
-@media (min-width: 1300px) {
   div {
-    margin-top: 7rem;
-    margin-left: 3.5rem;
-  }
-
-  .k-12 {
-    margin-left: 10rem;
-  }
-
-  .highschool {
-    margin-left: 6rem;
+    margin-top: 6rem;
+    margin-left: 5.5rem;
   }
 }
 </style>

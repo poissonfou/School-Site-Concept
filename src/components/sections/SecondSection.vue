@@ -25,28 +25,18 @@ export default {
 
 <style scoped>
 section {
-  margin-left: 0.7rem;
+  margin-left: 1.1rem;
 }
 
-img {
-  width: 18.3rem;
-  height: 15rem;
-  object-fit: cover;
-}
-
-.ethics {
-  margin-left: 1.3rem;
+@media (min-width: 576px) {
+  section {
+    margin-left: 5rem;
+  }
 }
 
 @media (min-width: 768px) {
   section {
     margin-left: 10rem;
-  }
-
-  img {
-    width: 30rem;
-    height: 15rem;
-    object-fit: cover;
   }
 }
 
@@ -56,28 +46,18 @@ img {
     flex-direction: row;
     justify-content: space-around;
     margin-left: -10rem;
-    margin-bottom: 7rem;
-    padding-left: 3rem;
+    margin-bottom: 2rem;
+    padding-left: 8.3rem;
     padding-right: 3rem;
     padding-top: 2rem;
-  }
-
-  img {
-    width: 17rem;
-    height: 23rem;
-    object-fit: cover;
   }
 }
 
 @media (min-width: 1200px) {
   section {
-    margin-left: -13rem;
-  }
-
-  img {
-    width: 20rem;
-    height: 30rem;
-    object-fit: cover;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-left: -4.2rem;
   }
 }
 </style>

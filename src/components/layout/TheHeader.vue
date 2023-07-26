@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="main-div">
     <header>
       <div v-if="!loggedIn">
         <nav>
-          <i class="bi bi-list" @click="showDropDown()"></i>
+          <i class="bi bi-list" id="burguer-icon" @click="showDropDown()"></i>
+          <i class="bi bi-x-lg hidden" id="x-icon" @click="showDropDown()"></i>
           <ul>
             <li class="hidden home">
               <router-link to="home">Home</router-link>
@@ -17,7 +18,7 @@
             </li>
           </ul>
         </nav>
-        <base-button class="button" @click="pushLogin()">
+        <base-button class="button" id="login" @click="pushLogin()">
           <p>Login</p>
         </base-button>
       </div>
@@ -48,22 +49,26 @@
             </li>
           </ul>
         </nav>
-        <base-button class="button" @click="pushLogout()">
-          <p>Logout</p>
-        </base-button>
+        <div class="div-button">
+          <base-button class="button" @click="pushLogout()">
+            <p>Logout</p>
+          </base-button>
+        </div>
       </div>
     </header>
-    <div v-for="info in infos" :key="info.id">
-      <base-profile-card
-        class="hidden"
-        id="profile-card"
-        url="vanya.jpg"
-        :name="info.studentName"
-        :grade="info.grade"
-        :email="info.email"
-      >
-      </base-profile-card>
+    <div v-if="showMiniProfile">
+      <div v-for="info in infos" :key="info.id">
+        <base-profile-card
+          id="profile-card"
+          url="vanya.jpg"
+          :name="info.studentName"
+          :grade="info.grade"
+          :email="info.email"
+        >
+        </base-profile-card>
+      </div>
     </div>
+
     <div v-if="showDrop">
       <ul id="drop-down">
         <li>
@@ -94,8 +99,10 @@ export default {
       notHome: false,
       showDrop: false,
       userId: this.$route.params.userId,
+      showMiniProfile: false,
     };
   },
+  computed: {},
   components: {
     BaseButton,
     BaseProfileCard,
@@ -164,17 +171,18 @@ export default {
       }
     },
     showCard() {
-      try {
-        document.querySelector("#profile-card").classList.toggle("hidden");
-      } catch (e) {
-        console.log(e);
-      }
+      this.showMiniProfile = !this.showMiniProfile;
     },
     showDropDown() {
       if (this.showDrop == false) {
         this.showDrop = true;
+        document.querySelector("#x-icon").classList.remove("hidden");
+        document.querySelector("#x-icon").classList.add("show-animation");
+        document.querySelector("#burguer-icon").classList.add("hidden");
         return;
       }
+      document.querySelector("#x-icon").classList.add("hidden");
+      document.querySelector("#burguer-icon").classList.remove("hidden");
       this.showDrop = false;
     },
     homeChange() {
@@ -213,6 +221,27 @@ export default {
 <style scoped>
 .hidden {
   display: none;
+  transition: all ease-in;
+}
+
+.show-animation {
+  animation-duration: 4s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  animation-name: rotateX;
+  color: white;
+  font-size: 2.5rem;
+  margin-left: 0.7rem;
+  margin-top: 1rem;
+}
+
+@keyframes rotateX {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
 }
 
 .bi-list {
@@ -223,7 +252,7 @@ export default {
 }
 
 header {
-  background-color: rgb(56, 187, 56);
+  background-color: rgb(0, 7, 92);
   height: 3.5rem;
 }
 
@@ -245,22 +274,31 @@ a {
 
 a:hover {
   cursor: pointer;
-  color: rgb(221, 240, 221);
+  color: rgb(211, 198, 111);
 }
 
 p {
-  color: rgb(56, 187, 56);
+  color: white;
   font-size: 1.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
 }
 
 .button {
-  background-color: white;
-  border: 0.1rem solid rgb(56, 187, 56);
-  width: 7rem;
-  height: 3rem;
-  margin-top: -2.6rem;
-  margin-left: 75rem;
+  background-color: rgb(0, 7, 92);
+  border: 0.1rem solid white;
+  width: 5rem;
+  height: 2.5rem;
+  margin-top: -0.5rem;
+  margin-left: 30rem;
+}
+
+.button:hover {
+  border-color: rgb(211, 198, 111);
+  color: rgb(211, 198, 111);
+}
+
+.button p:hover {
+  color: rgb(211, 198, 111);
 }
 
 img {
@@ -278,7 +316,7 @@ img {
 #drop-down {
   display: flex;
   flex-direction: column;
-  background-color: rgb(56, 187, 56);
+  background-color: rgb(0, 7, 92);
   width: 10rem;
   padding-bottom: 1rem;
   padding-right: 1rem;
@@ -290,5 +328,33 @@ img {
   font-size: 1.1rem;
   color: white;
   margin-bottom: 1rem;
+}
+
+@media (min-width: 576px) {
+  .button {
+    margin-left: 42rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .button {
+    width: 7rem;
+    margin-top: -2.3rem;
+    margin-left: 54rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .button {
+    width: 7rem;
+    margin-top: -2.3rem;
+    margin-left: 65rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .button {
+    margin-left: 75rem;
+  }
 }
 </style>

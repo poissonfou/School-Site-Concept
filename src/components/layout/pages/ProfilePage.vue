@@ -120,9 +120,12 @@
           <h1>{{ info.studentName }}</h1>
           <p>Email:</p>
           <p>{{ info.email }}</p>
+        </div>
+        <div class="info">
           <p>Grade:</p>
           <p>{{ info.grade }}</p>
         </div>
+
         <div class="info-two">
           <div class="col">
             <p>Guardian:</p>

@@ -47,6 +47,12 @@ export default {
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+/*191, 171, 37 - gold
+  107, 5, 4 - blood red
+    0, 7, 92 - lighter blue
+
+*/
+
 html {
   scroll-behavior: smooth;
 }

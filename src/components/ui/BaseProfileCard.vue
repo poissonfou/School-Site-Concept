@@ -23,6 +23,7 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
+  background-color: rgb(0, 7, 92);
   height: 15rem;
   width: 13rem;
   z-index: 1;

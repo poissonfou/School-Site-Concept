@@ -15,62 +15,61 @@ export default {
 div {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
 }
 
 img {
-  width: 5rem;
-  margin-bottom: 0;
-  margin-left: 7rem;
-}
-
-img:hover {
-  color: gray;
-  transition: 0.3s all ease;
+  width: 4rem;
+  margin-left: 8rem;
 }
 
 p {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-top: 0;
-  margin-left: 5.5rem;
+  margin-left: 7rem;
 }
 
 a {
   color: black;
 }
 
+@media (min-width: 576px) {
+  img {
+    width: 5rem;
+    margin-left: 8rem;
+  }
+
+  p {
+    font-size: 1.8rem;
+    margin-left: 8rem;
+  }
+}
+
 @media (min-width: 768px) {
   img {
     width: 4rem;
-    margin-bottom: 0;
-    margin-left: 4rem;
+    margin-left: 5rem;
   }
 
   p {
     font-size: 1.5rem;
     margin-top: 0;
-    margin-left: 5rem;
+    margin-left: 4rem;
   }
 }
 
 @media (min-width: 992px) {
   img {
-    width: 5.2rem;
+    width: 5rem;
+    margin-left: 5rem;
   }
 
   p {
     margin-left: 5.7rem;
+    font-size: 1.8rem;
   }
 }
 
 @media (min-width: 1200px) {
-  p {
-    margin-left: 5rem;
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 1300px) {
   img {
     width: 4rem;
     height: 4rem;
@@ -78,7 +77,6 @@ a {
 
   p {
     margin-left: 3rem;
-    font-size: 1.5rem;
     width: 10rem;
   }
 }

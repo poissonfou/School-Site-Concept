@@ -4,7 +4,7 @@
       <img :src="require(`../../assets/${url}`)" alt="" />
     </div>
     <div class="category">
-      <router-link to="innovations">{{ link }}</router-link>
+      <router-link to="innovations" class="link">{{ link }}</router-link>
     </div>
   </div>
 </template>
@@ -18,11 +18,11 @@ export default {
 <style scoped>
 .base-card {
   margin-bottom: 1rem;
-  width: 0;
+  margin-left: 4.3rem;
 }
 
 img {
-  width: 18.3rem;
+  width: 25rem;
   height: 15rem;
   object-fit: cover;
 }
@@ -30,11 +30,11 @@ img {
 .category {
   position: relative;
   z-index: 10;
-  background-color: rgb(91, 150, 44);
+  background-color: rgb(0, 7, 92);
   width: 8rem;
   height: 5rem;
-  margin-left: 5rem;
-  margin-top: 1rem;
+  margin-left: 8.5rem;
+  margin-top: -2rem;
 }
 
 a {
@@ -45,33 +45,39 @@ a {
   color: white;
 }
 
+a:hover {
+  color: rgb(191, 171, 37);
+}
+
+@media (min-width: 576px) {
+  img {
+    width: 28rem;
+  }
+
+  .category {
+    margin-left: 10.2rem;
+  }
+}
+
 @media (min-width: 768px) {
   .category {
-    margin-left: 11rem;
+    margin-left: 13rem;
   }
 
   img {
-    width: 30rem;
-    height: 15rem;
-    object-fit: cover;
+    width: 35rem;
   }
 }
 
 @media (min-width: 992px) {
   .category {
     margin-left: 5rem;
-    margin-top: 10rem;
-  }
-
-  .base-card {
-    padding-right: -8rem;
-    width: 7rem;
+    margin-top: -2rem;
   }
 
   img {
     width: 17rem;
     height: 23rem;
-    object-fit: cover;
   }
 }
 
@@ -79,6 +85,7 @@ a {
   .category {
     margin-left: 4rem;
     margin-top: -2rem;
+    position: absolute;
     width: 12rem;
   }
 
@@ -90,8 +97,7 @@ a {
 
   img {
     width: 20rem;
-    height: 30rem;
-    object-fit: cover;
+    height: 25rem;
   }
 }
 </style>
