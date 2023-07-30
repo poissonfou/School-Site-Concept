@@ -114,7 +114,7 @@
     </div>
 
     <div v-else>
-      <img src="../../assets/ethics.jpg" alt="" />
+      <img src="../../assets/profile.jpg" alt="" />
       <div v-for="info in userInfo" :key="info.id">
         <div class="info">
           <h1>{{ info.studentName }}</h1>
@@ -332,29 +332,29 @@ export default {
 
 <style scoped>
 .main-profile-div {
-  box-shadow: 0px 0px 5px rgb(56, 187, 56);
+  box-shadow: 0px 0px 5px rgb(0, 7, 92);
   width: 30rem;
-  margin-left: 26rem;
+  margin-left: 2.8rem;
   margin-top: 3rem;
   border-radius: 1rem;
   margin-bottom: 3rem;
 }
 
 img {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 10rem;
-  margin-left: 7.5rem;
+  margin-left: 10rem;
   margin-top: 2rem;
 }
 
 h1 {
-  color: rgb(56, 187, 56);
-  font-size: 2.8rem;
+  color: rgb(0, 7, 92);
+  font-size: 2.3rem;
   width: 17rem;
   padding-left: 5.7rem;
   margin-left: 3.5rem;
-  border-bottom: solid 0.1rem rgb(56, 187, 56);
+  border-bottom: solid 0.1rem rgb(0, 7, 92);
 }
 
 p {
@@ -372,11 +372,11 @@ p {
 
 .info p:nth-child(2) {
   margin-bottom: 0rem;
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
 }
 .col p:nth-child(1) {
   margin-bottom: 0rem;
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
 }
 
 .info-two {
@@ -424,7 +424,7 @@ p {
 input {
   border-radius: 0.2rem;
   border: none;
-  box-shadow: 0px 0px 5px rgb(56, 187, 56);
+  box-shadow: 0px 0px 5px rgb(0, 7, 92);
   height: 1.5rem;
 }
 
@@ -493,7 +493,11 @@ form p:nth-child(2) {
 }
 
 .info {
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
+}
+
+.info p:nth-child(3) {
+  margin-top: 0.2rem;
 }
 
 .info label {
@@ -513,6 +517,7 @@ form p:nth-child(2) {
 
 .col {
   margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .col label {
@@ -527,8 +532,36 @@ form p:nth-child(2) {
   margin-left: 1rem;
 }
 
+.col p:nth-child(2) {
+  margin-top: 0.2rem;
+}
+
 .invalid {
   border: 1px solid red;
   box-shadow: 0px 0px 5px red;
+}
+
+@media (min-width: 576px) {
+  .main-profile-div {
+    margin-left: 8.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-profile-div {
+    margin-left: 15.7rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-profile-div {
+    margin-left: 22.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-profile-div {
+    margin-left: 25rem;
+  }
 }
 </style>

@@ -23,7 +23,7 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: rgb(0, 7, 92);
+  background-color: white;
   height: 15rem;
   width: 13rem;
   z-index: 1;
@@ -42,13 +42,13 @@ i {
   margin-left: 2.5rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
 }
 
 h2 {
   margin-bottom: 0rem;
   margin-top: 0.5rem;
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
   margin-left: 3.5rem;
   width: 10rem;
 }
@@ -57,6 +57,7 @@ p {
   margin-left: 3.3rem;
   font-size: 1.3rem;
   margin-top: 0.5rem;
+  color: rgb(0, 7, 92);
 }
 
 .info p:nth-child(3) {
@@ -66,7 +67,7 @@ p {
 }
 
 .div-img {
-  border-bottom: solid 0.1rem rgb(56, 187, 56);
+  border-bottom: solid 0.1rem rgb(211, 198, 111);
   width: 10rem;
   margin-left: 1.3rem;
 }

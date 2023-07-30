@@ -11,7 +11,7 @@
       </ul>
     </div>
     <div class="text-box">
-      <div v-if="section == 'Technology'">
+      <div v-if="section == 'Technology'" class="section">
         <div class="intro">
           <p>
             In the past decades, technology has been taking more and more of our
@@ -37,7 +37,7 @@
           <li><a href="">Highschool</a></li>
         </ul>
       </div>
-      <div v-else-if="section == 'Bilinguacy'">
+      <div v-else-if="section == 'Bilinguacy'" class="section">
         <div class="intro">
           <p>
             Globalization and the internet have brought many good things to
@@ -65,7 +65,7 @@
           <li><a href="">Highschool</a></li>
         </ul>
       </div>
-      <div v-else-if="section == 'Ethics'">
+      <div v-else-if="section == 'Ethics'" class="section">
         <div class="intro">
           <p>
             Since we value the Humanistic tradition in our school, we strive to
@@ -92,7 +92,7 @@
           <li><a href="">Highschool</a></li>
         </ul>
       </div>
-      <div v-else>
+      <div v-else class="section">
         <div class="intro">
           <p>
             In the past decades, the world has changed as new economical,
@@ -142,85 +142,85 @@ export default {
 
       if (section == "Technology") {
         li_one.style.boxShadow = "-13px 0px 10px -2px black";
-        li_one.style.color = "black";
+        li_one.style.color = "rgb(0, 7, 92)";
         li_one.style.borderStyle = "none";
 
         li_two.style.boxShadow = "none";
         li_two.style.color = "rgb(245, 239, 239)";
-        li_two.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_two.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_two.style.borderRightStyle = "none";
 
         li_three.style.boxShadow = "none";
         li_three.style.color = "rgb(245, 239, 239)";
-        li_three.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_three.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_three.style.borderRightStyle = "none";
 
         li_four.style.boxShadow = "none";
         li_four.style.color = "rgb(245, 239, 239)";
-        li_four.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_four.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_four.style.borderRightStyle = "none";
       }
 
       if (section == "Bilinguacy") {
         li_two.style.boxShadow = "-13px 0px 10px -2px black";
-        li_two.style.color = "black";
+        li_two.style.color = "rgb(0, 7, 92)";
         li_two.style.borderStyle = "none";
 
         li_one.style.boxShadow = "none";
         li_one.style.color = "rgb(245, 239, 239)";
-        li_one.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_one.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_one.style.borderRightStyle = "none";
 
         li_three.style.boxShadow = "none";
         li_three.style.color = "rgb(245, 239, 239)";
-        li_three.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_three.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_three.style.borderRightStyle = "none";
 
         li_four.style.boxShadow = "none";
         li_four.style.color = "rgb(245, 239, 239)";
-        li_four.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_four.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_four.style.borderRightStyle = "none";
       }
 
       if (section == "Ethics") {
         li_three.style.boxShadow = "-13px 0px 10px -2px black";
-        li_three.style.color = "black";
+        li_three.style.color = "rgb(0, 7, 92)";
         li_three.style.borderStyle = "none";
 
         li_one.style.boxShadow = "none";
         li_one.style.color = "rgb(245, 239, 239)";
-        li_one.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_one.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_one.style.borderRightStyle = "none";
 
         li_two.style.boxShadow = "none";
         li_two.style.color = "rgb(245, 239, 239)";
-        li_two.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_two.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_two.style.borderRightStyle = "none";
 
         li_four.style.boxShadow = "none";
         li_four.style.color = "rgb(245, 239, 239)";
-        li_four.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_four.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_four.style.borderRightStyle = "none";
       }
 
       if (section == "Our Philosophy") {
         li_four.style.boxShadow = "-13px 0px 10px -2px black";
-        li_four.style.color = "black";
+        li_four.style.color = "rgb(0, 7, 92)";
         li_four.style.borderStyle = "none";
 
         li_one.style.boxShadow = "none";
         li_one.style.color = "rgb(245, 239, 239)";
-        li_one.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_one.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_one.style.borderRightStyle = "none";
 
         li_two.style.boxShadow = "none";
         li_two.style.color = "rgb(245, 239, 239)";
-        li_two.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_two.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_two.style.borderRightStyle = "none";
 
         li_three.style.boxShadow = "none";
         li_three.style.color = "rgb(245, 239, 239)";
-        li_three.style.border = "0.1rem solid rgb(56, 187, 56)";
+        li_three.style.border = "0.1rem solid rgb(0, 7, 92)";
         li_three.style.borderRightStyle = "none";
       }
     },
@@ -235,10 +235,13 @@ export default {
 .sections {
   list-style: none;
   margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  margin-left: -2.5rem;
 }
 
 .sections li {
-  box-shadow: 0px 0px 10px rgb(0, 0, 0);
+  box-shadow: 0px 0px 10px rgb(0, 7, 92);
   height: 2rem;
   width: 10rem;
   padding-left: 0.5rem;
@@ -254,16 +257,15 @@ li:hover {
 
 .main-div {
   display: flex;
-  flex-direction: row;
-  margin-left: 8rem;
+  flex-direction: column;
+  margin-left: 0rem;
 }
 
 .text-box {
-  width: 40rem;
+  width: 34rem;
   height: 39rem;
-  box-shadow: 5px 0px 10px -7px black;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .text-box div {
@@ -284,8 +286,20 @@ li:hover {
   padding-top: 1rem;
 }
 
+.section {
+  width: 34rem;
+  margin-left: -0.5rem;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.section p:nth-child(2) {
+  width: 30rem;
+  padding-left: 1rem;
+}
+
 img {
-  width: 15rem;
+  width: 14rem;
   height: 18rem;
   object-fit: cover;
   margin-top: 2rem;
@@ -294,7 +308,57 @@ img {
 
 a {
   margin-bottom: 2rem;
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
   font-size: 1.2rem;
+}
+
+@media (min-width: 576px) {
+  .sections {
+    margin-left: -0.2rem;
+  }
+
+  .section {
+    width: 40rem;
+    margin-left: 4.5rem;
+  }
+
+  .text-box p {
+    width: 20rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .sections {
+    margin-left: 6rem;
+  }
+
+  .section {
+    margin-left: 8.4rem;
+    box-shadow: 0px 0px 5px rgb(0, 7, 92);
+    padding-bottom: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .sections {
+    display: block;
+  }
+
+  .section {
+    margin-left: 0rem;
+    box-shadow: 5px 5px 10px -7px rgb(0, 7, 92);
+  }
+
+  .main-div {
+    flex-direction: row;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-div {
+    margin-left: 2rem;
+  }
 }
 </style>

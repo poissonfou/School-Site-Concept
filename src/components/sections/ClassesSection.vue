@@ -200,7 +200,9 @@ export default {
       for (let i = 0; i < this.classes.length; i++) {
         strg = this.classes[i].for.toString();
 
-        if (strg.includes(userGrade.toLowerCase())) {
+        let gradeLower = userGrade.toLowerCase();
+
+        if (strg.includes(gradeLower)) {
           filteredClasses.push(this.classes[i]);
         }
       }
