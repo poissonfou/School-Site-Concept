@@ -2,9 +2,11 @@
   <div class="main-div-form">
     <base-form class="form">
       <div v-if="!infoSent">
-        <h1>Application Form</h1>
-        <p class="p">Please enter the following information below.</p>
-        <p>This data will only be used to enter in contact with you.</p>
+        <div class="top">
+          <h1>Application Form</h1>
+          <p>Please enter the following information below.</p>
+          <p>This data will only be used to enter in contact with you.</p>
+        </div>
         <form @submit.prevent="sendRequest()">
           <div class="input-box">
             <label for="parentName">Guardian's Name</label>
@@ -71,7 +73,7 @@
           <base-button class="button"><p>SEND</p></base-button>
         </form>
       </div>
-      <div v-else>
+      <div v-else class="info-sent">
         <h1>Infomation Sent!</h1>
         <p>
           We thank you for taking interest in our school and program. You will
@@ -110,7 +112,6 @@ export default {
       formIsValid: true,
       code: null,
       password: null,
-      id: 0,
       parentName: { val: "", isValid: true },
       studentName: { val: "", isValid: true, exists: false },
       email: { val: "", isValid: true },
@@ -121,6 +122,7 @@ export default {
     BaseForm,
     BaseButton,
   },
+
   methods: {
     sendRequest() {
       this.validateForm();
@@ -155,7 +157,7 @@ export default {
         localStorage.setItem("arrayUsers", JSON.stringify(data));
 
         this.infoSent = true;
-        document.querySelector(".form").style.height = "27rem";
+        document.querySelector(".form").style.height = "29rem";
       }
     },
     validateForm() {
@@ -226,22 +228,23 @@ export default {
 <style scoped>
 a,
 h1 {
-  color: rgb(55, 153, 55);
+  color: rgb(0, 7, 92);
 }
 
 span {
   font-style: italic;
-  color: rgb(55, 153, 55);
-  font-size: 1.3rem;
-  margin-right: 0.5rem;
+  color: rgb(0, 7, 92);
 }
 
 .form {
-  transition: all 0.3s ease;
+  margin: 0rem;
+  width: 27rem;
+  box-shadow: none;
+  padding-left: 6rem;
 }
 
 .signature {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
 }
 
 .input-box {
@@ -256,11 +259,11 @@ span {
 }
 
 input {
-  width: 20rem;
-  height: 1.5rem;
   border-radius: 0.5rem;
   border-style: none;
-  box-shadow: -2px 0px 5px rgb(56, 187, 56);
+  box-shadow: -2px 0px 5px rgb(0, 7, 92);
+  height: 1.5rem;
+  width: 20rem;
 }
 
 input:focus {
@@ -273,38 +276,25 @@ label {
 
 .main-div-form {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 img {
-  width: 28rem;
-  height: 35rem;
   object-fit: cover;
+  display: none;
 }
 
 .button {
-  margin-left: 15rem;
-  margin-top: 5rem;
-  height: 2.5rem;
-  width: 6rem;
-  transition: all 0.2s ease;
+  height: 3rem;
+  width: 8rem;
+  margin-top: 3rem;
+  margin-left: 16rem;
 }
 
 .button p {
   color: white;
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-.p {
-  margin-bottom: 0rem;
-}
-
-p {
-  margin-bottom: 2rem;
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  margin-top: 0.7rem;
 }
 
 .invalid {
@@ -312,20 +302,85 @@ p {
   box-shadow: 0px 0px 5px red;
 }
 
-.invalidForm {
-  height: 50rem;
-}
-
 #grades {
-  margin-left: 1rem;
-  height: 2rem;
-  width: 8rem;
-  padding-left: 1rem;
   border-radius: 0.5rem;
-  border: solid 0.1rem rgb(56, 187, 56);
+  border: solid 0.1rem rgb(0, 7, 92);
 }
 
 #grades:focus {
   outline: none;
+}
+
+@media (min-width: 576px) {
+  .form {
+    margin: 0rem;
+    width: 35rem;
+    padding-left: 10rem;
+  }
+
+  input {
+    width: 25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .form {
+    width: 35rem;
+    margin-bottom: 5rem;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    box-shadow: 0px 0px 5px rgb(0, 7, 92);
+  }
+
+  #grades {
+    height: 1.5rem;
+    margin-left: 0.8rem;
+  }
+
+  .button {
+    margin-left: 5rem;
+  }
+
+  .top p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-div-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  img {
+    width: 25rem;
+    height: 48rem;
+    display: block;
+  }
+
+  .form {
+    width: 35rem;
+    padding: 0rem;
+    margin-left: 3.5rem;
+    padding-left: 5rem;
+    padding-top: 2rem;
+    padding-right: 2rem;
+  }
+
+  .info-sent p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  img {
+    width: 28rem;
+  }
+
+  .button {
+    margin-left: 8rem;
+  }
 }
 </style>

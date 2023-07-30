@@ -222,15 +222,16 @@ export default {
 <style scoped>
 .form {
   height: 19rem;
-  margin-left: 19rem;
-  padding-top: 0.5rem;
+  margin-left: 0rem;
+  box-shadow: none;
+  width: 25rem;
+  padding-left: 5rem;
   margin-bottom: 6rem;
   margin-top: 5.5rem;
-  transition: all 0.3s ease;
 }
 
 h1 {
-  color: rgb(55, 153, 55);
+  color: rgb(0, 7, 92);
   margin-bottom: 0rem;
 }
 
@@ -272,7 +273,7 @@ p {
   height: 1.5rem;
   border-radius: 0.5rem;
   border-style: none;
-  box-shadow: -2px 0px 5px rgb(56, 187, 56);
+  box-shadow: -2px 0px 5px rgb(0, 7, 92);
 }
 
 input:focus {
@@ -284,8 +285,8 @@ label {
 }
 
 .button {
-  margin-left: 30rem;
-  margin-top: 0rem;
+  margin-left: 20rem;
+  margin-top: 2rem;
   height: 2.5rem;
   width: 6rem;
 }
@@ -303,5 +304,59 @@ label {
 
 .adjustHeight {
   height: 25rem;
+}
+
+@media (min-width: 576px) {
+  .form {
+    margin-left: 7.2rem;
+    box-shadow: 0px 0px 5px rgb(0, 7, 92);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .button {
+    margin-left: 18rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .form {
+    width: 35rem;
+    margin-left: 9.2rem;
+    height: 20rem;
+  }
+
+  .button {
+    margin-left: 28rem;
+  }
+
+  .input {
+    width: 25rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-top: 0rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .form {
+    margin-left: 15.6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .form {
+    margin-left: 20.5rem;
+  }
 }
 </style>
