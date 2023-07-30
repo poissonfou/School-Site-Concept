@@ -121,7 +121,7 @@
           <p>Email:</p>
           <p>{{ info.email }}</p>
         </div>
-        <div class="info">
+        <div class="grade">
           <p>Grade:</p>
           <p>{{ info.grade }}</p>
         </div>
@@ -374,6 +374,20 @@ p {
   margin-bottom: 0rem;
   color: rgb(0, 7, 92);
 }
+
+.grade {
+  margin-left: 5rem;
+}
+
+.grade p:nth-child(1) {
+  margin-bottom: 0rem;
+  color: rgb(0, 7, 92);
+}
+
+.grade p:nth-child(2) {
+  margin-top: 0.5rem;
+}
+
 .col p:nth-child(1) {
   margin-bottom: 0rem;
   color: rgb(0, 7, 92);
@@ -493,7 +507,7 @@ form p:nth-child(2) {
 }
 
 .info {
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
 }
 
 .info p:nth-child(3) {
@@ -509,15 +523,12 @@ form p:nth-child(2) {
 
 .info input {
   margin-left: 1rem;
-}
-
-.info input {
   width: 20rem;
+  margin-top: -0.5rem;
 }
 
 .col {
   margin-bottom: 1rem;
-  margin-bottom: 0;
 }
 
 .col label {

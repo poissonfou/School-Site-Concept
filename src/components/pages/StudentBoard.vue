@@ -14,7 +14,7 @@
         <div v-if="noGrades">
           <h1 class="no-grade-warning">You're not enrolled in any classes</h1>
         </div>
-        <div v-else>
+        <div v-else class="grade-list">
           <ul v-for="grades in returnGrades" :key="grades.name">
             <li>
               {{ grades.name }}
@@ -55,7 +55,7 @@
     </div>
 
     <div>
-      <div v-for="teacher in teacherInfo" :key="teacher.name">
+      <div v-for="teacher in teacherInfo" :key="teacher.name" class="contacts">
         <div v-if="teacherContact">
           <ul>
             <li>
@@ -67,7 +67,7 @@
           </ul>
         </div>
       </div>
-      <div v-for="contact in schoolInfo" :key="contact.name">
+      <div v-for="contact in schoolInfo" :key="contact.name" class="contacts">
         <div v-if="schoolContact">
           <ul>
             <li>
@@ -206,10 +206,10 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  box-shadow: 0px 0px 5px rgb(56, 187, 56);
+  box-shadow: 0px 0px 5px rgb(0, 7, 92);
   height: 13rem;
-  width: 50rem;
-  margin-left: 15rem;
+  width: 35rem;
+  margin-left: 0.5rem;
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
   padding-top: 1.5rem;
@@ -217,8 +217,8 @@ export default {
 }
 
 .grades h1 {
-  font-size: 3rem;
-  color: rgb(56, 187, 56);
+  font-size: 2.2rem;
+  color: rgb(0, 7, 92);
   margin-bottom: 0.5rem;
 }
 
@@ -243,24 +243,24 @@ export default {
   margin-left: 0.5rem;
   margin-top: 2rem;
   font-size: 5rem;
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
 }
 
 .reminder-title,
 .contact-title {
-  font-size: 3rem;
-  margin-left: 15rem;
+  font-size: 2.5rem;
+  margin-left: 1rem;
   margin-bottom: 0rem;
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
 }
 
 .reminders {
   display: flex;
   flex-direction: row;
-  box-shadow: 0px 0px 5px rgb(56, 187, 56);
-  height: 7rem;
-  width: 50rem;
-  margin-left: 15rem;
+  box-shadow: 0px 0px 5px rgb(0, 7, 92);
+  height: 6rem;
+  width: 35rem;
+  margin-left: 0.5rem;
   margin-top: 1rem;
   margin-bottom: 2.5rem;
   border-radius: 1rem;
@@ -271,12 +271,13 @@ export default {
 }
 
 .reminders h1 {
-  color: rgb(56, 187, 56);
-  font-size: 3rem;
+  color: rgb(0, 7, 92);
+  font-size: 2.5rem;
   position: absolute;
-  margin-left: -15rem;
+  margin-left: -14rem;
+  margin-top: 1.5rem;
   padding-bottom: 2rem;
-  width: 30rem;
+  width: 20rem;
 }
 
 .reminder-info {
@@ -287,23 +288,23 @@ export default {
 .reminder-info p {
   margin-left: 3rem;
   position: absolute;
-  width: 30rem;
-  margin-top: 3.4rem;
+  width: 12rem;
+  margin-top: 2rem;
   color: grey;
   font-size: 1.5rem;
 }
 
 .color-block {
-  width: 8rem;
-  height: 7rem;
+  width: 3rem;
+  height: 6rem;
   background-color: red;
-  margin-left: 42rem;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  margin-left: 0.02rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .contact div {
-  background-color: rgb(56, 187, 56);
+  background-color: rgb(0, 7, 92);
   color: white;
   width: 11rem;
   height: 4rem;
@@ -323,14 +324,14 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 40rem;
-  margin-left: 20rem;
+  width: 30rem;
+  margin-left: 2.7rem;
   margin-top: 2rem;
 }
 
 ul {
   list-style: none;
-  margin-left: 22rem;
+  margin-left: 0.5rem;
 }
 
 ul li {
@@ -338,23 +339,169 @@ ul li {
   flex-direction: row;
   justify-content: space-between;
   height: 2rem;
-  border-bottom: solid 0.1rem rgb(56, 187, 56);
-  width: 35rem;
+  border-bottom: solid 0.1rem rgb(0, 7, 92);
+  width: 30rem;
   padding-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 ul li p {
   margin-top: 0.2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 #no-reminder-msg {
-  margin-left: 34rem;
+  margin-left: 12rem;
   font-size: 2rem;
 }
 
 .no-grade-warning {
-  margin-left: 25rem;
+  margin-left: 3rem;
+}
+
+@media (min-width: 576px) {
+  .grades {
+    margin-left: 6rem;
+  }
+
+  ul {
+    margin-left: 5.9rem;
+  }
+
+  .contact {
+    margin-left: 8.5rem;
+  }
+
+  .reminder-title,
+  .contact-title {
+    margin-left: 5rem;
+  }
+
+  .reminders {
+    margin-left: 5rem;
+  }
+
+  #no-reminder-msg {
+    margin-left: 17rem;
+  }
+
+  .no-grade-warning {
+    margin-left: 8rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grades {
+    margin-left: 10.5rem;
+    width: 40rem;
+  }
+
+  ul {
+    margin-left: 12rem;
+  }
+
+  .contact {
+    margin-left: 17rem;
+  }
+
+  .reminder-title,
+  .contact-title {
+    margin-left: 10rem;
+  }
+
+  .reminders {
+    margin-left: 13rem;
+  }
+
+  .contacts div ul {
+    margin-left: 14.5rem;
+  }
+
+  #no-reminder-msg {
+    margin-left: 24rem;
+  }
+
+  .no-grade-warning {
+    margin-left: 15rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .grades {
+    margin-left: 17rem;
+  }
+
+  ul {
+    margin-left: 17rem;
+  }
+
+  ul li {
+    width: 35rem;
+    font-size: 1.5rem;
+  }
+
+  ul li p {
+    font-size: 1.2rem;
+  }
+
+  .contact {
+    margin-left: 21rem;
+  }
+
+  .reminder-title,
+  .contact-title {
+    margin-left: 15rem;
+  }
+
+  .reminders {
+    margin-left: 19rem;
+  }
+
+  .contacts div ul {
+    margin-left: 16rem;
+  }
+
+  #no-reminder-msg {
+    margin-left: 30rem;
+  }
+
+  .no-grade-warning {
+    margin-left: 21.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grades {
+    margin-left: 20.5rem;
+  }
+
+  ul {
+    margin-left: 20.5rem;
+  }
+
+  .reminder-title,
+  .contact-title {
+    margin-left: 20rem;
+  }
+
+  .reminders {
+    margin-left: 22rem;
+  }
+
+  .contact {
+    margin-left: 25rem;
+  }
+
+  .contacts div ul {
+    margin-left: 20rem;
+  }
+
+  #no-reminder-msg {
+    margin-left: 35rem;
+  }
+
+  .no-grade-warning {
+    margin-left: 25rem;
+  }
 }
 </style>
