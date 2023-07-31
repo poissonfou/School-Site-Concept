@@ -1,4 +1,4 @@
-let route = {
+let redirectInitial = {
   path: "/",
   redirect: " ",
 };
@@ -15,4 +15,4 @@ if (data == true) {
   route.redirect = "home";
 }
 
-export default route;
+export default redirectInitial;
