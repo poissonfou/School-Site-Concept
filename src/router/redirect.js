@@ -10,9 +10,9 @@ if (data == true) {
 
   const index = dataUser.findIndex((e) => e.isLoggedIn == true);
 
-  route.redirect = `/board/${dataUser[index].id}`;
+  redirectInitial.redirect = `/board/${dataUser[index].id}`;
 } else {
-  route.redirect = "home";
+  redirectInitial.redirect = "home";
 }
 
 export default redirectInitial;
