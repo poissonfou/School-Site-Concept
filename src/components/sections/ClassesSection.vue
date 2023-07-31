@@ -218,10 +218,8 @@ export default {
 
 <style scoped>
 .main-div-list {
-  border-radius: 1rem;
-  box-shadow: 0px 0px 5px rgb(56, 187, 56);
-  width: 40rem;
-  margin-left: 21rem;
+  width: 35rem;
+  margin-left: 0rem;
   margin-bottom: 5rem;
   padding: 3px 5px;
 }
@@ -241,7 +239,7 @@ export default {
 }
 
 span {
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
 }
 
 .name-teacher {
@@ -253,7 +251,7 @@ span {
   margin-left: 0.5rem;
   margin-top: 1.5rem;
   font-size: 1.2rem;
-  border-left: solid 0.1rem rgb(56, 187, 56);
+  border-left: solid 0.1rem rgb(0, 7, 92);
   padding-left: 1rem;
 }
 
@@ -262,12 +260,12 @@ ul {
 }
 
 h2 {
-  color: rgb(56, 187, 56);
+  color: rgb(0, 7, 92);
 }
 
 li {
-  border-bottom: solid 1px rgb(56, 187, 56);
-  width: 35rem;
+  border-bottom: solid 1px rgb(0, 7, 92);
+  width: 30rem;
 }
 
 li p {
@@ -275,8 +273,10 @@ li p {
 }
 
 .button {
-  margin-left: 27rem;
-  margin-top: -4rem;
+  margin-left: 25rem;
+  margin-top: -5rem;
+  margin-bottom: 1rem;
+  position: absolute;
   width: 5rem;
   height: 3rem;
   color: white;
@@ -286,12 +286,12 @@ li p {
 .tabs {
   display: flex;
   flex-direction: row;
-  margin-left: 28rem;
+  margin-left: 5rem;
   margin-top: 2rem;
 }
 
 .tabs div {
-  background-color: rgb(56, 187, 56);
+  background-color: rgb(0, 7, 92);
   color: white;
   margin-left: 2rem;
   width: 10rem;
@@ -308,11 +308,53 @@ li p {
 }
 
 .no-classes {
-  margin-left: 5rem;
-  font-size: 2rem;
+  margin-left: 6.7rem;
+  font-size: 1.5rem;
 }
 
 .warning p {
   font-size: 1.5rem;
+}
+
+@media (min-width: 576px) {
+  .main-div-list {
+    margin-left: 5.8rem;
+  }
+
+  .tabs {
+    margin-left: 10.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-div-list {
+    margin-left: 15rem;
+  }
+
+  .tabs {
+    margin-left: 20rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-div-list {
+    margin-left: 20rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 5px rgb(0, 7, 92);
+  }
+
+  .tabs {
+    margin-left: 25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-div-list {
+    margin-left: 22rem;
+  }
+
+  .tabs {
+    margin-left: 27rem;
+  }
 }
 </style>
