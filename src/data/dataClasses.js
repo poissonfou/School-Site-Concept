@@ -24,7 +24,7 @@ let classes = [
     for: ["primary-school", "middle-school", "highschool"],
   },
   {
-    name: "Antropology",
+    name: "Anthropology",
     teacher: "Mrs. Ana",
     hour: "10a.m - 11a.m",
     room: "235",
@@ -42,7 +42,7 @@ let classes = [
     room: "235",
     day: ["Monday", "Wednesday", "Friday"],
     color: "#de0d0d",
-    hasATest: false,
+    hasATest: true,
     hasAwarning: true,
     grade: 50,
     for: ["primary-school", "middle-school", "highschool"],

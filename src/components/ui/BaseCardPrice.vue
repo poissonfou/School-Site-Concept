@@ -8,7 +8,7 @@
       </h1>
     </div>
     <base-button @click="directToEnroll()" class="button"
-      ><p>APPLY NOW</p></base-button
+      >APPLY NOW</base-button
     >
   </div>
 </template>
@@ -38,32 +38,32 @@ export default {
 .price-card {
   display: flex;
   flex-direction: column;
-  width: 25rem;
-  height: 23.5rem;
-  margin-top: 0;
-  border: solid 0.1rem rgb(0, 7, 92);
+  border-radius: 5px;
+  box-shadow: 5px 4px 15px black;
+  align-items: center;
 }
 
 .price-box {
-  margin-left: 4rem;
+  text-align: center;
 }
 
 .title {
   font-size: 2.5rem;
+  margin-top: 0;
   margin-bottom: 1rem;
-  margin-left: 1rem;
   color: rgb(0, 7, 92);
 }
 
 .price {
   font-size: 2.3rem;
   color: rgb(214, 214, 40);
-  padding-left: 3rem;
 }
 
 img {
   width: 25rem;
-  height: 8rem;
+  height: 9rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   object-fit: cover;
 }
 
@@ -72,153 +72,37 @@ span {
   color: gray;
 }
 
-p {
+button {
+  padding: 1em 2em;
   color: white;
-  font-size: 1.5rem;
-  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 2em;
 }
 
-p:hover {
-  color: rgb(211, 198, 111);
-}
-
-.button {
-  margin-left: 7.7rem;
-}
-
-@media (min-width: 576px) {
-  .price-card {
-    width: 33rem;
-    height: 24rem;
-  }
-
+@media (max-width: 1200px) {
   img {
-    width: 33rem;
-    height: 9rem;
-  }
-
-  .price-box {
-    margin-left: 8rem;
-  }
-
-  .button {
-    margin-left: 11.5rem;
+    width: 20rem;
   }
 }
 
-@media (min-width: 768px) {
-  .price-card {
-    display: flex;
-    flex-direction: row;
-    box-shadow: -5px 5px 10px black;
-    width: 50rem;
-    border-radius: 0.5rem;
-    border: none;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-    height: 10.2rem;
-  }
-
+@media (max-width: 1000px) {
   img {
-    width: 19.94rem;
-    height: 10.2rem;
-    object-fit: cover;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
-  }
-
-  .title {
-    font-size: 2.3rem;
-  }
-
-  .price {
-    font-size: 2.5rem;
-    color: rgb(214, 214, 40);
-    margin-top: 0;
-    padding-left: 2rem;
-  }
-
-  p {
-    color: white;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-  }
-
-  .button {
-    width: 9rem;
-    height: 3.5rem;
-    margin-left: 40rem;
-  }
-
-  .price-box {
-    margin-left: 3rem;
+    width: 15rem;
   }
 }
 
-@media (min-width: 992px) {
-  .price-card {
-    width: 62rem;
-    height: 12rem;
-    margin-bottom: 2rem;
-  }
-
+@media (max-width: 750px) {
   img {
-    width: 22rem;
-    height: 12rem;
+    width: 100%;
   }
 
-  .title {
-    font-size: 3rem;
+  .price-card div:first-child {
+    width: 100%;
   }
 
-  .price {
-    font-size: 3rem;
-    padding-left: 5rem;
-  }
-
-  p {
-    font-weight: bold;
-  }
-
-  .button {
-    margin-left: 50rem;
-    margin-top: 4rem;
-    height: 4rem;
-    width: 10rem;
-  }
-}
-
-@media (min-width: 1200px) {
   .price-card {
-    width: 70rem;
-    height: 10rem;
-    margin-top: 2rem;
-    border-radius: 0.7rem;
-  }
-
-  img {
-    width: 28rem;
-    height: 10rem;
-  }
-
-  .title {
-    font-size: 2.7rem;
-    margin-left: 5rem;
-  }
-
-  .price {
-    font-size: 2.7rem;
-    padding-left: 8rem;
-  }
-
-  p {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .button {
-    margin-left: 57rem;
-    margin-top: 3rem;
+    margin-bottom: 3em;
   }
 }
 </style>

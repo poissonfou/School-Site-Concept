@@ -1,5 +1,5 @@
 <template>
-  <div ref="enroll">
+  <div ref="enroll" class="price-cars-component">
     <base-card-price
       :urlPrice="urls[0]"
       :cardTitle="title[0]"
@@ -44,28 +44,17 @@ export default {
 </script>
 
 <style scoped>
-div {
-  margin-top: 2rem;
-  margin-left: 2.6rem;
+.price-cars-component {
+  display: flex;
+  padding: 5em 0em;
+  justify-content: space-around;
 }
 
-@media (min-width: 576px) {
-  div {
-    margin-left: 3.7rem;
-  }
-}
-
-@media (min-width: 992px) {
-  div {
-    margin-top: 7rem;
-    margin-left: 4.4rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  div {
-    margin-top: 6rem;
-    margin-left: 5.5rem;
+@media (max-width: 750px) {
+  .price-cars-component {
+    display: flex;
+    flex-direction: column;
+    padding: 5em 4em;
   }
 }
 </style>

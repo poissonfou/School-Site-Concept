@@ -70,7 +70,7 @@
             <option value="Highschool">Highschool</option>
           </select>
 
-          <base-button class="button"><p>SEND</p></base-button>
+          <base-button class="button">Send</base-button>
         </form>
       </div>
       <div v-else class="info-sent">
@@ -89,12 +89,10 @@
 
         <p class="signature"><span>Caroline Dickman</span> School principle</p>
 
-        <p>Your code: {{ code }}</p>
-        <p>Your password: {{ password }}</p>
-
-        <base-button class="button" @click="goHome()">
-          <p>HOME</p>
-        </base-button>
+        <div class="login-info">
+          <p>Your code: {{ code }}</p>
+          <p>Your password: {{ password }}</p>
+        </div>
       </div>
     </base-form>
     <img src="../../assets/img_one.jpg" alt="" />
@@ -128,7 +126,6 @@ export default {
       this.validateForm();
 
       if (this.formIsValid == false) {
-        document.querySelector(".form").style.height = "37rem";
         return;
       } else {
         this.code = Math.floor(Math.random() * 10);
@@ -194,10 +191,6 @@ export default {
         this.formIsValid = false;
       }
     },
-    goHome() {
-      this.$router.push("/home");
-      window.scrollTo(0, 0);
-    },
     setHeight() {
       if (!this.infoSent) {
         document.querySelector(".form").style.height = "35rem";
@@ -226,6 +219,62 @@ export default {
 </script>
 
 <style scoped>
+p {
+  margin: 0;
+  margin-bottom: 0.2em;
+}
+
+.main-div-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+form {
+  margin-top: 1em;
+}
+
+img {
+  width: 40%;
+  object-fit: cover;
+}
+
+.form {
+  margin: 0rem;
+  padding: 2em 5em;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 25em;
+}
+
+input {
+  border-radius: 2px;
+  border-style: none;
+  box-shadow: -2px 1px 2px rgb(0, 7, 92);
+  padding: 0.7em;
+  width: 25em;
+}
+
+.input-box p {
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+label {
+  font-size: 1.2rem;
+}
+
+.button {
+  padding: 0.5em 1em;
+  color: white;
+  font-size: 1.3rem;
+  margin-left: 10%;
+}
+
 a,
 h1 {
   color: rgb(0, 7, 92);
@@ -236,65 +285,9 @@ span {
   color: rgb(0, 7, 92);
 }
 
-.form {
-  margin: 0rem;
-  width: 27rem;
-  box-shadow: none;
-  padding-left: 6rem;
-}
-
 .signature {
   font-size: 1.2rem;
-}
-
-.input-box {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.input-box p {
-  margin-bottom: 0;
-  font-size: 0.9rem;
-}
-
-input {
-  border-radius: 0.5rem;
-  border-style: none;
-  box-shadow: -2px 0px 5px rgb(0, 7, 92);
-  height: 1.5rem;
-  width: 20rem;
-}
-
-input:focus {
-  outline: none;
-}
-
-label {
-  font-size: 1.2rem;
-}
-
-.main-div-form {
-  display: flex;
-  flex-direction: column;
-}
-
-img {
-  object-fit: cover;
-  display: none;
-}
-
-.button {
-  height: 3rem;
-  width: 8rem;
-  margin-top: 3rem;
-  margin-left: 16rem;
-}
-
-.button p {
-  color: white;
-  font-size: 1.5rem;
-  margin-top: 0.7rem;
+  margin-top: 1em;
 }
 
 .invalid {
@@ -303,84 +296,47 @@ img {
 }
 
 #grades {
-  border-radius: 0.5rem;
+  border-radius: 3px;
   border: solid 0.1rem rgb(0, 7, 92);
+  font-size: 1rem;
+  padding: 0.5em;
+  margin-left: 0.2em;
 }
 
-#grades:focus {
-  outline: none;
+.info-sent {
+  font-size: 1.2em;
+  padding: 5em 2em;
 }
 
-@media (min-width: 576px) {
-  .form {
-    margin: 0rem;
-    width: 35rem;
-    padding-left: 10rem;
-  }
-
-  input {
-    width: 25rem;
-  }
+.info-sent h1 {
+  margin: 0;
+  margin-bottom: 0.5em;
 }
 
-@media (min-width: 768px) {
-  .form {
-    width: 35rem;
-    margin-bottom: 5rem;
-    margin-left: 5rem;
-    margin-top: 5rem;
-    padding-top: 2rem;
-    box-shadow: 0px 0px 5px rgb(0, 7, 92);
-  }
-
-  #grades {
-    height: 1.5rem;
-    margin-left: 0.8rem;
-  }
-
-  .button {
-    margin-left: 5rem;
-  }
-
-  .top p {
-    font-size: 1.2rem;
-  }
+.login-info {
+  margin-top: 1em;
 }
 
-@media (min-width: 992px) {
+@media (max-width: 950px) {
   .main-div-form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: center;
   }
 
   img {
-    width: 25rem;
-    height: 48rem;
-    display: block;
+    display: none;
   }
 
   .form {
-    width: 35rem;
-    padding: 0rem;
-    margin-left: 3.5rem;
-    padding-left: 5rem;
-    padding-top: 2rem;
-    padding-right: 2rem;
-  }
-
-  .info-sent p {
-    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
-@media (min-width: 1200px) {
-  img {
-    width: 28rem;
-  }
-
-  .button {
-    margin-left: 8rem;
+@media (max-width: 700px) {
+  .form {
+    padding: 2em 0em;
   }
 }
 </style>

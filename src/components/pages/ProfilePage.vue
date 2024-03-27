@@ -1,57 +1,49 @@
 <template>
   <div class="main-profile-div">
-    <base-warning v-if="passwordChanged" class="warning">
-      <p>Password changed!</p>
-    </base-warning>
+    <base-popup id="password-msg"> Password changed! </base-popup>
+    <base-popup id="info-msg-no-change"> No changes made! </base-popup>
+    <base-popup id="info-msg"> Info sent to aprovation! </base-popup>
 
-    <base-warning v-else-if="infoChanged" class="warning">
-      <p>Info sent to aprovation!</p>
-    </base-warning>
-
-    <div v-if="showPassword">
+    <div v-if="showPassword" class="password-change-container">
       <form @submit.prevent="setPassword()">
-        <h1 class="pchange">Change your password</h1>
+        <h1>Change your password</h1>
         <p v-if="!validPassword">Passwords don't match, please try again</p>
         <p v-else-if="noPassword">Please enter a new password</p>
-        <div class="pchange-box">
+        <div class="inputs">
           <div>
-            <p>New password:</p>
+            <label for="new-password">New password:</label>
             <input
               type="text"
               :class="{ invalid: !newPassword.isValid }"
               v-model="newPassword.val"
+              name="new-password"
               @blur="clearValidity('newPassword')"
             />
           </div>
           <div>
-            <p>Please repeat the password:</p>
+            <label for="new-password-confirmation">Repeat the password:</label>
             <input
               type="text"
-              class="second-input"
               :class="{ invalid: !newPassword2.isValid }"
               v-model="newPassword2.val"
+              name="new-password-confirmation"
               @blur="clearValidity('newPassword2')"
             />
           </div>
         </div>
         <div class="btns-password">
-          <base-button
-            class="btn-password"
-            @click="displayPassword(false, 'password')"
-          >
-            Back
-          </base-button>
-          <base-button class="btn-password"> Done </base-button>
+          <base-button @click="display('password')"> Back </base-button>
+          <base-button type="submit"> Done </base-button>
         </div>
       </form>
     </div>
 
     <div v-else-if="showUpdate">
-      <div>
-        <h1 class="ichange">Update your information</h1>
+      <div class="update-container">
+        <h1>Update your information</h1>
         <p v-if="!validUpdate">Please enter a value</p>
-        <form @submit.prevent="setInfo()">
-          <div class="info">
+        <form @submit.prevent="setInfo()" class="update-form">
+          <div>
             <label for="name">Name:</label>
             <input
               type="text"
@@ -62,7 +54,8 @@
               @blur="clearValidity('name')"
             />
             <p v-if="!this.name.isValid">Please enter a value</p>
-
+          </div>
+          <div>
             <label for="email">Email:</label>
             <input
               type="email"
@@ -75,81 +68,66 @@
             <p v-if="!this.email.isValid">Please enter a value</p>
           </div>
           <div>
-            <div class="col">
-              <label for="guardianName">Guardian: </label>
-              <input
-                type="text"
-                name="guardianName"
-                id="guardianName"
-                v-model="guardianName.val"
-                :class="{ invalid: !guardianName.isValid }"
-                @blur="clearValidity('guardianName')"
-              />
-              <p v-if="!this.guardianName.isValid">Please enter a value</p>
-            </div>
-            <div class="col">
-              <label for="phone">Phone:</label>
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                v-model="phone.val"
-                :class="{ invalid: !phone.isValid }"
-                @blur="clearValidity('phone')"
-              />
-              <p v-if="!this.phone.isValid">Please enter a value</p>
-            </div>
+            <label for="guardianName">Guardian: </label>
+            <input
+              type="text"
+              name="guardianName"
+              id="guardianName"
+              v-model="guardianName.val"
+              :class="{ invalid: !guardianName.isValid }"
+              @blur="clearValidity('guardianName')"
+            />
+            <p v-if="!this.guardianName.isValid">Please enter a value</p>
           </div>
-          <div class="btns-password">
-            <base-button
-              class="btn-password"
-              @click="displayPassword(false, 'update')"
-            >
-              Back
-            </base-button>
-            <base-button class="btn-password"> Done </base-button>
+          <div>
+            <label for="phone">Phone:</label>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              v-model="phone.val"
+              :class="{ invalid: !phone.isValid }"
+              @blur="clearValidity('phone')"
+            />
+            <p v-if="!this.phone.isValid">Please enter a value</p>
+          </div>
+          <div class="btns-update">
+            <base-button @click="display('update')"> Back </base-button>
+            <base-button type="submit"> Done </base-button>
           </div>
         </form>
       </div>
     </div>
 
-    <div v-else>
+    <div v-else class="profile-container">
       <img src="../../assets/profile.jpg" alt="" />
       <div v-for="info in userInfo" :key="info.id">
+        <h1>{{ info.studentName }}</h1>
         <div class="info">
-          <h1>{{ info.studentName }}</h1>
-          <p>Email:</p>
+          <p class="title">Email:</p>
           <p>{{ info.email }}</p>
         </div>
         <div class="grade">
-          <p>Grade:</p>
+          <p class="title">Grade:</p>
           <p>{{ info.grade }}</p>
         </div>
 
         <div class="info-two">
-          <div class="col">
-            <p>Guardian:</p>
+          <div>
+            <p class="title">Guardian:</p>
             <p>{{ info.parentName }}</p>
           </div>
-          <div class="col">
-            <p>Phone:</p>
+          <div>
+            <p class="title">Phone:</p>
             <p>{{ info.phone }}</p>
           </div>
         </div>
       </div>
       <div class="buttons">
-        <base-button
-          class="button"
-          id="password"
-          @click="displayPassword(true, 'password')"
-        >
+        <base-button class="button" id="password" @click="display('password')">
           Redefine Password
         </base-button>
-        <base-button
-          class="button"
-          id="update"
-          @click="displayPassword(true, 'update')"
-        >
+        <base-button class="button" id="update" @click="display('update')">
           Update Info
         </base-button>
       </div>
@@ -159,7 +137,7 @@
 
 <script>
 import BaseButton from "../ui/BaseButton.vue";
-import BaseWarning from "../ui/BaseWarning.vue";
+import BasePopup from "../ui/BasePopup.vue";
 
 export default {
   data() {
@@ -167,11 +145,9 @@ export default {
       userId: this.$route.params.userId,
       showPassword: false,
       showUpdate: false,
+      noPassword: false,
       validPassword: true,
       validUpdate: true,
-      noPassword: false,
-      passwordChanged: false,
-      infoChanged: false,
       newPassword: { val: "", isValid: true },
       newPassword2: { val: "", isValid: true },
       name: { val: "", isValid: true },
@@ -182,7 +158,7 @@ export default {
   },
   components: {
     BaseButton,
-    BaseWarning,
+    BasePopup,
   },
   computed: {
     userInfo() {
@@ -202,26 +178,26 @@ export default {
       this.email.val = data[idx].email;
       this.guardianName.val = data[idx].parentName;
     },
-    displayPassword(val, section) {
+    display(section) {
       if (section == "password") {
         this.newPassword.val = "";
         this.newPassword2.val = "";
-        this.showPassword = val;
-      } else this.showUpdate = val;
+        this.showPassword = !this.showPassword;
+      } else this.showUpdate = !this.showUpdate;
     },
     validatePassword() {
       if (this.newPassword.val !== this.newPassword2.val) {
         this.newPassword.isValid = false;
         this.newPassword2.isValid = false;
-        this.validPassword = false;
+        return false;
       } else if (this.newPassword.val == "" || this.newPassword2.val == "") {
         this.newPassword.isValid = false;
         this.newPassword2.isValid = false;
         this.noPassword = true;
-      } else this.validPassword = true;
+      } else return true;
     },
     setPassword() {
-      this.validatePassword();
+      this.validPassword = this.validatePassword();
 
       if (!this.validPassword || this.noPassword) {
         return;
@@ -234,10 +210,11 @@ export default {
 
       localStorage.setItem("arrayUsers", JSON.stringify(data));
 
-      this.passwordChanged = true;
+      let popup = document.getElementById("password-msg");
+      popup.classList = "popup";
 
       setTimeout(() => {
-        this.passwordChanged = false;
+        popup.classList = "";
         window.scrollTo(0, top);
       }, 2000);
 
@@ -255,29 +232,24 @@ export default {
       if (name.value == "") {
         this.name.isValid = false;
         name.value = "";
-        this.validUpdate = false;
-        return;
+        return false;
       } else if (email.value == "") {
         this.email.isValid = false;
         email.value = "";
-        this.validUpdate = false;
-        return;
+        return false;
       } else if (guardianName.value == "") {
         this.guardianName.isValid = false;
         guardianName.value = "";
-        this.validUpdate = false;
-        return;
+        return false;
       } else if (phone.value == "") {
         this.phone.isValid = false;
         phone.value = "";
-        this.validUpdate = false;
-        return;
+        return false;
       }
-      this.validUpdate = true;
+      return true;
     },
     setInfo() {
-      this.validateUpdate();
-
+      this.validUpdate = this.validateUpdate();
       if (!this.validUpdate) {
         return;
       }
@@ -291,6 +263,22 @@ export default {
       let email = document.querySelector("#email").value;
       let guardianName = document.querySelector("#guardianName").value;
       let phone = document.querySelector("#phone").value;
+
+      if (
+        name == user.studentName &&
+        email == user.email &&
+        guardianName == user.parentName &&
+        phone == user.phone
+      ) {
+        let popup = document.getElementById("info-msg-no-change");
+        popup.classList = "popup";
+        setTimeout(() => {
+          popup.classList = "";
+          window.scrollTo(0, top);
+        }, 2000);
+        this.showUpdate = false;
+        return;
+      }
 
       const updatedUser = {
         id: user.id,
@@ -309,11 +297,11 @@ export default {
       data[idx] = updatedUser;
 
       localStorage.setItem("arrayUsers", JSON.stringify(data));
-
-      this.infoChanged = true;
+      let popup = document.getElementById("info-msg");
+      popup.classList = "popup";
 
       setTimeout(() => {
-        this.infoChanged = false;
+        popup.classList = "";
         window.scrollTo(0, top);
       }, 2000);
 
@@ -325,254 +313,182 @@ export default {
   },
   mounted() {
     this.setInputValues();
-    console.log(JSON.parse(localStorage.getItem("arrayUsers")));
   },
 };
 </script>
 
 <style scoped>
 .main-profile-div {
-  box-shadow: 0px 0px 5px rgb(0, 7, 92);
-  width: 30rem;
-  margin-left: 2.8rem;
-  margin-top: 3rem;
-  border-radius: 1rem;
-  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-profile-div,
+.password-change-container {
+  width: 100%;
+}
+
+.profile-container,
+.password-change-container form,
+.update-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em 0em;
 }
 
 img {
   width: 10rem;
   height: 10rem;
   border-radius: 10rem;
-  margin-left: 10rem;
-  margin-top: 2rem;
 }
 
 h1 {
   color: rgb(0, 7, 92);
-  font-size: 2.3rem;
-  width: 17rem;
-  padding-left: 5.7rem;
-  margin-left: 3.5rem;
+  font-size: 2rem;
+  padding: 0em 2em;
   border-bottom: solid 0.1rem rgb(0, 7, 92);
+  text-align: center;
 }
 
 p {
-  font-size: 1.4rem;
+  margin: 0;
+  font-size: 1.3rem;
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-}
-
-.info p {
-  margin-left: 5rem;
-}
-
-.info p:nth-child(2) {
-  margin-bottom: 0rem;
+.title {
   color: rgb(0, 7, 92);
+  font-weight: bold;
+  margin-right: 0.5em;
 }
 
+.info,
 .grade {
-  margin-left: 5rem;
-}
-
-.grade p:nth-child(1) {
-  margin-bottom: 0rem;
-  color: rgb(0, 7, 92);
-}
-
-.grade p:nth-child(2) {
-  margin-top: 0.5rem;
-}
-
-.col p:nth-child(1) {
-  margin-bottom: 0rem;
-  color: rgb(0, 7, 92);
-}
-
-.info-two {
   display: flex;
-  flex-direction: row;
 }
 
-.info-two p {
-  margin-left: 5rem;
+.info,
+.info-two {
+  margin-bottom: 3em;
+}
+
+.info-two,
+.info-two div {
+  display: flex;
+}
+
+.info-two div {
+  margin-top: 3em;
+  margin-right: 0.5em;
 }
 
 .button {
-  margin-left: 0rem;
-  margin-top: -4rem;
-  margin-bottom: 2rem;
-  width: 10rem;
-  height: 3rem;
   color: white;
   font-size: 1.2rem;
-  position: initial;
+  padding: 0.5em;
+  border-radius: 3px;
+}
+
+.button:first-child {
+  margin-right: 1.1em;
 }
 
 .buttons {
   display: flex;
-  flex-direction: row;
-  margin-top: 6rem;
 }
 
-#update {
-  margin-left: 2rem;
-}
-
-#password {
-  margin-left: 4rem;
-}
-
-.warning {
-  margin-left: -1rem;
-}
-
-.warning p {
-  font-size: 1.5rem;
-}
+/*password change */
 
 input {
-  border-radius: 0.2rem;
+  border-radius: 3px;
   border: none;
   box-shadow: 0px 0px 5px rgb(0, 7, 92);
-  height: 1.5rem;
+  padding: 0.6em;
 }
 
-input:focus {
-  outline: none;
-}
-
-.second-input {
-  margin-left: 2rem;
-}
-
-.btn-password {
-  margin-left: 0rem;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-  width: 10rem;
-  height: 3rem;
-  color: white;
-  font-size: 1.2rem;
-  position: initial;
-}
-
-.pchange {
-  font-size: 2.4rem;
-  width: 24.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  margin-left: 2rem;
-  padding-top: 1rem;
-  padding-bottom: 0.3rem;
-}
-
-.pchange-box {
+.inputs {
   display: flex;
-  flex-direction: row;
+  padding: 2em;
 }
 
-.pchange-box div {
-  margin-left: 2rem;
+.inputs div {
+  display: flex;
+  flex-direction: column;
 }
 
-.pchange-box div p {
-  font-size: 1rem;
-  padding-bottom: 0.3rem;
-  color: black;
+.inputs label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
+}
+
+.inputs div:first-child input {
+  margin-right: 3em;
 }
 
 form p:nth-child(2) {
   margin-left: 2rem;
 }
 
-.btns-password {
+.btns-password,
+.btns-update {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  padding: 2em;
 }
 
-.ichange {
-  font-size: 2.4rem;
-  width: 27rem;
-  padding-left: 1.5rem;
-  padding-right: 0.5rem;
-  margin-left: 0.5rem;
-  padding-top: 1rem;
-  padding-bottom: 0.3rem;
+.btns-password button,
+.btns-update button {
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.5em 1em;
+  border-radius: 3px;
 }
 
-.info {
-  margin-bottom: 1rem;
+.btns-password button:first-child {
+  margin-right: 5em;
 }
 
-.info p:nth-child(3) {
-  margin-top: 0.2rem;
+/*Change info */
+
+.update-container label {
+  color: rgb(0, 7, 92);
+  font-size: 1.2rem;
+  margin-right: 0.5em;
 }
 
-.info label {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-  margin-left: 1rem;
+.update-container input {
+  margin-left: 3em;
 }
 
-.info input {
-  margin-left: 1rem;
-  width: 20rem;
-  margin-top: -0.5rem;
+.update-form div {
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 
-.col {
-  margin-bottom: 1rem;
+#guardianName {
+  margin-left: 0.8em;
 }
 
-.col label {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  margin-top: 2rem;
-  margin-left: 1rem;
+.btns-update button:first-child {
+  margin-right: 5em;
 }
 
-.col input {
-  width: 15rem;
-  margin-left: 1rem;
+@media (max-width: 675px) {
+  .update-container h1 {
+    padding: 0em 1.5em;
+  }
 }
 
-.col p:nth-child(2) {
-  margin-top: 0.2rem;
+/*popoups */
+
+.popup {
+  display: block;
+  transform: translateY(2em);
+  transition: 2s;
 }
 
 .invalid {
   border: 1px solid red;
   box-shadow: 0px 0px 5px red;
-}
-
-@media (min-width: 576px) {
-  .main-profile-div {
-    margin-left: 8.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .main-profile-div {
-    margin-left: 15.7rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .main-profile-div {
-    margin-left: 22.5rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .main-profile-div {
-    margin-left: 25rem;
-  }
 }
 </style>

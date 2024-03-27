@@ -1,116 +1,93 @@
 <template>
-  <div>
-    <div>
-      <div class="grades" @click="showStudentGrades()">
+  <main>
+    <div class="body">
+      <div class="main-container">
         <div>
-          <h1>Your mean grade</h1>
-          <p>Click for more information</p>
-        </div>
-        <div class="grade-score">
-          <h1 class="grade">{{ averageGrades }}</h1>
-        </div>
-      </div>
-      <div v-if="showGrades">
-        <div v-if="noGrades">
-          <h1 class="no-grade-warning">You're not enrolled in any classes</h1>
-        </div>
-        <div v-else class="grade-list">
-          <ul v-for="grades in returnGrades" :key="grades.name">
-            <li>
-              {{ grades.name }}
-              <p>Grade: {{ grades.grade }}</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <h1 class="reminder-title">Reminders</h1>
-      <div v-if="noTests" id="no-reminder-msg">
-        <p>No Reminders</p>
-      </div>
-      <div v-else>
-        <div v-for="test in returnTasks" :key="test.name" class="reminders">
-          <div class="reminder-info">
-            <h1>{{ test.name }} Exam</h1>
-            <p>on 12/12/2023</p>
+          <div class="grades" @click="showStudentGrades()">
+            <div>
+              <h1>Your mean grade</h1>
+              <p>Click for more information</p>
+            </div>
+            <div class="grade-score">
+              <h1 class="grade">{{ averageGrades }}</h1>
+            </div>
           </div>
-          <div
-            class="color-block"
-            :style="'background-color:' + test.color"
-          ></div>
+          <div v-if="showGrades">
+            <div v-if="noGrades">
+              <h1 class="no-grade-warning">
+                You're not enrolled in any classes
+              </h1>
+            </div>
+            <div v-else class="grade-list">
+              <ul v-for="grades in returnGrades" :key="grades.name">
+                <li>
+                  <div @click="showDetails(grades.name)">
+                    {{ grades.name }}
+                    <p>Grade: {{ grades.grade }}</p>
+                  </div>
+                  <div v-if="details == grades.name">
+                    {{ grades.teacher }}|{{ grades.hour }}
+                    <p>Room: {{ grades.room }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <h1 class="contact-title">Contacts</h1>
-    <div class="contact">
-      <div @click="showTeacherContacts()">
-        <h1>Teachers</h1>
-      </div>
-      <div @click="showSchoolContacts()">
-        <h1>School</h1>
-      </div>
-    </div>
-
-    <div>
-      <div v-for="teacher in teacherInfo" :key="teacher.name" class="contacts">
-        <div v-if="teacherContact">
-          <ul>
-            <li>
-              {{ teacher.name }} ({{ teacher.subject }}) |
-              <p>{{ teacher.phone }}</p>
-              |
-              <p>{{ teacher.officeHours }}</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div v-for="contact in schoolInfo" :key="contact.name" class="contacts">
-        <div v-if="schoolContact">
-          <ul>
-            <li>
-              {{ contact.name }}
-              <p>{{ contact.phone }}</p>
-              <p>{{ contact.officeHours }}</p>
-            </li>
-          </ul>
+        <div class="assigments">
+          <h1 class="assigments-title">Assignments</h1>
+          <div v-if="returnTasks.length == 0" class="no-assigments">
+            <p>No assignments registered!</p>
+          </div>
+          <div v-else>
+            <div
+              v-for="assigment in returnTasks"
+              :key="assigment.name"
+              class="assigment"
+            >
+              <div
+                class="color-block"
+                :style="'background-color:' + assigment.color"
+              ></div>
+              <div class="assigment-info">
+                <h1>{{ assigment.name }} Exam</h1>
+                <p>on 12/12/2023</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="contacts">
+      <div v-if="showSchoolContact">
+        <ul>
+          <li v-for="contact in schoolInfo" :key="contact.name">
+            {{ contact.name }}
+            <p>{{ contact.phone }}</p>
+          </li>
+        </ul>
+      </div>
+      <p @click="showContacts()" class="help">Need help?</p>
+    </div>
+  </main>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      teacherContact: false,
-      schoolContact: false,
+      showSchoolContact: false,
       userId: this.$route.params.userId,
-      noTests: false,
       showGrades: false,
       noGrades: false,
+      details: null,
     };
   },
 
   methods: {
-    showTeacherContacts() {
-      if (this.teacherContact == true) {
-        this.teacherContact = false;
-        return;
-      }
-      this.schoolContact = false;
-      this.teacherContact = true;
-    },
-    showSchoolContacts() {
-      if (this.schoolContact == true) {
-        this.schoolContact = false;
-        return;
-      }
-      this.teacherContact = false;
-      this.schoolContact = true;
+    showContacts() {
+      this.showSchoolContact = !this.showSchoolContact;
     },
     setColor() {
       if (this.averageGrades < 50) {
@@ -121,9 +98,6 @@ export default {
         document.querySelector(".grade-score").style.borderColor = "green";
       }
     },
-    changeTest() {
-      this.noTests = true;
-    },
     changeGrade() {
       this.noGrades = true;
     },
@@ -133,6 +107,9 @@ export default {
         return;
       }
       this.showGrades = false;
+    },
+    showDetails(className) {
+      this.details = this.details == className ? null : className;
     },
   },
   computed: {
@@ -168,19 +145,8 @@ export default {
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
       let userIndex = data.findIndex((e) => e.id == this.userId);
       let userDataClasses = data[userIndex].classes;
-      let classesTest = [];
 
-      if (userDataClasses.length != 0) {
-        for (let i = 0; i < userDataClasses.length; i++) {
-          if (userDataClasses[i].hasATest == true) {
-            classesTest.push(userDataClasses[i]);
-          }
-        }
-        return classesTest;
-      }
-
-      this.changeTest();
-      return null;
+      return userDataClasses;
     },
     returnGrades() {
       let data = JSON.parse(localStorage.getItem("arrayUsers"));
@@ -202,30 +168,37 @@ export default {
 </script>
 
 <style scoped>
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-container {
+  width: 40em;
+  display: flex;
+  flex-direction: column;
+  padding: 5em 0em;
+}
+
 .grades {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  box-shadow: 0px 0px 5px rgb(0, 7, 92);
-  height: 13rem;
-  width: 35rem;
-  margin-left: 0.5rem;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-  padding-top: 1.5rem;
-  border-radius: 1rem;
+  margin-left: 5em;
 }
 
 .grades h1 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   color: rgb(0, 7, 92);
+}
+
+.grades h1 {
+  margin-top: 1em;
   margin-bottom: 0.5rem;
 }
 
 .grades p {
   font-size: 1.5rem;
   margin-top: 0rem;
-  margin-left: 0.5rem;
 }
 
 .grades:hover {
@@ -233,275 +206,196 @@ export default {
 }
 
 .grade-score {
-  width: 10rem;
-  height: 10rem;
+  width: 9rem;
+  height: 9rem;
   border-radius: 6rem;
-  border: solid 0.8rem black;
+  border: solid 0.8rem;
+  border-color: black 50%;
+  margin-left: 1em;
 }
 
 .grade-score h1 {
-  margin-left: 0.5rem;
-  margin-top: 2rem;
+  text-align: center;
+  margin-top: 0.3em;
   font-size: 5rem;
   color: rgb(0, 7, 92);
 }
 
-.reminder-title,
-.contact-title {
-  font-size: 2.5rem;
-  margin-left: 1rem;
-  margin-bottom: 0rem;
-  color: rgb(0, 7, 92);
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-.reminders {
-  display: flex;
-  flex-direction: row;
-  box-shadow: 0px 0px 5px rgb(0, 7, 92);
-  height: 6rem;
-  width: 35rem;
-  margin-left: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 2.5rem;
-  border-radius: 1rem;
+.main-container ul li {
+  box-shadow: -3px 2px 5px black;
+  border-radius: 3px;
+  padding: 0.5em;
 }
 
-.reminders:hover {
+.main-container ul li:hover {
   cursor: pointer;
 }
 
-.reminders h1 {
+.main-container ul li div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  align-items: center;
+  font-weight: bold;
   color: rgb(0, 7, 92);
-  font-size: 2.5rem;
-  position: absolute;
-  margin-left: -14rem;
-  margin-top: 1.5rem;
-  padding-bottom: 2rem;
-  width: 20rem;
 }
 
-.reminder-info {
-  position: absolute;
-  margin-left: 20rem;
+.main-container ul li p {
+  color: black;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
-.reminder-info p {
-  margin-left: 3rem;
+.contacts {
+  margin-top: 2em;
+  margin-left: 1em;
+}
+
+.contacts div ul li p {
+  color: rgb(0, 7, 92);
+  font-weight: bold;
+}
+
+.contacts .help {
+  width: 5em;
+  height: 2rem;
+}
+
+.contacts p:hover {
+  cursor: pointer;
+}
+
+.contacts div {
   position: absolute;
-  width: 12rem;
-  margin-top: 2rem;
-  color: grey;
+  margin-top: -15em;
+}
+
+.contacts div ul {
+  background-color: white;
+  box-shadow: -1px 2px 3px black;
+  border-radius: 5px;
+  padding: 0.2em;
+  width: 15em;
+}
+
+.contacts div ul li {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  padding: 0.1em;
+  align-items: center;
+  font-weight: bold;
+  color: rgb(0, 7, 92);
+}
+
+.contacts div ul li p {
+  color: black;
+  font-weight: 500;
+  margin-left: 0.5em;
+}
+
+.assigments {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-assigments {
+  box-shadow: -1px 2px 3px black;
+  padding: 3em 10em;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.no-assigments p {
   font-size: 1.5rem;
+}
+
+.assigments-title {
+  font-size: 2.5rem;
+  color: rgb(0, 7, 92);
+}
+
+.assigment {
+  display: flex;
+  flex-direction: row;
+  width: 36em;
+  box-shadow: -2px 2px 5px rgb(0, 7, 92);
+  border-radius: 3px;
+  margin-top: 1em;
+  padding: 0em 4em 0em 0em;
+}
+
+.assigment:hover {
+  cursor: pointer;
+}
+
+.assigment h1 {
+  color: rgb(0, 7, 92);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.assigment-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em;
+  align-items: center;
+}
+
+.assigment-info p {
+  color: grey;
+  font-size: 1.2rem;
 }
 
 .color-block {
   width: 3rem;
-  height: 6rem;
   background-color: red;
-  margin-left: 0.02rem;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-}
-
-.contact div {
-  background-color: rgb(0, 7, 92);
-  color: white;
-  width: 11rem;
-  height: 4rem;
-  margin-bottom: 2rem;
-}
-
-.contact div h1 {
-  margin-left: 1.5rem;
-  margin-top: 1rem;
-}
-
-.contact div:hover {
-  cursor: pointer;
-}
-
-.contact {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 30rem;
-  margin-left: 2.7rem;
-  margin-top: 2rem;
-}
-
-ul {
-  list-style: none;
-  margin-left: 0.5rem;
-}
-
-ul li {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 2rem;
-  border-bottom: solid 0.1rem rgb(0, 7, 92);
-  width: 30rem;
-  padding-top: 1rem;
-  font-size: 1.2rem;
-}
-
-ul li p {
-  margin-top: 0.2rem;
-  font-size: 1.1rem;
-}
-
-#no-reminder-msg {
-  margin-left: 12rem;
-  font-size: 2rem;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .no-grade-warning {
   margin-left: 3rem;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 700px) {
+  .main-container {
+    width: 29.5em;
+  }
+
   .grades {
-    margin-left: 6rem;
+    margin-left: 1em;
   }
 
-  ul {
-    margin-left: 5.9rem;
+  .grades h1 {
+    font-size: 2rem;
   }
 
-  .contact {
-    margin-left: 8.5rem;
+  .grade-score h1 {
+    font-size: 5rem;
   }
 
-  .reminder-title,
-  .contact-title {
-    margin-left: 5rem;
+  .grade-score {
+    margin-left: 0.5em;
   }
 
-  .reminders {
-    margin-left: 5rem;
+  .assigment {
+    width: 25.5em;
   }
 
-  #no-reminder-msg {
-    margin-left: 17rem;
+  .assigments-title {
+    font-size: 2rem;
   }
 
-  .no-grade-warning {
-    margin-left: 8rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .grades {
-    margin-left: 10.5rem;
-    width: 40rem;
-  }
-
-  ul {
-    margin-left: 12rem;
-  }
-
-  .contact {
-    margin-left: 17rem;
-  }
-
-  .reminder-title,
-  .contact-title {
-    margin-left: 10rem;
-  }
-
-  .reminders {
-    margin-left: 13rem;
-  }
-
-  .contacts div ul {
-    margin-left: 14.5rem;
-  }
-
-  #no-reminder-msg {
-    margin-left: 24rem;
-  }
-
-  .no-grade-warning {
-    margin-left: 15rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .grades {
-    margin-left: 17rem;
-  }
-
-  ul {
-    margin-left: 17rem;
-  }
-
-  ul li {
-    width: 35rem;
-    font-size: 1.5rem;
-  }
-
-  ul li p {
-    font-size: 1.2rem;
-  }
-
-  .contact {
-    margin-left: 21rem;
-  }
-
-  .reminder-title,
-  .contact-title {
-    margin-left: 15rem;
-  }
-
-  .reminders {
-    margin-left: 19rem;
-  }
-
-  .contacts div ul {
-    margin-left: 16rem;
-  }
-
-  #no-reminder-msg {
-    margin-left: 30rem;
-  }
-
-  .no-grade-warning {
-    margin-left: 21.5rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .grades {
-    margin-left: 20.5rem;
-  }
-
-  ul {
-    margin-left: 20.5rem;
-  }
-
-  .reminder-title,
-  .contact-title {
-    margin-left: 20rem;
-  }
-
-  .reminders {
-    margin-left: 22rem;
-  }
-
-  .contact {
-    margin-left: 25rem;
-  }
-
-  .contacts div ul {
-    margin-left: 20rem;
-  }
-
-  #no-reminder-msg {
-    margin-left: 35rem;
-  }
-
-  .no-grade-warning {
-    margin-left: 25rem;
+  .assigment h1 {
+    font-size: 1.3rem;
   }
 }
 </style>

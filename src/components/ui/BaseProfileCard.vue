@@ -1,11 +1,11 @@
 <template>
   <div class="card">
     <div class="div-img">
-      <i class="bi bi-person"></i>
+      <img src="../../assets/profile.jpg" alt="" />
+      <h2>{{ name }}</h2>
     </div>
 
     <div class="info">
-      <h2>{{ name }}</h2>
       <p>{{ grade }}</p>
       <p>{{ email }}</p>
     </div>
@@ -23,52 +23,36 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  height: 15rem;
-  width: 13rem;
+  align-items: center;
+  background-color: rgb(0, 7, 92);
+  padding: 1.5em 2em;
   z-index: 1;
-  box-shadow: 0px 0px 5px black;
+  box-shadow: -2px 6px 8px black;
   margin-left: 2rem;
 }
 
-.info {
+.div-img {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-i {
-  font-size: 5rem;
+img {
+  width: 3em;
+  height: 3em;
+  margin-top: 0.5em;
   border-radius: 15rem;
-  margin-left: 2.5rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
   color: rgb(0, 7, 92);
 }
 
 h2 {
-  margin-bottom: 0rem;
-  margin-top: 0.5rem;
-  color: rgb(0, 7, 92);
-  margin-left: 3.5rem;
-  width: 10rem;
+  color: white;
+  border-bottom: black 1px solid;
+  padding: 0em 1em;
 }
 
 p {
-  margin-left: 3.3rem;
   font-size: 1.3rem;
-  margin-top: 0.5rem;
-  color: rgb(0, 7, 92);
-}
-
-.info p:nth-child(3) {
-  margin-left: 1.5rem;
-  font-size: 1.02rem;
-  margin-top: 0rem;
-}
-
-.div-img {
-  border-bottom: solid 0.1rem rgb(211, 198, 111);
-  width: 10rem;
-  margin-left: 1.3rem;
+  color: white;
 }
 </style>

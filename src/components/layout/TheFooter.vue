@@ -1,81 +1,79 @@
 <template>
   <footer>
-    <p>@SchoolName 2023</p>
-    <p>All rights reserved</p>
+    <div class="main-div">
+      <div>
+        <p>Contact and Follow Us</p>
+        <p>(56)153486245</p>
+      </div>
+      <div class="social-links">
+        <base-social :icon="icons[0]"></base-social>
+        <base-social :icon="icons[1]"></base-social>
+        <base-social :icon="icons[2]"></base-social>
+        <base-social :icon="icons[3]"></base-social>
+        <base-social :icon="icons[4]"></base-social>
+      </div>
+    </div>
+    <div class="credit">
+      <p>@SchoolName 2023</p>
+      <p>All rights reserved</p>
+    </div>
   </footer>
 </template>
+
+<script>
+import BaseSocial from "../ui/BaseSocial.vue";
+
+export default {
+  data() {
+    return {
+      icons: [
+        "envelope-at.svg",
+        "instagram.svg",
+        "facebook.svg",
+        "twitter.svg",
+        "tiktok.svg",
+      ],
+    };
+  },
+  components: {
+    BaseSocial,
+  },
+};
+</script>
 
 <style scoped>
 footer {
   display: flex;
   flex-direction: column;
-  height: 4rem;
   background-color: rgb(0, 7, 92);
+  align-items: center;
+}
+
+.main-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-div div p:first-child {
+  margin-left: -1.5em;
+}
+
+.social-links {
+  display: flex;
+}
+
+.credit {
+  display: flex;
+  padding: 0.5em 0.5em;
+  justify-content: space-around;
+}
+
+.credit p {
+  margin-left: 0.5em;
 }
 
 p {
   color: white;
-  margin-left: 13rem;
-  margin-bottom: 0.3rem;
-  margin-top: 0.6rem;
-  width: 10rem;
-}
-
-footer p:nth-child(2) {
-  margin-left: 13.7rem;
-}
-
-@media (min-width: 576px) {
-  footer {
-    display: flex;
-    flex-direction: row;
-    height: 4rem;
-    background-color: rgb(0, 7, 92);
-  }
-
-  p {
-    margin-left: 14rem;
-    margin-top: 1.5rem;
-  }
-
-  footer p:nth-child(2) {
-    margin-left: 1rem;
-  }
-}
-
-@media (min-width: 768px) {
-  p {
-    margin-left: 18rem;
-    font-size: 1.5rem;
-    width: 15rem;
-  }
-}
-
-@media (min-width: 992px) {
-  p {
-    margin-left: 23rem;
-    font-size: 1.6rem;
-    width: 15rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  p {
-    margin-left: 32rem;
-    font-size: 1.7rem;
-    width: 16rem;
-  }
-}
-
-@media (min-width: 1300px) {
-  p {
-    margin-left: 30rem;
-    margin-top: 1rem;
-    font-size: 1rem;
-  }
-
-  footer p:nth-child(2) {
-    margin-left: -5rem;
-  }
 }
 </style>

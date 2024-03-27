@@ -17,10 +17,10 @@
               <a @click="showContact()">Contact Us</a>
             </li>
           </ul>
+          <base-button class="button" id="login" @click="pushLogin()">
+            Login
+          </base-button>
         </nav>
-        <base-button class="button" id="login" @click="pushLogin()">
-          <p>Login</p>
-        </base-button>
       </div>
       <div v-else>
         <nav>
@@ -48,12 +48,12 @@
               >
             </li>
           </ul>
+          <div class="div-button">
+            <base-button class="button" @click="pushLogout()">
+              Logout
+            </base-button>
+          </div>
         </nav>
-        <div class="div-button">
-          <base-button class="button" @click="pushLogout()">
-            <p>Logout</p>
-          </base-button>
-        </div>
       </div>
     </header>
     <div v-if="showMiniProfile">
@@ -135,10 +135,10 @@ export default {
       if (this.$route.path != "/home") {
         this.$router.push("home");
         setTimeout(() => {
-          window.scrollTo(0, 2100);
+          window.scrollTo(0, 1800);
         }, 350);
       }
-      window.scrollTo(0, 2100);
+      window.scrollTo(0, 1800);
     },
     showContact() {
       if (this.$route.path != "/home") {
@@ -253,23 +253,26 @@ export default {
 
 header {
   background-color: rgb(0, 7, 92);
-  height: 3.5rem;
+  padding: 0.5em 1em;
+}
+
+header div nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 ul {
   display: flex;
-  flex-direction: row;
   list-style: none;
-  margin: 0;
   padding: 0;
-  padding-top: 1rem;
 }
 
 a {
   text-decoration: none;
   color: white;
   font-size: 1.5rem;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 a:hover {
@@ -277,28 +280,18 @@ a:hover {
   color: rgb(211, 198, 111);
 }
 
-p {
-  color: white;
-  font-size: 1.5rem;
-  margin-top: 0.3rem;
-}
-
 .button {
   background-color: rgb(0, 7, 92);
-  border: 0.1rem solid white;
-  width: 5rem;
-  height: 2.5rem;
-  margin-top: -0.5rem;
-  margin-left: 30rem;
+  border: 0.1rem solid rgb(211, 198, 111);
+  color: white;
+  height: 2em;
+  font-size: 1.3rem;
+  padding: 0em 0.7em;
 }
 
 .button:hover {
-  border-color: rgb(211, 198, 111);
-  color: rgb(211, 198, 111);
-}
-
-.button p:hover {
-  color: rgb(211, 198, 111);
+  background-color: white;
+  color: rgb(0, 7, 92);
 }
 
 img {
@@ -328,33 +321,5 @@ img {
   font-size: 1.1rem;
   color: white;
   margin-bottom: 1rem;
-}
-
-@media (min-width: 576px) {
-  .button {
-    margin-left: 42rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .button {
-    width: 7rem;
-    margin-top: -2.3rem;
-    margin-left: 54rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .button {
-    width: 7rem;
-    margin-top: -2.3rem;
-    margin-left: 65rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .button {
-    margin-left: 75rem;
-  }
 }
 </style>

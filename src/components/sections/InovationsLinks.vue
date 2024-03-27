@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       imgs: ["robotics.jpg", "languages.jpeg", "ethics.jpg"],
-      links: ["Tecnology", "Bilinguacy", "Ethics"],
+      links: ["Technology", "Bilinguacy", "Ethics"],
     };
   },
   components: {
@@ -25,39 +25,15 @@ export default {
 
 <style scoped>
 section {
-  margin-left: 1.1rem;
+  display: flex;
+  justify-content: space-around;
+  padding: 3em 0em;
 }
 
-@media (min-width: 576px) {
-  section {
-    margin-left: 5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  section {
-    margin-left: 10rem;
-  }
-}
-
-@media (min-width: 992px) {
+@media (max-width: 650px) {
   section {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-left: -10rem;
-    margin-bottom: 2rem;
-    padding-left: 8.3rem;
-    padding-right: 3rem;
-    padding-top: 2rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  section {
-    padding-left: 5rem;
-    padding-right: 5rem;
-    margin-left: -4.2rem;
+    flex-direction: column;
   }
 }
 </style>

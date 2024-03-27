@@ -1,54 +1,69 @@
 <template>
   <section>
-    <base-warning v-if="hasClass" class="warning">
+    <base-popup v-if="hasClass" class="warning">
       <p>This class has already been registered!</p>
-    </base-warning>
+    </base-popup>
 
     <div class="tabs">
-      <div @click="getMyClasses(false)">
-        <h1>Classes</h1>
-      </div>
-      <div @click="getMyClasses(true)">
-        <h1>My Classes</h1>
-      </div>
+      <h1
+        @click="getMyClasses(false)"
+        :class="!showMyClasses ? 'selected' : ''"
+      >
+        Classes
+      </h1>
+      <h1 @click="getMyClasses(true)" :class="showMyClasses ? 'selected' : ''">
+        My Classes
+      </h1>
     </div>
 
-    <div class="main-div-list" v-if="showMyClasses == false">
-      <ul v-for="subject in filterClasses" :key="subject.name">
+    <div class="class-list" v-if="showMyClasses == false">
+      <ul v-for="classItem in filterClasses" :key="classItem.name">
         <li>
-          <div class="name-teacher">
-            <h2>{{ subject.name }}</h2>
-            <p>{{ subject.teacher }}</p>
+          <div class="info">
+            <div class="teacher">
+              <h2>{{ classItem.name }}|</h2>
+              <p>{{ classItem.teacher }}</p>
+            </div>
+
+            <div class="details">
+              <div>
+                <p><span>Time: </span>{{ classItem.hour }}</p>
+                <p><span>Room:</span> {{ classItem.room }}</p>
+              </div>
+              <div>
+                <p>{{ classItem.day }}</p>
+                <p><span>Grades: </span>{{ classItem.for }}</p>
+              </div>
+            </div>
           </div>
 
-          <div class="side-info">
-            <p><span>Time: </span>{{ subject.hour }}</p>
-            <p><span>Room:</span> {{ subject.room }}</p>
-          </div>
-          <p>{{ subject.day }}</p>
-          <p><span>Grades: </span>{{ subject.for }}</p>
-          <base-button class="button" @click="addClass(subject.name)">
-            Enroll
-          </base-button>
+          <base-button @click="addClass(classItem.name)"> Enroll </base-button>
         </li>
       </ul>
     </div>
-    <div v-else class="main-div-list" id="myClassesSection">
+    <div v-else class="class-list" id="myClassesSection">
       <div v-if="!noClasses">
-        <ul v-for="subject in myClasses" :key="subject.name">
+        <ul v-for="classItem in myClasses" :key="classItem.name">
           <li>
-            <div class="name-teacher">
-              <h2>{{ subject.name }}</h2>
-              <p>{{ subject.teacher }}</p>
+            <div class="info">
+              <div class="teacher">
+                <h2>{{ classItem.name }}|</h2>
+                <p>{{ classItem.teacher }}</p>
+              </div>
+
+              <div class="details">
+                <div>
+                  <p><span>Time: </span>{{ classItem.hour }}</p>
+                  <p><span>Room:</span> {{ classItem.room }}</p>
+                </div>
+                <div>
+                  <p>{{ classItem.day }}</p>
+                  <p><span>Grades: </span>{{ classItem.for }}</p>
+                </div>
+              </div>
             </div>
 
-            <div class="side-info">
-              <p><span>Time: </span>{{ subject.hour }}</p>
-              <p><span>Room:</span> {{ subject.room }}</p>
-            </div>
-            <p>{{ subject.day }}</p>
-            <p><span>Grades: </span> {{ subject.for }}</p>
-            <base-button class="button" @click="removeClass(subject.name)">
+            <base-button @click="removeClass(classItem.name)">
               Remove
             </base-button>
           </li>
@@ -63,7 +78,7 @@
 
 <script>
 import BaseButton from "../ui/BaseButton.vue";
-import BaseWarning from "../ui/BaseWarning.vue";
+import BasePopup from "../ui/BasePopup.vue";
 
 export default {
   data() {
@@ -78,7 +93,7 @@ export default {
   },
   components: {
     BaseButton,
-    BaseWarning,
+    BasePopup,
   },
 
   methods: {
@@ -217,94 +232,119 @@ export default {
 </script>
 
 <style scoped>
-.main-div-list {
-  width: 35rem;
-  margin-left: 0rem;
-  margin-bottom: 5rem;
-  padding: 3px 5px;
-}
-
-.side-info {
+section {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-}
-
-.side-info p {
-  margin-top: 0rem;
-  font-size: 1.1rem;
-}
-
-.side-info p:nth-child(2) {
-  margin-left: 0.5rem;
-}
-
-span {
-  color: rgb(0, 7, 92);
-}
-
-.name-teacher {
-  display: flex;
-  flex-direction: row;
-}
-
-.name-teacher p {
-  margin-left: 0.5rem;
-  margin-top: 1.5rem;
-  font-size: 1.2rem;
-  border-left: solid 0.1rem rgb(0, 7, 92);
-  padding-left: 1rem;
-}
-
-ul {
-  list-style: none;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5em;
 }
 
 h2 {
   color: rgb(0, 7, 92);
 }
 
-li {
-  border-bottom: solid 1px rgb(0, 7, 92);
-  width: 30rem;
-}
-
-li p {
-  margin-top: 0rem;
-}
-
-.button {
-  margin-left: 25rem;
-  margin-top: -5rem;
-  margin-bottom: 1rem;
-  position: absolute;
-  width: 5rem;
-  height: 3rem;
-  color: white;
-  font-size: 1.2rem;
-}
-
 .tabs {
   display: flex;
-  flex-direction: row;
-  margin-left: 5rem;
-  margin-top: 2rem;
+  color: rgb(0, 7, 92);
 }
 
-.tabs div {
-  background-color: rgb(0, 7, 92);
-  color: white;
-  margin-left: 2rem;
-  width: 10rem;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-}
-
-.tabs div:hover {
+.tabs h1:hover {
   cursor: pointer;
 }
 
-.tabs div h1 {
-  padding-left: 1rem;
+.tabs h1 {
+  margin: 0;
+  padding: 1em 1em 0.2em 1em;
+}
+
+.tabs h1:first-child {
+  margin-right: 2em;
+}
+
+.selected {
+  border-bottom: rgb(0, 7, 92) 1px solid;
+}
+
+ul {
+  list-style: none;
+  padding: 0em;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px rgb(0, 7, 92);
+  width: 40em;
+  padding: 1em 0em;
+}
+
+.teacher {
+  display: flex;
+  align-items: center;
+}
+
+.teacher h2 {
+  margin-bottom: 0em;
+}
+
+.teacher p {
+  margin-bottom: -0.2em;
+  margin-left: 0.1em;
+  font-size: 1.2rem;
+}
+
+.details div:first-child {
+  display: flex;
+}
+
+.details div:first-child p:first-child {
+  margin-right: 1em;
+}
+
+.details p {
+  margin-bottom: 0em;
+  font-size: 1.2rem;
+}
+
+span {
+  margin-right: 0.2em;
+  color: rgb(0, 7, 92);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+button {
+  height: 2em;
+  width: 5em;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 3em;
+}
+
+@media (max-width: 800px) {
+  li {
+    width: 35em;
+  }
+}
+
+@media (max-width: 675px) {
+  span {
+    font-size: 1.1rem;
+  }
+
+  li {
+    width: 28em;
+  }
+
+  .teacher p {
+    font-size: 1rem;
+    margin-bottom: -0.5em;
+  }
+
+  .details p {
+    font-size: 1rem;
+  }
 }
 
 .no-classes {
@@ -314,47 +354,5 @@ li p {
 
 .warning p {
   font-size: 1.5rem;
-}
-
-@media (min-width: 576px) {
-  .main-div-list {
-    margin-left: 5.8rem;
-  }
-
-  .tabs {
-    margin-left: 10.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .main-div-list {
-    margin-left: 15rem;
-  }
-
-  .tabs {
-    margin-left: 20rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .main-div-list {
-    margin-left: 20rem;
-    border-radius: 1rem;
-    box-shadow: 0px 0px 5px rgb(0, 7, 92);
-  }
-
-  .tabs {
-    margin-left: 25rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .main-div-list {
-    margin-left: 22rem;
-  }
-
-  .tabs {
-    margin-left: 27rem;
-  }
 }
 </style>
