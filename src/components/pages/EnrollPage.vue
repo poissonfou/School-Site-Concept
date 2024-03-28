@@ -272,7 +272,7 @@ label {
   padding: 0.5em 1em;
   color: white;
   font-size: 1.3rem;
-  margin-left: 10%;
+  margin-left: 2%;
 }
 
 a,

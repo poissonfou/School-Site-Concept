@@ -291,7 +291,6 @@ label {
 @media (max-width: 675px) {
   .form {
     padding: 0;
-    background-color: aquamarine;
     width: auto;
   }
 }

@@ -46,20 +46,27 @@ h1 {
 }
 
 p {
-  color: white;
-  font-size: 2.5rem;
+  color: rgb(6, 15, 122);
+  font-size: 2rem;
 }
 
 .text-box {
   position: absolute;
-  top: 80%;
+  top: 90%;
   transition: 2s;
   padding: 0em 0.8em;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 48%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .display-text {
-  transform: translateY(-40%);
+  transform: translateY(-30%);
   transition: 2s;
+  height: 30em;
 }
 
 a,
@@ -69,19 +76,25 @@ span {
 
 @media (max-height: 1400px) {
   .text-box {
-    top: 40%;
+    top: 38%;
   }
 }
 
-@media (max-height: 950px) {
+@media (max-height: 1200px) {
   .text-box {
     top: 45%;
   }
 }
 
+@media (max-height: 950px) {
+  .text-box {
+    top: 55%;
+  }
+}
+
 @media (max-height: 750px) {
   .text-box {
-    top: 60%;
+    top: 65%;
   }
 }
 
@@ -93,11 +106,6 @@ span {
   p {
     font-size: 2rem;
   }
-
-  .display-text {
-    transform: translateY(-15em);
-    transition: 2s;
-  }
 }
 
 @media (max-width: 600px) {
@@ -107,11 +115,6 @@ span {
 
   p {
     font-size: 1.5rem;
-  }
-
-  .display-text {
-    transform: translateY(-10em);
-    transition: 2s;
   }
 }
 </style>
