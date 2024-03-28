@@ -21,7 +21,7 @@
         <li>
           <div class="info">
             <div class="teacher">
-              <h2>{{ classItem.name }}|</h2>
+              <h2>{{ classItem.name }}<span>|</span></h2>
               <p>{{ classItem.teacher }}</p>
             </div>
 
@@ -47,7 +47,7 @@
           <li>
             <div class="info">
               <div class="teacher">
-                <h2>{{ classItem.name }}|</h2>
+                <h2>{{ classItem.name }}<span>|</span></h2>
                 <p>{{ classItem.teacher }}</p>
               </div>
 
@@ -242,6 +242,11 @@ section {
 
 h2 {
   color: rgb(0, 7, 92);
+}
+
+h2 span {
+  color: black;
+  margin-left: 0.1em;
 }
 
 .tabs {

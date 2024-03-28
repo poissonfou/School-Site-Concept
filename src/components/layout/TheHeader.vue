@@ -5,7 +5,7 @@
         <nav>
           <i class="bi bi-list" id="burguer-icon" @click="showDropDown()"></i>
           <i class="bi bi-x-lg hidden" id="x-icon" @click="showDropDown()"></i>
-          <ul>
+          <ul class="unlogged-nav">
             <li class="hidden home">
               <router-link to="home">Home</router-link>
             </li>
@@ -141,10 +141,14 @@ export default {
   },
   methods: {
     toggle() {
+      //not logged in
       let prices = document.getElementsByClassName("prices")[0];
       let enroll = document.getElementsByClassName("enroll")[0];
       let contact = document.getElementsByClassName("contact")[0];
       let profile = document.getElementsByClassName("profile")[0];
+      let home = document.getElementsByClassName("home")[0];
+
+      //logged
       let board = document.getElementsByClassName("board")[0];
       let classes = document.getElementsByClassName("classes")[0];
       let menu = document.getElementById("burguer-icon");
@@ -159,12 +163,15 @@ export default {
             close_menu.classList.add("hidden");
           }
 
+          home.classList.add("hidden");
           prices.classList.add("hidden");
           enroll.classList.add("hidden");
           contact.classList.add("hidden");
         } else {
           menu.classList.add("hidden");
           close_menu.classList.add("hidden");
+
+          if (this.$route.path != "/home") home.classList.remove("hidden");
 
           prices.classList.remove("hidden");
           enroll.classList.remove("hidden");
@@ -319,7 +326,8 @@ ul {
   align-items: center;
 }
 
-.logged-nav li {
+.logged-nav li,
+.unlogged-nav li {
   padding-left: 1em;
 }
 

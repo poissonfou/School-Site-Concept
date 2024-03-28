@@ -26,7 +26,9 @@
                     <p>Grade: {{ grades.grade }}</p>
                   </div>
                   <div v-if="details == grades.name">
-                    {{ grades.teacher }}|{{ grades.hour }}
+                    <div>
+                      {{ grades.teacher }}<span>|{{ grades.hour }}</span>
+                    </div>
                     <p>Room: {{ grades.room }}</p>
                   </div>
                 </li>
@@ -245,7 +247,8 @@ ul {
   color: rgb(0, 7, 92);
 }
 
-.main-container ul li p {
+.main-container ul li p,
+.main-container ul li span {
   color: black;
   font-weight: 500;
   font-size: 1.1rem;
