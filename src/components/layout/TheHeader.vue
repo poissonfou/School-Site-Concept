@@ -156,7 +156,7 @@ export default {
 
       if (this.showDrop) this.showDrop = false;
 
-      if (!this.loggedIn) {
+      if (this.loggedIn == false && !this.$route.path.includes("/board")) {
         if (window.innerWidth < 768) {
           menu.classList.remove("hidden");
           if (!close_menu.classList.contains("hidden")) {
@@ -177,7 +177,9 @@ export default {
           enroll.classList.remove("hidden");
           contact.classList.remove("hidden");
         }
-      } else {
+      }
+
+      if (this.loggedIn == true && this.$route.path.includes("/board")) {
         if (window.innerWidth < 768) {
           menu.classList.remove("hidden");
           if (!close_menu.classList.contains("hidden")) {
@@ -264,7 +266,6 @@ export default {
   watch: {
     $route() {
       this.homeChange();
-      this.trackWidth();
 
       if (this.loggedIn == false) {
         this.toggle();
