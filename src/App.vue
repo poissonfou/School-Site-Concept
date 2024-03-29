@@ -47,20 +47,19 @@ export default {
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-/*191, 171, 37 - gold
-  107, 5, 4 - blood red
-    0, 7, 92 - lighter blue
-
-*/
-
 html {
   scroll-behavior: smooth;
+  height: 0%;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: "Roboto";
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  height: 100vh;
 }
 
 a {

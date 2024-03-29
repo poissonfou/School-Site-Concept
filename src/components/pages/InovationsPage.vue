@@ -179,8 +179,10 @@ export default {
 main {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 2em 0em;
+  height: 100vh;
+  padding: 2em 0em;
 }
 
 ul {

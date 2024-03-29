@@ -227,6 +227,7 @@ p {
 .main-div-form {
   display: flex;
   justify-content: space-between;
+  height: 100vh;
 }
 
 form {
@@ -241,6 +242,7 @@ img {
 .form {
   margin: 0rem;
   padding: 2em 5em;
+  margin: auto 0;
 }
 
 .input-box {

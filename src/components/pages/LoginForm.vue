@@ -217,9 +217,10 @@ export default {
 .form {
   display: flex;
   flex-direction: column;
-  margin: 5em auto;
+  justify-content: center;
   padding: 0;
   align-items: center;
+  height: 100vh;
 }
 
 h1 {

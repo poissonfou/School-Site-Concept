@@ -156,7 +156,7 @@ export default {
 
       if (this.showDrop) this.showDrop = false;
 
-      if (this.loggedIn == false && !this.$route.path.includes("/board")) {
+      if (this.$route.params.userId == undefined) {
         if (window.innerWidth < 768) {
           menu.classList.remove("hidden");
           if (!close_menu.classList.contains("hidden")) {
@@ -177,9 +177,10 @@ export default {
           enroll.classList.remove("hidden");
           contact.classList.remove("hidden");
         }
+        return;
       }
 
-      if (this.loggedIn == true && this.$route.path.includes("/board")) {
+      if (this.$route.params !== undefined) {
         if (window.innerWidth < 768) {
           menu.classList.remove("hidden");
           if (!close_menu.classList.contains("hidden")) {

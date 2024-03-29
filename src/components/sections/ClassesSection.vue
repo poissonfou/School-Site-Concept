@@ -1,49 +1,27 @@
 <template>
-  <section>
-    <base-popup v-if="hasClass" class="warning">
-      <p>This class has already been registered!</p>
-    </base-popup>
+  <div class="container">
+    <section>
+      <base-popup v-if="hasClass" class="warning">
+        <p>This class has already been registered!</p>
+      </base-popup>
 
-    <div class="tabs">
-      <h1
-        @click="getMyClasses(false)"
-        :class="!showMyClasses ? 'selected' : ''"
-      >
-        Classes
-      </h1>
-      <h1 @click="getMyClasses(true)" :class="showMyClasses ? 'selected' : ''">
-        My Classes
-      </h1>
-    </div>
+      <div class="tabs">
+        <h1
+          @click="getMyClasses(false)"
+          :class="!showMyClasses ? 'selected' : ''"
+        >
+          Classes
+        </h1>
+        <h1
+          @click="getMyClasses(true)"
+          :class="showMyClasses ? 'selected' : ''"
+        >
+          My Classes
+        </h1>
+      </div>
 
-    <div class="class-list" v-if="showMyClasses == false">
-      <ul v-for="classItem in filterClasses" :key="classItem.name">
-        <li>
-          <div class="info">
-            <div class="teacher">
-              <h2>{{ classItem.name }}<span>|</span></h2>
-              <p>{{ classItem.teacher }}</p>
-            </div>
-
-            <div class="details">
-              <div>
-                <p><span>Time: </span>{{ classItem.hour }}</p>
-                <p><span>Room:</span> {{ classItem.room }}</p>
-              </div>
-              <div>
-                <p>{{ classItem.day }}</p>
-                <p><span>Grades: </span>{{ classItem.for }}</p>
-              </div>
-            </div>
-          </div>
-
-          <base-button @click="addClass(classItem.name)"> Enroll </base-button>
-        </li>
-      </ul>
-    </div>
-    <div v-else class="class-list" id="myClassesSection">
-      <div v-if="!noClasses">
-        <ul v-for="classItem in myClasses" :key="classItem.name">
+      <div class="class-list overflow" v-if="showMyClasses == false">
+        <ul v-for="classItem in filterClasses" :key="classItem.name">
           <li>
             <div class="info">
               <div class="teacher">
@@ -63,17 +41,51 @@
               </div>
             </div>
 
-            <base-button @click="removeClass(classItem.name)">
-              Remove
+            <base-button @click="addClass(classItem.name)">
+              Enroll
             </base-button>
           </li>
         </ul>
       </div>
-      <div v-else>
-        <p class="no-classes">You're not enrolled in any classes</p>
+      <div
+        v-else
+        class="class-list"
+        :class="myClasses.length > 2 ? 'overflow' : ''"
+        id="myClassesSection"
+      >
+        <div v-if="!noClasses">
+          <ul v-for="classItem in myClasses" :key="classItem.name">
+            <li>
+              <div class="info">
+                <div class="teacher">
+                  <h2>{{ classItem.name }}<span>|</span></h2>
+                  <p>{{ classItem.teacher }}</p>
+                </div>
+
+                <div class="details">
+                  <div>
+                    <p><span>Time: </span>{{ classItem.hour }}</p>
+                    <p><span>Room:</span> {{ classItem.room }}</p>
+                  </div>
+                  <div>
+                    <p>{{ classItem.day }}</p>
+                    <p><span>Grades: </span>{{ classItem.for }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <base-button @click="removeClass(classItem.name)">
+                Remove
+              </base-button>
+            </li>
+          </ul>
+        </div>
+        <div v-else>
+          <p class="no-classes">You're not enrolled in any classes</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -232,12 +244,39 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  height: 100vh;
+}
+
 section {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 5em;
+  height: 100vh;
+}
+
+.class-list {
+  height: 100vh;
+}
+
+.overflow {
+  overflow-y: scroll;
+  margin-bottom: 1em;
+}
+
+.overflow::-webkit-scrollbar {
+  width: 10px;
+  display: block;
+}
+
+.overflow::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.overflow::-webkit-scrollbar-thumb {
+  background: rgb(7, 18, 145);
+  border-radius: 5px;
 }
 
 h2 {
@@ -325,6 +364,7 @@ button {
   color: white;
   font-size: 1.2rem;
   margin-top: 3em;
+  margin-right: 0.5em;
 }
 
 @media (max-width: 800px) {
