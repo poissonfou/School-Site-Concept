@@ -181,8 +181,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding: 2em 0em;
+  height: 150vh;
 }
 
 ul {
@@ -237,7 +236,7 @@ li:hover {
 
 .bottom-p {
   margin: 0;
-  padding: 1em;
+  padding: 0em 1em;
 }
 
 img {
@@ -252,7 +251,7 @@ img {
 }
 
 .section ul {
-  padding-left: 1.5em;
+  padding-left: 1em;
   width: 10em;
 }
 
@@ -273,21 +272,26 @@ a {
 
 @media (max-width: 800px) {
   .sections li {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   img {
-    width: 10rem;
+    width: 100%;
     height: 14rem;
-    margin-top: 1em;
+    margin: 0;
   }
 
   .top-p {
+    flex-direction: column-reverse;
     width: 25em;
   }
 
   .top-p p {
-    width: 30em;
+    padding: 1em;
+  }
+
+  .bottom-p {
+    padding: 0em 2em;
   }
 
   .section {
@@ -298,12 +302,20 @@ a {
     font-size: 1.1rem;
   }
 
+  .section ul {
+    padding-left: 2em;
+  }
+
   .section ul li a {
     font-size: 1.1rem;
   }
 }
 
 @media (max-width: 500px) {
+  main {
+    height: 120vh;
+  }
+
   .section {
     width: auto;
   }
