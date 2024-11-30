@@ -122,7 +122,7 @@ export default {
       return this.$store.getters.returnSchoolData;
     },
     averageGrades() {
-      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let userIndex = data.findIndex((e) => e.id == this.userId);
       let userDataClasses = data[userIndex].classes;
 
@@ -144,14 +144,14 @@ export default {
       return 0;
     },
     returnTasks() {
-      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let userIndex = data.findIndex((e) => e.id == this.userId);
       let userDataClasses = data[userIndex].classes;
 
       return userDataClasses;
     },
     returnGrades() {
-      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let userIndex = data.findIndex((e) => e.id == this.userId);
       let userDataClasses = data[userIndex].classes;
 

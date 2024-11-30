@@ -128,7 +128,7 @@ export default {
   data() {
     return {
       width: window.innerWidth,
-      loggedIn: JSON.parse(localStorage.getItem("isLoggedIn")),
+      loggedIn: JSON.parse(sessionStorage.getItem("isLoggedIn")),
       notHome: false,
       showDrop: false,
       userId: this.$route.params.userId,
@@ -221,15 +221,15 @@ export default {
       this.$router.push("/login");
     },
     pushLogout() {
-      localStorage.setItem("isLoggedIn", JSON.stringify(false));
+      sessionStorage.setItem("isLoggedIn", JSON.stringify(false));
 
-      const data = JSON.parse(localStorage.getItem("arrayUsers"));
+      const data = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
       const index = data.findIndex((e) => e.id == this.userId);
 
       data[index].isLoggedIn = false;
 
-      localStorage.setItem("arrayUsers", JSON.stringify(data));
+      sessionStorage.setItem("arrayUsers", JSON.stringify(data));
 
       this.$router.push("/home");
     },

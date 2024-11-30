@@ -162,7 +162,7 @@ export default {
   },
   computed: {
     userInfo() {
-      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
 
       return [data[idx]];
@@ -170,7 +170,7 @@ export default {
   },
   methods: {
     setInputValues() {
-      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
 
       this.name.val = data[idx].studentName;
@@ -203,12 +203,12 @@ export default {
         return;
       }
 
-      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
 
       data[idx].password = this.newPassword.val;
 
-      localStorage.setItem("arrayUsers", JSON.stringify(data));
+      sessionStorage.setItem("arrayUsers", JSON.stringify(data));
 
       let popup = document.getElementById("password-msg");
       popup.classList = "popup";
@@ -254,7 +254,7 @@ export default {
         return;
       }
 
-      let data = JSON.parse(localStorage.getItem("arrayUsers"));
+      let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let idx = data.findIndex((e) => e.id == this.userId);
 
       let user = data[idx];
@@ -296,7 +296,7 @@ export default {
 
       data[idx] = updatedUser;
 
-      localStorage.setItem("arrayUsers", JSON.stringify(data));
+      sessionStorage.setItem("arrayUsers", JSON.stringify(data));
       let popup = document.getElementById("info-msg");
       popup.classList = "popup";
 

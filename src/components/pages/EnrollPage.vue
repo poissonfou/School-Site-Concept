@@ -148,10 +148,10 @@ export default {
           isLoggedIn: false,
         };
 
-        let data = JSON.parse(localStorage.getItem("arrayUsers"));
+        let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
         data.push(formData);
 
-        localStorage.setItem("arrayUsers", JSON.stringify(data));
+        sessionStorage.setItem("arrayUsers", JSON.stringify(data));
 
         this.infoSent = true;
         document.querySelector(".form").style.height = "29rem";
@@ -176,11 +176,11 @@ export default {
         this.formIsValid = false;
       }
 
-      if (localStorage.length == 0) {
-        localStorage.setItem("arrayUsers", JSON.stringify([]));
+      if (sessionStorage.length == 0) {
+        sessionStorage.setItem("arrayUsers", JSON.stringify([]));
       }
 
-      let arrayStorage = JSON.parse(localStorage.getItem("arrayUsers"));
+      let arrayStorage = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
       const found = arrayStorage.find(
         (e) => e.studentName == this.studentName.val

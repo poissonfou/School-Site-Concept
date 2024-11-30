@@ -119,7 +119,7 @@ export default {
         this.formIsValid = false;
         return;
       }
-      let arrayStorage = JSON.parse(localStorage.getItem("arrayUsers"));
+      let arrayStorage = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
       const foundEmail = arrayStorage.find((e) => e.email == this.email.val);
 
@@ -145,9 +145,9 @@ export default {
         this.formIsValid = false;
         return;
       } else if (loginInfo === false && foundCode) {
-        const data = JSON.parse(localStorage.getItem("arrayUsers"));
+        const data = JSON.parse(sessionStorage.getItem("arrayUsers"));
         data[index].hasLoggedIn = true;
-        localStorage.setItem("arrayUsers", JSON.stringify(data));
+        sessionStorage.setItem("arrayUsers", JSON.stringify(data));
       } else if (loginInfo === true && this.checked === true) {
         this.firstLogin = false;
       }
@@ -174,15 +174,15 @@ export default {
       if (this.formIsValid == false) {
         return;
       } else {
-        const data = JSON.parse(localStorage.getItem("arrayUsers"));
+        const data = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
         const index = data.findIndex((e) => e.password == this.password.val);
 
         data[index].isLoggedIn = true;
 
-        localStorage.setItem("arrayUsers", JSON.stringify(data));
+        sessionStorage.setItem("arrayUsers", JSON.stringify(data));
 
-        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        sessionStorage.setItem("isLoggedIn", JSON.stringify(true));
 
         this.id = data[index].id;
 
@@ -195,9 +195,9 @@ export default {
   },
   computed: {
     returnId() {
-      let log = JSON.parse(localStorage.getItem("isLoggedIn"));
+      let log = JSON.parse(sessionStorage.getItem("isLoggedIn"));
       if (log == true) {
-        const data = JSON.parse(localStorage.getItem("arrayUsers"));
+        const data = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
         const index = data.findIndex((e) => e.isLoggedIn == true);
 
@@ -208,7 +208,7 @@ export default {
     },
   },
   mounted() {
-    console.log(JSON.parse(localStorage.getItem("arrayUsers")));
+    console.log(JSON.parse(sessionStorage.getItem("arrayUsers")));
   },
 };
 </script>

@@ -116,7 +116,7 @@ export default {
       }
 
       this.showMyClasses = true;
-      let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userInfo = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
       let userIndex = userInfo.findIndex((e) => e.id == this.userId);
 
@@ -130,7 +130,7 @@ export default {
       this.myClasses = classes;
     },
     verifyClass(className) {
-      let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userInfo = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
       let userIndex = userInfo.findIndex((e) => e.id == this.userId);
 
@@ -165,7 +165,7 @@ export default {
         return;
       }
 
-      let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userInfo = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
       let dataClasses = this.classes.find((e) => e.name == className);
 
@@ -173,11 +173,11 @@ export default {
 
       userInfo[userIndex].classes.push(dataClasses);
 
-      localStorage.setItem("arrayUsers", JSON.stringify(userInfo));
+      sessionStorage.setItem("arrayUsers", JSON.stringify(userInfo));
     },
     removeClass(className) {
       console.log(className);
-      let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userInfo = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
       let userIndex = userInfo.findIndex((e) => e.id == this.userId);
 
@@ -192,7 +192,7 @@ export default {
 
       userInfo[userIndex].classes.splice(idx, 1);
 
-      localStorage.setItem("arrayUsers", JSON.stringify(userInfo));
+      sessionStorage.setItem("arrayUsers", JSON.stringify(userInfo));
     },
     getDays() {
       let grades = "";
@@ -217,7 +217,7 @@ export default {
   },
   computed: {
     filterClasses() {
-      let userInfo = JSON.parse(localStorage.getItem("arrayUsers"));
+      let userInfo = JSON.parse(sessionStorage.getItem("arrayUsers"));
       let userIndex = userInfo.findIndex((e) => e.id == this.userId);
 
       let userGrade = userInfo[userIndex].grade;

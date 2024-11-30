@@ -29,10 +29,10 @@ export default {
     $route() {
       this.key += 1;
 
-      let login = JSON.parse(localStorage.getItem("isLoggedIn"));
+      let login = JSON.parse(sessionStorage.getItem("isLoggedIn"));
 
       if (login == true) {
-        let data = JSON.parse(localStorage.getItem("arrayUsers"));
+        let data = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
         let idx = data.findIndex((e) => e.isLoggedIn == true);
 
