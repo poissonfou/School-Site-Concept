@@ -12,7 +12,7 @@ if (data == true) {
 
   redirectInitial.redirect = `School-Site-Concept/board/${dataUser[index].id}`;
 } else {
-  redirectInitial.redirect = "home";
+  redirectInitial.redirect = "/School-Site-Concept/home";
 }
 
 export default redirectInitial;
