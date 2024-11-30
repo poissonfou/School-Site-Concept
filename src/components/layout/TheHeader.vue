@@ -200,7 +200,7 @@ export default {
       }
     },
     showPrices() {
-      if (this.$route.path != "/home") {
+      if (this.$route.path != "/School-Site-Concept/home") {
         this.$router.push("home");
         setTimeout(() => {
           window.scrollTo(0, 1800);
@@ -209,7 +209,7 @@ export default {
       window.scrollTo(0, 1800);
     },
     showContact() {
-      if (this.$route.path != "/home") {
+      if (this.$route.path != "/School-Site-Concept/home") {
         this.$router.push("home");
         setTimeout(() => {
           window.scrollTo(0, 5000);
@@ -218,7 +218,7 @@ export default {
       window.scrollTo(0, 5000);
     },
     pushLogin() {
-      this.$router.push("/login");
+      this.$router.push("/School-Site-Concept/login");
     },
     pushLogout() {
       sessionStorage.setItem("isLoggedIn", JSON.stringify(false));
@@ -231,10 +231,10 @@ export default {
 
       sessionStorage.setItem("arrayUsers", JSON.stringify(data));
 
-      this.$router.push("/home");
+      this.$router.push("/School-Site-Concept/home");
     },
     showHome() {
-      if (this.$route.path != "/home" && this.width > 768) {
+      if (this.$route.path != "/School-Site-Concept/home" && this.width > 768) {
         document.querySelector(".home").classList.toggle("hidden");
       }
     },
