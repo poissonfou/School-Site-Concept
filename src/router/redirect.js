@@ -1,16 +1,16 @@
 let redirectInitial = {
   path: "/",
-  redirect: " ",
+  redirect: "",
 };
 
-let data = JSON.parse(localStorage.getItem("isLoggedIn"));
+let data = JSON.parse(sessionStorage.getItem("isLoggedIn"));
 
 if (data == true) {
-  const dataUser = JSON.parse(localStorage.getItem("arrayUsers"));
+  const dataUser = JSON.parse(sessionStorage.getItem("arrayUsers"));
 
   const index = dataUser.findIndex((e) => e.isLoggedIn == true);
 
-  redirectInitial.redirect = `/board/${dataUser[index].id}`;
+  redirectInitial.redirect = `School-Site-Concept/board/${dataUser[index].id}`;
 } else {
   redirectInitial.redirect = "home";
 }
