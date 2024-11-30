@@ -1,5 +1,5 @@
 let redirectInitial = {
-  path: "/",
+  path: "School-Site-Concept/",
   redirect: "",
 };
 
